@@ -1,5 +1,5 @@
 /* Service worker: app shell em cache; páginas do guia em cache sob demanda */
-var VERSION = "v1";
+var VERSION = "v3";
 var SHELL = "pqo-shell-" + VERSION;
 var PAGES = "pqo-pages";
 var ASSETS = ["./", "index.html", "css/styles.css", "js/questions.js", "js/app.js", "js/mobile.js", "manifest.json", "icons/icon-192.png", "icons/icon-512.png"];

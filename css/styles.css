@@ -939,3 +939,37 @@ input[type="radio"], input[type="checkbox"] {
   }
 }
 
+
+/* ==========================================================================
+   Cards selecionáveis: o card inteiro é o controle (sem bolinhas de rádio)
+   ========================================================================== */
+.opt, .q label { position: relative; }
+
+.opt input[type="radio"],
+.q label input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  flex: none;
+  pointer-events: none;
+}
+
+.opt:has(input[type="radio"]:focus-visible),
+.q label:has(input[type="radio"]:focus-visible) {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.opt:has(input[type="radio"]:checked),
+.q label:has(input[type="radio"]:checked) {
+  box-shadow: inset 0 0 0 1px var(--accent);
+}
+
+.q label.right,
+.q label.right:has(input:checked) { box-shadow: inset 0 0 0 1px var(--ok); }
+.q label.wrong,
+.q label.wrong:has(input:checked) { box-shadow: inset 0 0 0 1px var(--bad); }
+
+.q label:has(input:disabled) { cursor: default; }
