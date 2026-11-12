@@ -79,3 +79,45 @@
     go.apply(this, arguments);
   };
 })();
+
+/* Alternador manual de tema (Sol e Lua) */
+(function () {
+  var btn = document.getElementById("themeToggle");
+  if (!btn) return;
+
+  function isSystemDark() {
+    return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+  }
+
+  var cur = localStorage.getItem("pqo_theme"); // 'dark' | 'light' | null
+
+  function apply(theme) {
+    var isDark = theme === "dark" || (!theme && isSystemDark());
+    if (theme === "dark") {
+      document.documentElement.setAttribute("data-theme", "dark");
+    } else if (theme === "light") {
+      document.documentElement.setAttribute("data-theme", "light");
+    } else {
+      document.documentElement.removeAttribute("data-theme");
+    }
+    // Se está no escuro, o ícone mostra ☀️ para ir para o claro; se está claro, mostra 🌙 para ir ao escuro
+    btn.textContent = isDark ? "☀️" : "🌙";
+    btn.setAttribute("title", isDark ? "Mudar para modo claro" : "Mudar para modo escuro");
+  }
+
+  apply(cur);
+
+  btn.onclick = function () {
+    var currentlyDark = document.documentElement.getAttribute("data-theme") === "dark" ||
+      (!document.documentElement.getAttribute("data-theme") && isSystemDark());
+    var next = currentlyDark ? "light" : "dark";
+    localStorage.setItem("pqo_theme", next);
+    apply(next);
+  };
+
+  if (window.matchMedia) {
+    window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", function () {
+      if (!localStorage.getItem("pqo_theme")) apply(null);
+    });
+  }
+})();

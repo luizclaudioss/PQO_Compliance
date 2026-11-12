@@ -4,17 +4,19 @@
    ========================================================================== */
 
 :root {
-  --accentbg: #eef4ff;
-  --bg: #f6f7f9;
-  --fg: #1c2230;
+  --accentbg: #e8eef9;
+  --bg: #f3f5fa;
+  --fg: #14213d;
   --card: #ffffff;
-  --muted: #5d6678;
-  --line: #dfe3ea;
-  --accent: #1556d6;
-  --ok: #157347;
-  --okbg: #e5f4ec;
-  --bad: #b42318;
-  --badbg: #fdeceb;
+  --muted: #55607a;
+  --line: #d8dfec;
+  --accent: #0b2f6b;
+  --onaccent: #ffffff;
+  --gold: #c8962e;
+  --ok: #0f7a4a;
+  --okbg: #e0f4ea;
+  --bad: #b3261e;
+  --badbg: #fdeae8;
   color-scheme: light;
   box-sizing: border-box;
   padding-top: env(safe-area-inset-top, 0px);
@@ -23,33 +25,37 @@
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --accentbg: #1e2a44;
-    --bg: #12151c;
-    --fg: #e8ebf2;
-    --card: #1b202b;
-    --muted: #9aa3b5;
-    --line: #2c3342;
-    --accent: #6b9bff;
-    --ok: #5fd09a;
-    --okbg: #14302386;
-    --bad: #ff8a80;
-    --badbg: #3a1a1a;
+    --accentbg: #232f4d;
+    --bg: #0e1526;
+    --fg: #eaeef7;
+    --card: #17213a;
+    --muted: #a6b1c8;
+    --line: #2b3a5c;
+    --accent: #e3b655;
+    --onaccent: #14213d;
+    --gold: #e3b655;
+    --ok: #4ade9a;
+    --okbg: #123a2c;
+    --bad: #ff7b72;
+    --badbg: #44212a;
     color-scheme: dark;
   }
 }
 
 :root[data-theme="dark"] {
-  --accentbg: #1e2a44;
-  --bg: #12151c;
-  --fg: #e8ebf2;
-  --card: #1b202b;
-  --muted: #9aa3b5;
-  --line: #2c3342;
-  --accent: #6b9bff;
-  --ok: #5fd09a;
-  --okbg: #14302386;
-  --bad: #ff8a80;
-  --badbg: #3a1a1a;
+    --accentbg: #232f4d;
+    --bg: #0e1526;
+    --fg: #eaeef7;
+    --card: #17213a;
+    --muted: #a6b1c8;
+    --line: #2b3a5c;
+    --accent: #e3b655;
+    --onaccent: #14213d;
+    --gold: #e3b655;
+    --ok: #4ade9a;
+    --okbg: #123a2c;
+    --bad: #ff7b72;
+    --badbg: #44212a;
   color-scheme: dark;
 }
 
@@ -121,7 +127,7 @@ h3 {
 /* Botões e Controles */
 button {
   background: var(--accent);
-  color: #fff;
+  color: var(--onaccent);
   border: 0;
   border-radius: 10px;
   padding: 11px 18px;
@@ -317,7 +323,7 @@ input[type="radio"], input[type="checkbox"] {
   display: block;
   height: 100%;
   width: 0;
-  background: var(--accent);
+  background: var(--gold);
   transition: width 0.25s;
 }
 
@@ -468,7 +474,7 @@ input[type="radio"], input[type="checkbox"] {
 
 .pgbtn:hover {
   background: var(--accent);
-  color: #fff;
+  color: var(--onaccent);
 }
 
 /* Navegação Anterior / Avançar dentro da questão */
@@ -633,7 +639,7 @@ input[type="radio"], input[type="checkbox"] {
 }
 
 .qnav-btn.cur {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--gold);
   outline-offset: 1px;
 }
 
@@ -978,8 +984,42 @@ input[type="radio"], input[type="checkbox"] {
 @media (max-width: 700px) {
   body:not(.lastq) .bar .bt #send { display: none; }
   .bar .bt #send { background: transparent; color: var(--accent); border: 1px solid var(--accent); }
-  body.lastq .bar .bt #send { background: var(--accent); color: #fff; }
+  body.lastq .bar .bt #send { background: var(--accent); color: var(--onaccent); }
 }
 
 /* Os botões ‹ › da barra eram redundantes com "Voltar/Avançar" do card */
 #prev, #next { display: none !important; }
+
+/* Botão de tema no canto superior direito */
+.theme-top-btn {
+  position: absolute;
+  top: max(12px, env(safe-area-inset-top, 12px));
+  right: max(14px, env(safe-area-inset-right, 14px));
+  background: var(--card);
+  color: var(--fg);
+  border: 1px solid var(--line);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  cursor: pointer;
+  padding: 0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  z-index: 20;
+  transition: transform 0.15s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+.theme-top-btn:active {
+  transform: scale(0.92);
+}
+
+.theme-top-btn:hover {
+  border-color: var(--accent);
+}
+
+main {
+  position: relative;
+}
