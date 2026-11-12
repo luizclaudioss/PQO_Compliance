@@ -116,8 +116,11 @@
   };
 
   if (window.matchMedia) {
-    window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", function () {
-      if (!localStorage.getItem("pqo_theme")) apply(null);
-    });
+    var mm = window.matchMedia("(prefers-color-scheme: dark)");
+    if (mm && mm.addEventListener) {
+      mm.addEventListener("change", function () {
+        if (!localStorage.getItem("pqo_theme")) apply(null);
+      });
+    }
   }
 })();

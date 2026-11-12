@@ -35,7 +35,7 @@ function disp(q,orig){var i=order(q).indexOf(orig);return i<0?orig:String.fromCh
 function optText(q,L){var o=q.opts.filter(function(x){return x[0]===L})[0];return o?o[1]:""}
 function show(){
   warned=false;$("setup").className="setup hide";$("quiz").className="";$("bar").className="bar";
-  $("res").className="hide";$("send").className="";$("errs").className="alt hide";$("again").className="hide";$("home").className="alt";
+  $("res").className="hide";$("send").className="";$("errs").className="alt hide";$("again").className="hide";if($("pdfReport"))$("pdfReport").className="alt hide";$("home").className="alt";
   $("send").textContent=S.mode==="estudo"?"Finalizar":"Enviar respostas";
   $("sub").textContent=(S.mode==="estudo"?"Modo Estudo: ":"Modo Prova: ")+S.ids.length+(S.mode==="estudo"?" questões. Cada resposta é corrigida na hora.":" questões. Envie para ver o resultado, o gabarito e os comentários.");
   var h="",lt="",lc="";
@@ -79,8 +79,8 @@ function finish(){
     var b=by[q.tit]||(by[q.tit]={n:q.titn,t:0,c:0});b.t++;if(r)b.c++;reveal(q)});
   var t="";Object.keys(by).forEach(function(k){t+="<tr><td>Título "+k+" – "+esc(by[k].n)+"</td><td>"+by[k].c+"/"+by[k].t+"</td></tr>"});
   var r=$("res");r.className="";
-  r.innerHTML='<div class="big">'+ok+" acertos de "+S.ids.length+" ("+pct(ok,S.ids.length)+"%)</div>Resultado final. Revise abaixo o gabarito comentado, uma questão por tela.<table>"+t+"</table>";
-  $("send").className="hide";$("home").className="hide";$("again").className="";
+  r.innerHTML='<div class="big">'+ok+" acertos de "+S.ids.length+" ("+pct(ok,S.ids.length)+"%)</div><div style=\"margin:12px 0 16px;\"><button type=\"button\" id=\"resPdfBtn\" class=\"primary\" style=\"width:100%;min-height:46px;\">📄 Baixar Relatório Completo em PDF</button></div>Resultado final. Revise abaixo o gabarito comentado, uma questão por tela.<table>"+t+"</table>";setTimeout(function(){var b=$("resPdfBtn");if(b)b.onclick=generatePDFReport;},10);
+  $("send").className="hide";$("home").className="hide";$("again").className="";if($("pdfReport"))$("pdfReport").className="alt";
   S.wrong=S.ids.filter(function(n){return S.ans[n]!==byN(n).ans});
   if(S.wrong.length)$("errs").className="alt";
   S.cur=0;goTo(0);histRender(histSave());window.scrollTo(0,0);
@@ -147,3 +147,127 @@ document.addEventListener("keydown",function(e){
 var _un3=updateNav;updateNav=function(){_un3();if(!S||!S.ids)return;var f=$("pfill");if(f)f.style.width=(100*Object.keys(S.ans||{}).length/S.ids.length)+"%";var b=$("nav"+S.ids[S.cur]),nv=$("qnav");if(b&&nv&&nv.scrollWidth>nv.clientWidth){var l=b.offsetLeft-(nv.clientWidth-b.offsetWidth)/2;if(nv.scrollTo)nv.scrollTo({left:l,behavior:"smooth"});else nv.scrollLeft=l}};
 var sv0=load();
 setup();
+
+
+function generatePDFReport() {
+  if (!S || !S.ids) return;
+  var ok = 0;
+  S.ids.forEach(function (n) { if (S.ans[n] === byN(n).ans) ok++; });
+  var total = S.ids.length;
+  var pctVal = pct(ok, total);
+  var dataStr = new Date().toLocaleString("pt-BR");
+
+  var w = window.open("", "_blank");
+  if (!w) {
+    alert("Por favor, habilite popups para gerar o relatório em PDF.");
+    return;
+  }
+
+  var html = '<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8">';
+  html += '<title>Relatório de Desempenho – Simulado PQO Compliance</title>';
+  html += '<style>';
+  html += '@page { size: A4; margin: 15mm; }';
+  html += 'body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: #14213d; background: #fff; margin: 0; padding: 0; line-height: 1.5; font-size: 11pt; }';
+  html += '.header { border-bottom: 2px solid #0b2f6b; padding-bottom: 12px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: flex-end; }';
+  html += '.title h1 { margin: 0; font-size: 18pt; color: #0b2f6b; }';
+  html += '.title p { margin: 4px 0 0; color: #55607a; font-size: 10pt; }';
+  html += '.meta { text-align: right; font-size: 9pt; color: #55607a; }';
+  html += '.summary-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 24px; }';
+  html += '.stat-box { border: 1px solid #d8dfec; border-radius: 6px; padding: 12px; text-align: center; background: #f8fafc; }';
+  html += '.stat-val { font-size: 18pt; font-weight: 700; color: #0b2f6b; }';
+  html += '.stat-lbl { font-size: 9pt; text-transform: uppercase; letter-spacing: 0.05em; color: #55607a; margin-top: 2px; }';
+  html += '.q-card { border: 1px solid #d8dfec; border-radius: 6px; padding: 14px 16px; margin-bottom: 16px; page-break-inside: avoid; }';
+  html += '.q-card.is-ok { border-left: 5px solid #0f7a4a; }';
+  html += '.q-card.is-bad { border-left: 5px solid #b3261e; }';
+  html += '.q-top { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 9pt; color: #55607a; font-weight: 600; }';
+  html += '.q-badge { padding: 2px 8px; border-radius: 4px; font-weight: 700; }';
+  html += '.b-ok { background: #e0f4ea; color: #0f7a4a; }';
+  html += '.b-bad { background: #fdeae8; color: #b3261e; }';
+  html += '.q-stem { font-weight: 600; font-size: 11pt; margin-bottom: 12px; }';
+  html += '.answers { margin: 10px 0; font-size: 10pt; }';
+  html += '.ans-row { margin: 4px 0; padding: 6px 10px; border-radius: 4px; }';
+  html += '.ans-user-bad { background: #fdeae8; color: #b3261e; font-weight: 600; }';
+  html += '.ans-correct { background: #e0f4ea; color: #0f7a4a; font-weight: 600; }';
+  html += '.just-box { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 4px; padding: 10px 12px; font-size: 9.5pt; margin-top: 10px; line-height: 1.45; }';
+  html += '.just-title { font-weight: 700; margin-bottom: 3px; color: #14213d; }';
+  html += '.print-bar { background: #0b2f6b; color: #fff; padding: 12px 20px; text-align: center; position: sticky; top: 0; z-index: 100; margin-bottom: 20px; border-radius: 6px; display: flex; justify-content: space-between; align-items: center; }';
+  html += '.print-btn { background: #e3b655; color: #14213d; border: 0; padding: 8px 18px; border-radius: 6px; font-weight: 700; cursor: pointer; font-size: 10pt; }';
+  html += '@media print { .print-bar { display: none !important; } }';
+  html += '</style></head><body>';
+
+  html += '<div class="print-bar">';
+  html += '<span><b>Relatório Pronto para Impressão/Salvar em PDF</b></span>';
+  html += '<button class="print-btn" onclick="window.print()">🖨️ Salvar em PDF / Imprimir</button>';
+  html += '</div>';
+
+  html += '<div class="header">';
+  html += '<div class="title"><h1>Simulado PQO Compliance</h1><p>Relatório de Desempenho e Gabarito Comentado</p></div>';
+  html += '<div class="meta">Data: ' + dataStr + '<br>Modo: ' + (S.mode === "estudo" ? "Estudo" : "Prova") + '</div>';
+  html += '</div>';
+
+  html += '<div class="summary-grid">';
+  html += '<div class="stat-box"><div class="stat-val">' + ok + ' / ' + total + '</div><div class="stat-lbl">Acertos</div></div>';
+  html += '<div class="stat-box"><div class="stat-val">' + pctVal + '%</div><div class="stat-lbl">Aproveitamento</div></div>';
+  html += '<div class="stat-box"><div class="stat-val">' + (total - ok) + '</div><div class="stat-lbl">Erros</div></div>';
+  html += '</div>';
+
+  S.ids.forEach(function (n, idx) {
+    var q = byN(n);
+    var uAns = S.ans[n];
+    var isRight = uAns === q.ans;
+    var uText = "";
+    var cText = "";
+
+    q.opts.forEach(function (o) {
+      if (o[0] === uAns) uText = o[1];
+      if (o[0] === q.ans) cText = o[1];
+    });
+
+    html += '<div class="q-card ' + (isRight ? "is-ok" : "is-bad") + '">';
+    html += '<div class="q-top">';
+    html += '<span>Questão ' + (idx + 1) + ' · Título ' + q.tit + ' · Cap. ' + q.cap + '</span>';
+    html += '<span class="q-badge ' + (isRight ? "b-ok" : "b-bad") + '">' + (isRight ? "ACERTO" : (uAns ? "ERRO" : "NÃO RESPONDIDA")) + '</span>';
+    html += '</div>';
+
+    html += '<div class="q-stem">' + esc(q.stem) + '</div>';
+    html += '<div class="answers">';
+    if (!isRight) {
+      if (uAns) {
+        html += '<div class="ans-row ans-user-bad">❌ Sua resposta: (' + disp(q, uAns) + ') ' + esc(uText) + '</div>';
+      } else {
+        html += '<div class="ans-row ans-user-bad">⚠️ Você não respondeu esta questão.</div>';
+      }
+    }
+    html += '<div class="ans-row ans-correct">✔️ Resposta correta: (' + disp(q, q.ans) + ') ' + esc(cText) + '</div>';
+    html += '</div>';
+
+    var wrReason = (!isRight && uAns) ? wrongReason(q, uAns) : "";
+    if (wrReason) {
+      html += '<div class="just-box">';
+      html += '<div class="just-title">Por que a alternativa (' + disp(q, uAns) + ') está errada?</div>';
+      html += esc(wrReason);
+      html += '</div>';
+    }
+
+    if (q.exp) {
+      html += '<div class="just-box">';
+      html += '<div class="just-title">Justificativa da alternativa (' + disp(q, q.ans) + '):</div>';
+      html += esc(q.exp);
+      if (q.pg && typeof pgLabel === "function") {
+        html += '<div style="margin-top:6px; color:#55607a; font-size:8.5pt;">📖 Referência no Guia: ' + pgLabel(q.pg) + '</div>';
+      }
+      html += '</div>';
+    }
+
+    html += '</div>';
+  });
+
+  html += '<script>setTimeout(function(){ window.print(); }, 400);<\/script>';
+  html += '</body></html>';
+
+  w.document.open();
+  w.document.write(html);
+  w.document.close();
+}
+
+if ($("pdfReport")) $("pdfReport").onclick = generatePDFReport;

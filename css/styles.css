@@ -1023,3 +1023,11 @@ input[type="radio"], input[type="checkbox"] {
 main {
   position: relative;
 }
+
+/* Botão Relatório PDF na barra inferior */
+@media (max-width: 700px) {
+  .bar .bt #pdfReport {
+    font-size: 0.85rem;
+    padding: 0 10px;
+  }
+}
