@@ -1,8 +1,8 @@
 /* Service worker: app shell em cache; páginas do guia em cache sob demanda */
-var VERSION = "v3";
+var VERSION = "v7";
 var SHELL = "pqo-shell-" + VERSION;
 var PAGES = "pqo-pages";
-var ASSETS = ["./", "index.html", "css/styles.css", "js/questions.js", "js/app.js", "js/mobile.js", "manifest.json", "icons/icon-192.png", "icons/icon-512.png"];
+var ASSETS = ["./", "index.html", "css/styles.css", "js/questions.js", "js/pagemap.js", "js/app.js", "js/mobile.js", "manifest.json", "icons/icon-192.png", "icons/icon-512.png"];
 
 self.addEventListener("install", function (e) {
   e.waitUntil(caches.open(SHELL).then(function (c) { return c.addAll(ASSETS); }).then(function () { return self.skipWaiting(); }));

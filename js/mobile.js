@@ -55,3 +55,27 @@
   modal.onclick = function (e) { if (e.target === modal) window.closeGuide(); };
 })();
 
+
+/* Evita finalizar sem querer: no celular o "Finalizar" da barra só aparece
+   na última questão e, em qualquer tela, pede confirmação antes de encerrar. */
+(function () {
+  "use strict";
+  var send = document.getElementById("send");
+
+  function sync() {
+    var on = typeof S !== "undefined" && S && S.ids && !S.done && S.cur === S.ids.length - 1;
+    document.body.classList.toggle("lastq", !!on);
+  }
+  var _u = window.updateNav;
+  window.updateNav = function () { _u.apply(this, arguments); sync(); };
+
+  var go = send.onclick;
+  send.onclick = function () {
+    var n = Object.keys(S.ans || {}).length, t = S.ids.length;
+    var msg = n < t
+      ? "Você respondeu " + n + " de " + t + " questões.\nDeseja finalizar mesmo assim?"
+      : "Finalizar o simulado e ver o resultado?";
+    if (!window.confirm(msg)) return;
+    go.apply(this, arguments);
+  };
+})();

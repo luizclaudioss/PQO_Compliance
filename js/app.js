@@ -67,7 +67,7 @@ function prog(){updateNav()}
   var status = !a ? "Sem resposta." : (r ? "✔ Você acertou." : "✘ Você marcou "+disp(q,a)+").");
   var wrong=(!r&&a)?'<div class="whybox whywrong"><b>Por que a alternativa '+disp(q,a)+') não é a correta?</b><br>'+esc(wrongReason(q,a))+'</div>':"";
   var right='<div class="whybox whyright"><b>Por que a alternativa '+disp(q,q.ans)+') é a correta?</b><br>'+esc(q.exp)+'</div>';
-  e.innerHTML=status+wrong+right;if(q.pg)e.innerHTML+='<div class="pgref"><button type="button" class="pgbtn" data-pg="'+q.pg+'">📖 Consultar Guia, p. '+q.pg+'</button></div>';
+  e.innerHTML=status+wrong+right;if(q.pg)e.innerHTML+='<div class="pgref"><button type="button" class="pgbtn" data-pg="'+q.pg+'">📖 Consultar Guia, '+pgLabel(q.pg)+'</button></div>';
   document.querySelectorAll("input[name=r"+q.n+"]").forEach(function(i){i.disabled=true});
 }
 function finish(){
@@ -112,8 +112,8 @@ function openGuide(p){
   pmCur=p;
   var m=$("pmodal"),img=$("pmImg"),st=$("pmStat"),lbl=$("pmLbl"),inp=$("pmInp");
   m.classList.remove("hide");
-  lbl.textContent="p. "+p+" de "+PM_MAX;
-  inp.value=p;
+  lbl.textContent=PRINTED[p]?"p. "+PRINTED[p]+" · arquivo "+p+"/"+PM_MAX:"pág. "+p+"/"+PM_MAX;
+  inp.value=PRINTED[p]||p;
   $("pmPrev").disabled=(p<=1);
   $("pmNext").disabled=(p>=PM_MAX);
   st.textContent="Carregando página "+p+"...";
@@ -131,7 +131,7 @@ $("pmNext").onclick=function(){if(pmCur<PM_MAX)openGuide(pmCur+1)};
 $("pmClose").onclick=closeGuide;
 $("pmZoom").onclick=function(){$("pmBody").classList.toggle("zoom")};
 $("pmImg").onclick=function(){$("pmBody").classList.toggle("zoom")};
-$("pmInp").onchange=function(){openGuide(this.value)};
+$("pmInp").onchange=function(){var v=parseInt(this.value,10);openGuide(PRINTED_REV[v]||v)};
 $("pmodal").onclick=function(e){if(e.target===$("pmodal"))closeGuide()};
 document.addEventListener("keydown",function(e){
   var pmOpen=!$("pmodal").classList.contains("hide");

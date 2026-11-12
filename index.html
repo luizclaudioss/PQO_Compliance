@@ -36,7 +36,7 @@
 <div class="pm-box">
 <div class="pm-bar">
 <span class="pm-title">📖 Guia Por Dentro da B3 · <span id="pmLbl">p. 1</span></span>
-<div class="pm-ctrl"><button type="button" class="alt" id="pmPrev" title="Página anterior">‹ Anterior</button><input type="number" id="pmInp" min="1" max="715" inputmode="numeric" aria-label="Ir para a página"><button type="button" class="alt" id="pmNext" title="Próxima página">Próxima ›</button><button type="button" class="alt" id="pmZoom" title="Alternar zoom">🔍 Zoom</button><button type="button" id="pmClose" title="Fechar (Esc)">✕ Fechar</button></div>
+<div class="pm-ctrl"><button type="button" class="alt" id="pmPrev" title="Página anterior">‹ Anterior</button><input type="number" id="pmInp" min="1" max="715" inputmode="numeric" aria-label="Ir para a página (número do rodapé)" title="Número da página impresso no rodapé do guia"><button type="button" class="alt" id="pmNext" title="Próxima página">Próxima ›</button><button type="button" class="alt" id="pmZoom" title="Alternar zoom">🔍 Zoom</button><button type="button" id="pmClose" title="Fechar (Esc)">✕ Fechar</button></div>
 </div>
 <div class="pm-body" id="pmBody"><span class="pm-status" id="pmStat">Carregando página...</span><img id="pmImg" alt="Página do Guia Por Dentro da B3" draggable="false"></div>
 <div class="pm-hint">Deslize para os lados para trocar de página · toque na página para ampliar</div>
@@ -44,6 +44,7 @@
 </div>
 
 <script src="js/questions.js"></script>
+<script src="js/pagemap.js"></script>
 <script src="js/app.js"></script>
 <script src="js/mobile.js"></script>
 <script>if("serviceWorker"in navigator&&location.protocol.indexOf("http")===0){window.addEventListener("load",function(){navigator.serviceWorker.register("sw.js").catch(function(){})})}</script>

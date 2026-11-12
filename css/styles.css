@@ -973,3 +973,13 @@ input[type="radio"], input[type="checkbox"] {
 .q label.wrong:has(input:checked) { box-shadow: inset 0 0 0 1px var(--bad); }
 
 .q label:has(input:disabled) { cursor: default; }
+
+/* Mobile: "Finalizar" da barra fica oculto até a última questão */
+@media (max-width: 700px) {
+  body:not(.lastq) .bar .bt #send { display: none; }
+  .bar .bt #send { background: transparent; color: var(--accent); border: 1px solid var(--accent); }
+  body.lastq .bar .bt #send { background: var(--accent); color: #fff; }
+}
+
+/* Os botões ‹ › da barra eram redundantes com "Voltar/Avançar" do card */
+#prev, #next { display: none !important; }
