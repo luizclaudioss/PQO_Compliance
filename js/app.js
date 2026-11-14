@@ -37,7 +37,7 @@ function show(){
   warned=false;$("setup").className="setup hide";$("quiz").className="";$("bar").className="bar";
   $("res").className="hide";$("send").className="";$("errs").className="alt hide";$("again").className="hide";if($("pdfReport"))$("pdfReport").className="alt hide";$("home").className="alt";
   $("send").textContent=S.mode==="estudo"?"Finalizar":"Enviar respostas";
-  $("sub").textContent=(S.mode==="estudo"?"Modo Estudo: ":"Modo Prova: ")+S.ids.length+(S.mode==="estudo"?" questões. Cada resposta é corrigida na hora.":" questões. Envie para ver o resultado, o gabarito e os comentários.");
+  $("sub").textContent=(S.mode==="estudo"?"Modo Estudo: ":"Modo Prova: ")+S.ids.length+(S.mode==="estudo"?" questões.":" questões. Envie para ver o resultado, o gabarito e os comentários.");
   var h="",lt="",lc="";
   S.ids.forEach(function(n,ix){var q=byN(n);
     h+='<div class="q" id="q'+q.n+'"><div class="qhead"><span class="qn">Questão '+(ix+1)+' de '+S.ids.length+'</span><span class="qt">Título '+q.tit+' – '+esc(q.titn)+' · Cap. '+q.cap+' – '+esc(q.capn)+'</span></div><p>'+esc(q.stem)+"</p>";
