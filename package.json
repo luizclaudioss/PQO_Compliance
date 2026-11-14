@@ -1,0 +1,15 @@
+{
+  "name": "pqo-compliance",
+  "version": "1.0.0",
+  "description": "Simulado PQO Compliance com consulta ao Guia Por Dentro da B3",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["b3", "pqo", "compliance", "simulado"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@vercel/analytics": "^1.1.1"
+  }
+}
