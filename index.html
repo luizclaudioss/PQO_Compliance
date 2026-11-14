@@ -49,5 +49,11 @@
 <script src="js/app.js"></script>
 <script src="js/mobile.js"></script>
 <script>if("serviceWorker"in navigator&&location.protocol.indexOf("http")===0){window.addEventListener("load",function(){navigator.serviceWorker.register("sw.js").catch(function(){})})}</script>
+
+<!-- Vercel Speed Insights -->
+<script type="module">
+  import { injectSpeedInsights } from 'https://cdn.jsdelivr.net/npm/@vercel/speed-insights@1/dist/index.mjs';
+  injectSpeedInsights();
+</script>
 </body>
 </html>
