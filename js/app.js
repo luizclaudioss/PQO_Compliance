@@ -9,23 +9,113 @@ function pct(a,b){return String(Math.round(a*1000/b)/10).replace(".",",")}
 var QN=60;
 function prefs(){try{return JSON.parse(localStorage.getItem('pqo_prefs'))||{}}catch(e){return {}}}
 function setPrefs(p){try{localStorage.setItem('pqo_prefs',JSON.stringify(p))}catch(e){}}
-function bankPool(b){return D.filter(function(q){return b==="novas"?q.n>=82:(b==="guia"?q.n<=81:true)}).map(function(q){return q.n})}
-function strat(pool,k){if(pool.length<=k)return pool.slice().sort(function(a,b){return a-b});var g={};pool.forEach(function(n){var t=byN(n).tit;(g[t]=g[t]||[]).push(n)});var ks=Object.keys(g),tot=pool.length,q={},rem=[],s=0;ks.forEach(function(t){var x=k*g[t].length/tot;q[t]=Math.floor(x);s+=q[t];rem.push([t,x-q[t]])});rem.sort(function(a,b){return b[1]-a[1]});for(var i=0;s<k;i++){q[rem[i%rem.length][0]]++;s++}var out=[];ks.forEach(function(t){out=out.concat(shuffle(g[t].slice()).slice(0,q[t]))});return out.sort(function(a,b){return a-b})}
+var MODS_LUCAS = {
+  1: "Sistema Financeiro Nacional e Participantes do Mercado",
+  2: "Infraestrutura do Mercado & B3",
+  3: "Instrumentos de Renda Fixa, Renda Variável e Derivativos",
+  4: "Fundos de Investimentos",
+  5: "Estrutura de Contas e Cadastro",
+  6: "Risco Corporativo e Controles Internos",
+  7: "Negociação",
+  8: "Compliance"
+};
+
+function bankPool(b, m) {
+  var pool = D;
+  if (b === "guia") pool = D.filter(function(q){ return q.banco === "guia"; });
+  else if (b === "lucas") pool = D.filter(function(q){ return q.banco === "lucas"; });
+  // se "todas", pool = D
+  if (m && m !== "0") {
+    var mn = parseInt(m, 10);
+    var rom = ["I","II","III","IV","V","VI","VII","VIII"][mn-1];
+    pool = pool.filter(function(q){
+      return q.mod === mn || q.tit === rom;
+    });
+  }
+  return pool.map(function(q){ return q.n; });
+}
+
+function strat(pool, k) {
+  if (pool.length <= k) return pool.slice().sort(function(a,b){ return a-b; });
+  var g = {};
+  pool.forEach(function(n){ var t = byN(n).tit || "Geral"; (g[t] = g[t] || []).push(n); });
+  var ks = Object.keys(g), tot = pool.length, q = {}, rem = [], s = 0;
+  ks.forEach(function(t){
+    var x = k * g[t].length / tot;
+    q[t] = Math.floor(x);
+    s += q[t];
+    rem.push([t, x - q[t]]);
+  });
+  rem.sort(function(a,b){ return b[1] - a[1]; });
+  for (var i = 0; s < k; i++) {
+    q[rem[i % rem.length][0]]++;
+    s++;
+  }
+  var out = [];
+  ks.forEach(function(t){
+    out = out.concat(shuffle(g[t].slice()).slice(0, q[t]));
+  });
+  return out.sort(function(a,b){ return a-b; });
+}
 function setup(){
   $("quiz").className="hide";$("bar").className="bar hide";$("setup").className="setup";
-  var p=prefs(),md=p.mode==="prova"?"prova":"estudo",bk=(p.bank==="todas"||p.bank==="novas")?p.bank:"guia",sf=p.shuf!==false;
-  var nG=bankPool("guia").length,nN=bankPool("novas").length,nT=D.length;
+  var p=prefs(),md=p.mode==="prova"?"prova":"estudo",bk=(p.bank==="guia"||p.bank==="lucas"||p.bank==="todas")?p.bank:"lucas",sf=p.shuf!==false,modSel=p.mod||"0",qtdSel=(p.qtd!==undefined&&p.qtd!==null)?p.qtd:60;
+  var nG=bankPool("guia").length,nL=bankPool("lucas").length,nT=D.length;
   var sv=load(),h="";
   if(sv&&sv.ids&&!sv.done){h+='<div class="resume"><span>Você tem um simulado em andamento ('+Object.keys(sv.ans).length+' de '+sv.ids.length+' respondidas).</span><button type="button" class="alt" id="cont">Continuar</button></div>'}
   function rd(name,val,title,sub,ck){return '<label class="opt'+(ck?' sel':'')+'"><input type="radio" name="'+name+'" value="'+val+'"'+(ck?' checked':'')+'><span><b>'+title+'</b><small>'+sub+'</small></span></label>'}
   h+='<div class="sec">Modo</div><div class="ogrid g2">'+rd("mode","estudo","Estudo","Mostra se acertou e o comentário logo após cada resposta.",md==="estudo")+rd("mode","prova","Prova","O resultado e os comentários aparecem só depois de finalizar.",md==="prova")+'</div>';
-  h+='<div class="sec">Banco de questões</div><div class="ogrid g3">'+rd("bank","guia","Guia","Questões originais baseadas no guia.",bk==="guia")+rd("bank","todas","Guia + questões novas","Todo o banco: guia e questões criadas nas últimas versões.",bk==="todas")+rd("bank","novas","Questões novas","Somente as questões criadas nas últimas versões.",bk==="novas")+'</div><p class="note" id="bnote"></p>';
+  h+='<div class="sec">Banco de questões</div><div class="ogrid g3">'+rd("bank","lucas","Apostila (Prof. Lucas Silva)","700 questões comentadas com resolução passo a passo.",bk==="lucas")+rd("bank","guia","Guia B3","141 questões com link para a página do guia oficial.",bk==="guia")+rd("bank","todas","Todas as questões","Banco integrado: Apostila + Guia B3 ("+nT+" questões).",bk==="todas")+'</div><p class="note" id="bnote"></p>';
+  h+='<div class="sec">Filtro por Módulo / Tema</div>';
+  h+='<select id="modFilter" style="width:100%;padding:11px 12px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--fg);font:inherit;font-size:0.92rem;">';
+  h+='<option value="0">Todos os módulos (simulado global)</option>';
+  Object.keys(MODS_LUCAS).forEach(function(m){
+    h+='<option value="'+m+'"'+(modSel===String(m)?' selected':'')+'>Módulo '+m+' – '+MODS_LUCAS[m]+'</option>';
+  });
+  h+='</select>';
+  h+='<div class="sec" style="margin-top:16px;">Quantidade de questões</div>';
+  h+='<div class="ogrid g3">';
+  h+='<label class="opt'+(qtdSel==30?' sel':'')+'"><input type="radio" name="qtdQ" value="30"'+(qtdSel==30?' checked':'')+'><span><b>30 questões</b><small>Simulado rápido</small></span></label>';
+  h+='<label class="opt'+(qtdSel==60?' sel':'')+'"><input type="radio" name="qtdQ" value="60"'+(qtdSel==60?' checked':'')+'><span><b>60 questões</b><small>Formato oficial da prova</small></span></label>';
+  h+='<label class="opt'+(qtdSel==0?' sel':'')+'"><input type="radio" name="qtdQ" value="0"'+(qtdSel==0?' checked':'')+'><span><b>Todas as questões</b><small>Do banco ou módulo escolhido</small></span></label>';
+  h+='</div>';
   h+='<div class="sec">Opções</div><label class="chk"><input type="checkbox" id="shuf"'+(sf?' checked':'')+'><span><b>Embaralhar alternativas</b><small>A ordem das alternativas muda a cada simulado; as letras seguem a nova ordem.</small></span></label>';
-  h+='<button id="go" class="primary">Iniciar simulado</button><p class="hint">Formato prova oficial: '+QN+' questões. Responda e clique em Avançar.<br>Você pode voltar e revisar antes de finalizar.</p>';
+  h+='<button id="go" class="primary">Iniciar simulado</button><p class="hint" id="cfgHint"></p>';
   $("setup").innerHTML=h;
-  function upd(){document.querySelectorAll("#setup label.opt").forEach(function(l){var i=l.querySelector("input");l.classList.toggle("sel",!!(i&&i.checked))});var b=document.querySelector("input[name=bank]:checked").value,n=bankPool(b).length,nt=$("bnote");if(n<QN){nt.textContent="O banco de questões novas tem "+n+" questões; a prova terá "+n+".";nt.style.display="block"}else{nt.textContent="";nt.style.display="none"}}
+  function upd(){
+    document.querySelectorAll("#setup label.opt").forEach(function(l){var i=l.querySelector("input");l.classList.toggle("sel",!!(i&&i.checked))});
+    var bankEl=document.querySelector("input[name=bank]:checked");
+    var b=bankEl?bankEl.value:"lucas";
+    var modEl=$("modFilter");
+    var m=modEl?modEl.value:"0";
+    var qEl=document.querySelector("input[name=qtdQ]:checked");
+    var qVal=qEl?parseInt(qEl.value,10):60;
+    var pool=bankPool(b, m);
+    var count=pool.length;
+    var actualCount = (qVal > 0 && qVal < count) ? qVal : count;
+    if($("cfgHint"))$("cfgHint").innerHTML="Simulado com <b>"+actualCount+"</b> questões (de "+count+" disponíveis).<br>Responda e clique em Avançar; você pode voltar e revisar antes de finalizar.";
+  }
   $("setup").onchange=upd;upd();
-  $("go").onclick=function(){var mode=document.querySelector("input[name=mode]:checked").value,b=document.querySelector("input[name=bank]:checked").value,sh=$("shuf").checked;setPrefs({mode:mode,bank:b,shuf:sh});begin(mode,strat(bankPool(b),QN),sh)};
+  $("go").onclick=function(){
+    var modeEl=document.querySelector("input[name=mode]:checked");
+    var mode=modeEl?modeEl.value:"estudo";
+    var bankEl=document.querySelector("input[name=bank]:checked");
+    var b=bankEl?bankEl.value:"lucas";
+    var modEl=$("modFilter");
+    var m=modEl?modEl.value:"0";
+    var qEl=document.querySelector("input[name=qtdQ]:checked");
+    var qVal=qEl?parseInt(qEl.value,10):60;
+    var sh=$("shuf")?$("shuf").checked:true;
+    setPrefs({mode:mode,bank:b,mod:m,qtd:qVal,shuf:sh});
+    var pool=bankPool(b, m);
+    if(!pool||pool.length===0){
+      alert("Nenhuma questão encontrada para este filtro.");
+      return;
+    }
+    if(sh) pool = shuffle(pool);
+    var selectedIds = (qVal > 0 && qVal < pool.length) ? (m === "0" ? strat(pool, qVal) : pool.slice(0, qVal)) : pool;
+    begin(mode, selectedIds, sh);
+  };
   if($("cont"))$("cont").onclick=function(){S=sv;show()};
 }
 
@@ -40,7 +130,8 @@ function show(){
   $("sub").textContent=(S.mode==="estudo"?"Modo Estudo: ":"Modo Prova: ")+S.ids.length+(S.mode==="estudo"?" questões.":" questões. Envie para ver o resultado, o gabarito e os comentários.");
   var h="",lt="",lc="";
   S.ids.forEach(function(n,ix){var q=byN(n);
-    h+='<div class="q" id="q'+q.n+'"><div class="qhead"><span class="qn">Questão '+(ix+1)+' de '+S.ids.length+'</span><span class="qt">Título '+q.tit+' – '+esc(q.titn)+' · Cap. '+q.cap+' – '+esc(q.capn)+'</span></div><p>'+esc(q.stem)+"</p>";
+    var origTag = (q.banco === "lucas") ? ('Módulo ' + (q.mod || q.tit) + ' · ' + esc(q.capn || '')) : ('Título ' + q.tit + ' – ' + esc(q.titn) + ' · Cap. ' + q.cap + ' – ' + esc(q.capn));
+    h+='<div class="q" id="q'+q.n+'"><div class="qhead"><span class="qn">Questão '+(ix+1)+' de '+S.ids.length+'</span><span class="qt">'+origTag+'</span></div><p>'+esc(q.stem)+"</p>";
     order(q).forEach(function(L,i){h+='<label id="l'+q.n+L+'"><input type="radio" name="r'+q.n+'" value="'+L+'"><span><b>'+String.fromCharCode(97+i)+")</b> "+esc(optText(q,L))+"</span></label>"});
     h+='<div class="exp hide" id="e'+q.n+'"></div><div class="pnav"><button type="button" class="alt pv">‹ Voltar</button><button type="button" class="nx">Avançar ›</button></div><div class="pmsg"></div></div>'});
   if(typeof S.cur!=="number"||S.cur<0||S.cur>=S.ids.length)S.cur=0;$("qs").innerHTML=h;renderNav();$("qs").onclick=function(e){var b=e.target.closest("button");if(!b)return;if(b.hasAttribute("data-pg")){openGuide(+b.getAttribute("data-pg"));return}if(b.classList.contains("pv"))goTo(S.cur-1);else if(b.classList.contains("nx"))nextAct()};
@@ -77,7 +168,7 @@ function finish(){
   var ok=0,by={};
   S.ids.forEach(function(n){var q=byN(n),r=S.ans[n]===q.ans;if(r)ok++;
     var b=by[q.tit]||(by[q.tit]={n:q.titn,t:0,c:0});b.t++;if(r)b.c++;reveal(q)});
-  var t="";Object.keys(by).forEach(function(k){t+="<tr><td>Título "+k+" – "+esc(by[k].n)+"</td><td>"+by[k].c+"/"+by[k].t+"</td></tr>"});
+  var t="";Object.keys(by).forEach(function(k){t+="<tr><td>"+(k.match(/^[0-9]+$/)?("Módulo "+k):("Módulo / Título "+k))+" – "+esc(by[k].n)+"</td><td>"+by[k].c+"/"+by[k].t+"</td></tr>"});
   var r=$("res");r.className="";
   r.innerHTML='<div class="big">'+ok+" acertos de "+S.ids.length+" ("+pct(ok,S.ids.length)+"%)</div><div style=\"margin:12px 0 16px;\"><button type=\"button\" id=\"resPdfBtn\" class=\"primary\" style=\"width:100%;min-height:46px;\">📄 Baixar Relatório Completo em PDF</button></div>Resultado final. Revise abaixo o gabarito comentado, uma questão por tela.<table>"+t+"</table>";setTimeout(function(){var b=$("resPdfBtn");if(b)b.onclick=generatePDFReport;},10);
   $("send").className="hide";$("home").className="hide";$("again").className="";if($("pdfReport"))$("pdfReport").className="alt";
@@ -99,7 +190,7 @@ document.addEventListener('click',function(e){if(!document.body.classList.contai
 var _un=updateNav;updateNav=function(){_un();var c=document.getElementById('cnt');if(c&&typeof S!=='undefined'&&S&&S.ids)c.textContent=Object.keys(S.ans||{}).length+'/'+S.ids.length};
 function mobLabels(){var m=matchMedia('(max-width:700px)').matches;var s=document.getElementById('send'),h=document.getElementById('home');if(s)s.textContent=m?'Finalizar':'Enviar respostas';if(h)h.textContent=m?'⌂':'Início'}mobLabels();window.addEventListener('resize',mobLabels);
 function histGet(){try{return JSON.parse(localStorage.getItem('pqo_hist')||'[]')}catch(e){return []}}
-function capKey(q){return 'Tít. '+q.tit+' / Cap. '+q.cap+' – '+q.capn}
+function capKey(q){return (q.banco === "lucas") ? ('Módulo ' + (q.mod || q.tit) + ' – ' + q.titn) : ('Tít. ' + q.tit + ' / Cap. ' + q.cap + ' – ' + q.capn);}
 function histSave(){var ok=0,caps={};S.ids.forEach(function(n){var q=byN(n);if(S.ans[n]===q.ans)ok++;else{var k=capKey(q);caps[k]=(caps[k]||0)+1}});var h=histGet();h.unshift({d:new Date().toISOString(),mode:S.mode,total:S.ids.length,ok:ok,pct:Math.round(100*ok/S.ids.length),wrong:S.ids.filter(function(n){return S.ans[n]!==byN(n).ans}),caps:caps});h=h.slice(0,30);try{localStorage.setItem('pqo_hist',JSON.stringify(h))}catch(e){}return caps}
 function histRender(caps){var r=document.getElementById('res');var by={};S.ids.forEach(function(n){var q=byN(n),k=capKey(q);var b=by[k]||(by[k]={t:0,c:0});b.t++;if(S.ans[n]===q.ans)b.c++});var t='<h4>Desempenho por capítulo</h4><table>';Object.keys(by).forEach(function(k){t+='<tr><td>'+esc(k)+'</td><td>'+by[k].c+'/'+by[k].t+' ('+Math.round(100*by[k].c/by[k].t)+'%)</td></tr>'});t+='</table>';var ks=Object.keys(caps).sort(function(a,b){return caps[b]-caps[a]}).slice(0,5);if(ks.length){t+='<h4>Temas mais errados</h4><ol>';ks.forEach(function(k){t+='<li>'+esc(k)+' – '+caps[k]+' erro(s)</li>'});t+='</ol>'}var h=histGet().slice(0,10);t+='<h4>Histórico</h4><table>';h.forEach(function(x){t+='<tr><td>'+new Date(x.d).toLocaleString('pt-BR')+' · '+esc(String(x.mode))+' · '+x.total+' questões</td><td>'+x.pct+'%</td></tr>'});t+='</table><button type="button" class="alt" id="hclr" style="margin-top:10px">Limpar histórico</button>';var old=document.getElementById('histbox');if(old)old.remove();var d=document.createElement('div');d.id='histbox';d.innerHTML=t;r.appendChild(d);document.getElementById('hclr').onclick=function(){try{localStorage.removeItem('pqo_hist')}catch(e){}histRender(caps)}}
 function goTo(i){if(!S||!S.ids||!S.ids.length)return;if(i<0)i=0;if(i>=S.ids.length)i=S.ids.length-1;S.cur=i;S.ids.forEach(function(n,k){var el=$("q"+n);if(el)el.classList.toggle("pg-hide",k!==i)});var el=$("q"+S.ids[i]);if(el){var pv=el.querySelector(".pv"),nx=el.querySelector(".nx");if(pv)pv.disabled=(i===0);if(nx){var last=(i===S.ids.length-1);nx.textContent=last?(S.done?"Voltar à 1ª questão":(S.mode==="estudo"?"Finalizar":"Finalizar prova")):"Avançar ›"}}updateNav();if(!S.done)save();window.scrollTo(0,0)}
@@ -225,7 +316,8 @@ function generatePDFReport() {
 
     html += '<div class="q-card ' + (isRight ? "is-ok" : "is-bad") + '">';
     html += '<div class="q-top">';
-    html += '<span>Questão ' + (idx + 1) + ' · Título ' + q.tit + ' · Cap. ' + q.cap + '</span>';
+    var repTag = (q.banco === "lucas") ? ('Módulo ' + (q.mod || q.tit) + ' – ' + esc(q.titn)) : ('Título ' + q.tit + ' · Cap. ' + q.cap);
+    html += '<span>Questão ' + (idx + 1) + ' · ' + repTag + '</span>';
     html += '<span class="q-badge ' + (isRight ? "b-ok" : "b-bad") + '">' + (isRight ? "ACERTO" : (uAns ? "ERRO" : "NÃO RESPONDIDA")) + '</span>';
     html += '</div>';
 
