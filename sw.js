@@ -1,5 +1,5 @@
 /* Service worker: app shell em cache; páginas do guia em cache sob demanda */
-var VERSION = "v14";
+var VERSION = "v15";
 var SHELL = "pqo-shell-" + VERSION;
 var PAGES = "pqo-pages";
 var ASSETS = ["./", "index.html", "css/styles.css", "js/questions.js", "js/pagemap.js", "js/app.js", "js/mobile.js", "manifest.json", "icons/icon-192.png", "icons/icon-512.png"];
@@ -16,7 +16,9 @@ self.addEventListener("activate", function (e) {
 
 self.addEventListener("fetch", function (e) {
   var req = e.request;
-  if (req.method !== "GET" || new URL(req.url).origin !== location.origin) return;
+  var url = new URL(req.url);
+  if (req.method !== "GET" || url.origin !== location.origin) return;
+  if (url.pathname.indexOf("/_vercel/") === 0) return;
   var isPage = /\/pages\/p\d+\.webp$/.test(req.url);
   if (isPage) {
     e.respondWith(caches.open(PAGES).then(function (c) {
