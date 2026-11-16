@@ -83,20 +83,10 @@ function setup(){
   h+='<label class="opt'+(qtdSel==0?' sel':'')+'"><input type="radio" name="qtdQ" value="0"'+(qtdSel==0?' checked':'')+'><span><b>Todas as questões</b><small>Do banco ou módulo escolhido</small></span></label>';
   h+='</div>';
   h+='<div class="sec">Opções</div><label class="chk"><input type="checkbox" id="shuf"'+(sf?' checked':'')+'><span><b>Embaralhar alternativas</b><small>A ordem das alternativas muda a cada simulado; as letras seguem a nova ordem.</small></span></label>';
-  h+='<button id="go" class="primary">Iniciar simulado</button><p class="hint" id="cfgHint"></p>';
+  h+='<button id="go" class="primary">Iniciar simulado</button>';
   $("setup").innerHTML=h;
   function upd(){
     document.querySelectorAll("#setup label.opt").forEach(function(l){var i=l.querySelector("input");l.classList.toggle("sel",!!(i&&i.checked))});
-    var bankEl=document.querySelector("input[name=bank]:checked");
-    var b=bankEl?bankEl.value:"lucas";
-    var modEl=$("modFilter");
-    var m=modEl?modEl.value:"0";
-    var qEl=document.querySelector("input[name=qtdQ]:checked");
-    var qVal=qEl?parseInt(qEl.value,10):60;
-    var pool=bankPool(b, m);
-    var count=pool.length;
-    var actualCount = (qVal > 0 && qVal < count) ? qVal : count;
-    if($("cfgHint"))$("cfgHint").innerHTML="Simulado com <b>"+actualCount+"</b> questões (de "+count+" disponíveis).<br>Responda e clique em Avançar; você pode voltar e revisar antes de finalizar.";
   }
   $("setup").onchange=upd;upd();
   $("go").onclick=function(){
