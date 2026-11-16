@@ -96,7 +96,7 @@ function setup(){
     var pool=bankPool(b, m);
     var count=pool.length;
     var actualCount = (qVal > 0 && qVal < count) ? qVal : count;
-    if($("cfgHint"))$("cfgHint").innerHTML="Simulado com <b>"+actualCount+"</b> questões.<br>Responda e clique em Avançar.";
+    if($("cfgHint"))$("cfgHint").innerHTML="Simulado com <b>"+actualCount+"</b> questões (de "+count+" disponíveis).<br>Responda e clique em Avançar; você pode voltar e revisar antes de finalizar.";
   }
   $("setup").onchange=upd;upd();
   $("go").onclick=function(){
@@ -133,7 +133,7 @@ function show(){
   $("sub").textContent=(S.mode==="estudo"?"Modo Estudo: ":"Modo Prova: ")+S.ids.length+(S.mode==="estudo"?" questões.":" questões. Envie para ver o resultado, o gabarito e os comentários.");
   var h="",lt="",lc="";
   S.ids.forEach(function(n,ix){var q=byN(n);
-    var origTag = (q.banco === "lucas") ? ('Módulo ' + (q.mod || q.tit) + ' · ' + esc(q.capn || '')) : ('Título ' + q.tit + ' – ' + esc(q.titn) + ' · Cap. ' + q.cap + ' – ' + esc(q.capn));
+    var origTag = (q.banco === "lucas") ? ('Tema: ' + esc(temaOf(q))) : ('Título ' + q.tit + ' – ' + esc(q.titn) + ' · Cap. ' + q.cap + ' – ' + esc(q.capn));
     h+='<div class="q" id="q'+q.n+'"><div class="qhead"><span class="qn">Questão '+(ix+1)+' de '+S.ids.length+'</span><span class="qt">'+origTag+'</span></div><p>'+esc(q.stem)+"</p>";
     order(q).forEach(function(L,i){h+='<label id="l'+q.n+L+'"><input type="radio" name="r'+q.n+'" value="'+L+'"><span><b>'+String.fromCharCode(97+i)+")</b> "+esc(optText(q,L))+"</span></label>"});
     h+='<div class="exp hide" id="e'+q.n+'"></div><div class="pnav"><button type="button" class="alt pv">‹ Voltar</button><button type="button" class="nx">Avançar ›</button></div><div class="pmsg"></div></div>'});
@@ -150,7 +150,7 @@ function prog(){updateNav()}
     if(WHY[q.n]&&WHY[q.n][a])return WHY[q.n][a];
     var chosen=q.opts.filter(function(o){return o[0]===a})[0];
     var correct=q.opts.filter(function(o){return o[0]===q.ans})[0];
-    return "A alternativa escolhida (“"+(chosen?chosen[1]:"")+"”) não corresponde ao que o enunciado pede. O correto é “"+(correct?correct[1]:"")+"”.";
+    return (q.banco === "lucas" ? "Tema desta questão: " + temaOf(q) + ". " : "") + "A alternativa escolhida (“"+(chosen?chosen[1]:"")+"”) não corresponde ao que o enunciado pede. O correto é “"+(correct?correct[1]:"")+"”.";
   }
   function reveal(q){
   var a=S.ans[q.n],r=a===q.ans;
@@ -193,6 +193,7 @@ document.addEventListener('click',function(e){if(!document.body.classList.contai
 var _un=updateNav;updateNav=function(){_un();var c=document.getElementById('cnt');if(c&&typeof S!=='undefined'&&S&&S.ids)c.textContent=Object.keys(S.ans||{}).length+'/'+S.ids.length};
 function mobLabels(){var m=matchMedia('(max-width:700px)').matches;var s=document.getElementById('send'),h=document.getElementById('home');if(s)s.textContent=m?'Finalizar':'Enviar respostas';if(h)h.textContent=m?'⌂':'Início'}mobLabels();window.addEventListener('resize',mobLabels);
 function histGet(){try{return JSON.parse(localStorage.getItem('pqo_hist')||'[]')}catch(e){return []}}
+function temaOf(q){var m=/^Tema:\s*(.+?)\.(\s|$)/.exec(q.exp||"");var t=m?m[1]:(q.titn||"");return t.charAt(0).toUpperCase()+t.slice(1)}
 function capKey(q){return (q.banco === "lucas") ? ('Módulo ' + (q.mod || q.tit) + ' – ' + q.titn) : ('Tít. ' + q.tit + ' / Cap. ' + q.cap + ' – ' + q.capn);}
 function histSave(){var ok=0,caps={};S.ids.forEach(function(n){var q=byN(n);if(S.ans[n]===q.ans)ok++;else{var k=capKey(q);caps[k]=(caps[k]||0)+1}});var h=histGet();h.unshift({d:new Date().toISOString(),mode:S.mode,total:S.ids.length,ok:ok,pct:Math.round(100*ok/S.ids.length),wrong:S.ids.filter(function(n){return S.ans[n]!==byN(n).ans}),caps:caps});h=h.slice(0,30);try{localStorage.setItem('pqo_hist',JSON.stringify(h))}catch(e){}return caps}
 function histRender(caps){var r=document.getElementById('res');var by={};S.ids.forEach(function(n){var q=byN(n),k=capKey(q);var b=by[k]||(by[k]={t:0,c:0});b.t++;if(S.ans[n]===q.ans)b.c++});var t='<h4>Desempenho por capítulo</h4><table>';Object.keys(by).forEach(function(k){t+='<tr><td>'+esc(k)+'</td><td>'+by[k].c+'/'+by[k].t+' ('+Math.round(100*by[k].c/by[k].t)+'%)</td></tr>'});t+='</table>';var ks=Object.keys(caps).sort(function(a,b){return caps[b]-caps[a]}).slice(0,5);if(ks.length){t+='<h4>Temas mais errados</h4><ol>';ks.forEach(function(k){t+='<li>'+esc(k)+' – '+caps[k]+' erro(s)</li>'});t+='</ol>'}var h=histGet().slice(0,10);t+='<h4>Histórico</h4><table>';h.forEach(function(x){t+='<tr><td>'+new Date(x.d).toLocaleString('pt-BR')+' · '+esc(String(x.mode))+' · '+x.total+' questões</td><td>'+x.pct+'%</td></tr>'});t+='</table><button type="button" class="alt" id="hclr" style="margin-top:10px">Limpar histórico</button>';var old=document.getElementById('histbox');if(old)old.remove();var d=document.createElement('div');d.id='histbox';d.innerHTML=t;r.appendChild(d);document.getElementById('hclr').onclick=function(){try{localStorage.removeItem('pqo_hist')}catch(e){}histRender(caps)}}
@@ -319,7 +320,7 @@ function generatePDFReport() {
 
     html += '<div class="q-card ' + (isRight ? "is-ok" : "is-bad") + '">';
     html += '<div class="q-top">';
-    var repTag = (q.banco === "lucas") ? ('Módulo ' + (q.mod || q.tit) + ' – ' + esc(q.titn)) : ('Título ' + q.tit + ' · Cap. ' + q.cap);
+    var repTag = (q.banco === "lucas") ? ('Tema: ' + esc(temaOf(q))) : ('Título ' + q.tit + ' · Cap. ' + q.cap);
     html += '<span>Questão ' + (idx + 1) + ' · ' + repTag + '</span>';
     html += '<span class="q-badge ' + (isRight ? "b-ok" : "b-bad") + '">' + (isRight ? "ACERTO" : (uAns ? "ERRO" : "NÃO RESPONDIDA")) + '</span>';
     html += '</div>';
