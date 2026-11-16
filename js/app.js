@@ -96,7 +96,7 @@ function setup(){
     var pool=bankPool(b, m);
     var count=pool.length;
     var actualCount = (qVal > 0 && qVal < count) ? qVal : count;
-    if($("cfgHint"))$("cfgHint").innerHTML="Simulado com <b>"+actualCount+"</b> questões (de "+count+" disponíveis).<br>Responda e clique em Avançar; você pode voltar e revisar antes de finalizar.";
+    if($("cfgHint"))$("cfgHint").innerHTML="Simulado com <b>"+actualCount+"</b> questões.<br>Responda e clique em Avançar.";
   }
   $("setup").onchange=upd;upd();
   $("go").onclick=function(){
