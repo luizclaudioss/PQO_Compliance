@@ -63,7 +63,10 @@ function setup(){
   var nG=bankPool("guia").length,nL=bankPool("lucas").length,nT=D.length;
   var sv=load(),h="";
   if(sv&&sv.ids&&!sv.done){h+='<div class="resume"><span>Você tem um simulado em andamento ('+Object.keys(sv.ans).length+' de '+sv.ids.length+' respondidas).</span><button type="button" class="alt" id="cont">Continuar</button></div>'}
-  function rd(name,val,title,sub,ck){return '<label class="opt'+(ck?' sel':'')+'"><input type="radio" name="'+name+'" value="'+val+'"'+(ck?' checked':'')+'><span><b>'+title+'</b><small>'+sub+'</small></span></label>'}
+  function rd(name,val,title,sub,ck){
+    if(typeof sub==="boolean"){ck=sub;sub="";}
+    return '<label class="opt'+(ck?' sel':'')+'"><input type="radio" name="'+name+'" value="'+val+'"'+(ck?' checked':'')+'><span><b>'+title+'</b>'+(sub?'<small>'+sub+'</small>':'')+'</span></label>';
+  }
   h+='<div class="sec">Modo</div><div class="ogrid g2">'+rd("mode","estudo","Estudo","Mostra se acertou e o comentário logo após cada resposta.",md==="estudo")+rd("mode","prova","Prova","O resultado e os comentários aparecem só depois de finalizar.",md==="prova")+'</div>';
   h+='<div class="sec">Banco de questões</div><div class="ogrid g3">'+rd("bank","lucas","Outras fontes",bk==="lucas")+rd("bank","guia","Guia B3",bk==="guia")+rd("bank","todas","Todas as questões",bk==="todas")+'</div><p class="note" id="bnote"></p>';
   h+='<div class="sec">Filtro por Módulo / Tema</div>';
