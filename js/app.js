@@ -9,7 +9,7 @@ function pct(a,b){return String(Math.round(a*1000/b)/10).replace(".",",")}
 var QN=60;
 function prefs(){try{return JSON.parse(localStorage.getItem('pqo_prefs'))||{}}catch(e){return {}}}
 function setPrefs(p){try{localStorage.setItem('pqo_prefs',JSON.stringify(p))}catch(e){}}
-var MODS_LUCAS = {
+var MODS_pqob3 = {
   1: "Sistema Financeiro Nacional e Participantes do Mercado",
   2: "Infraestrutura do Mercado & B3",
   3: "Instrumentos de Renda Fixa, Renda Variável e Derivativos",
@@ -23,7 +23,7 @@ var MODS_LUCAS = {
 function bankPool(b, m) {
   var pool = D;
   if (b === "guia") pool = D.filter(function(q){ return q.banco === "guia"; });
-  else if (b === "lucas") pool = D.filter(function(q){ return q.banco === "lucas"; });
+  else if (b === "pqob3") pool = D.filter(function(q){ return q.banco === "pqob3"; });
   // se "todas", pool = D
   if (m && m !== "0") {
     var mn = parseInt(m, 10);
@@ -59,8 +59,8 @@ function strat(pool, k) {
 }
 function setup(){
   $("quiz").className="hide";$("bar").className="bar hide";$("setup").className="setup";
-  var p=prefs(),md=p.mode==="prova"?"prova":"estudo",bk=(p.bank==="guia"||p.bank==="lucas"||p.bank==="todas")?p.bank:"lucas",sf=p.shuf!==false,modSel=p.mod||"0",qtdSel=(p.qtd!==undefined&&p.qtd!==null)?p.qtd:60;
-  var nG=bankPool("guia").length,nL=bankPool("lucas").length,nT=D.length;
+  var p=prefs(),md=p.mode==="prova"?"prova":"estudo",bk=(p.bank==="guia"||p.bank==="pqob3"||p.bank==="todas")?p.bank:"pqob3",sf=p.shuf!==false,modSel=p.mod||"0",qtdSel=(p.qtd!==undefined&&p.qtd!==null)?p.qtd:60;
+  var nG=bankPool("guia").length,nL=bankPool("pqob3").length,nT=D.length;
   var sv=load(),h="";
   if(sv&&sv.ids&&!sv.done){h+='<div class="resume"><span>Você tem um simulado em andamento ('+Object.keys(sv.ans).length+' de '+sv.ids.length+' respondidas).</span><button type="button" class="alt" id="cont">Continuar</button></div>'}
   function rd(name,val,title,sub,ck){
@@ -68,12 +68,12 @@ function setup(){
     return '<label class="opt'+(ck?' sel':'')+'"><input type="radio" name="'+name+'" value="'+val+'"'+(ck?' checked':'')+'><span><b>'+title+'</b>'+(sub?'<small>'+sub+'</small>':'')+'</span></label>';
   }
   h+='<div class="sec">Modo</div><div class="ogrid g2">'+rd("mode","estudo","Estudo","Mostra se acertou e o comentário logo após cada resposta.",md==="estudo")+rd("mode","prova","Prova","O resultado e os comentários aparecem só depois de finalizar.",md==="prova")+'</div>';
-  h+='<div class="sec">Banco de questões</div><div class="ogrid g3">'+rd("bank","lucas","Outras fontes",bk==="lucas")+rd("bank","guia","Guia B3",bk==="guia")+rd("bank","todas","Todas as questões",bk==="todas")+'</div><p class="note" id="bnote"></p>';
+  h+='<div class="sec">Banco de questões</div><div class="ogrid g3">'+rd("bank","pqob3","Outras fontes",bk==="pqob3")+rd("bank","guia","Guia B3",bk==="guia")+rd("bank","todas","Todas as questões",bk==="todas")+'</div><p class="note" id="bnote"></p>';
   h+='<div class="sec">Filtro por Módulo / Tema</div>';
   h+='<select id="modFilter" style="width:100%;padding:11px 12px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--fg);font:inherit;font-size:0.92rem;">';
   h+='<option value="0">Todos os módulos (simulado global)</option>';
-  Object.keys(MODS_LUCAS).forEach(function(m){
-    h+='<option value="'+m+'"'+(modSel===String(m)?' selected':'')+'>Módulo '+m+' – '+MODS_LUCAS[m]+'</option>';
+  Object.keys(MODS_pqob3).forEach(function(m){
+    h+='<option value="'+m+'"'+(modSel===String(m)?' selected':'')+'>Módulo '+m+' – '+MODS_pqob3[m]+'</option>';
   });
   h+='</select>';
   h+='<div class="sec" style="margin-top:16px;">Quantidade de questões</div>';
@@ -93,7 +93,7 @@ function setup(){
     var modeEl=document.querySelector("input[name=mode]:checked");
     var mode=modeEl?modeEl.value:"estudo";
     var bankEl=document.querySelector("input[name=bank]:checked");
-    var b=bankEl?bankEl.value:"lucas";
+    var b=bankEl?bankEl.value:"pqob3";
     var modEl=$("modFilter");
     var m=modEl?modEl.value:"0";
     var qEl=document.querySelector("input[name=qtdQ]:checked");
@@ -123,7 +123,7 @@ function show(){
   $("sub").textContent=(S.mode==="estudo"?"Modo Estudo: ":"Modo Prova: ")+S.ids.length+(S.mode==="estudo"?" questões.":" questões. Envie para ver o resultado, o gabarito e os comentários.");
   var h="",lt="",lc="";
   S.ids.forEach(function(n,ix){var q=byN(n);
-    var origTag = (q.banco === "lucas") ? ('Tema: ' + esc(temaOf(q))) : ('Título ' + q.tit + ' – ' + esc(q.titn) + ' · Cap. ' + q.cap + ' – ' + esc(q.capn));
+    var origTag = (q.banco === "pqob3") ? ('Tema: ' + esc(temaOf(q))) : ('Título ' + q.tit + ' – ' + esc(q.titn) + ' · Cap. ' + q.cap + ' – ' + esc(q.capn));
     h+='<div class="q" id="q'+q.n+'"><div class="qhead"><span class="qn">Questão '+(ix+1)+' de '+S.ids.length+'</span><span class="qt">'+origTag+'</span></div><p>'+esc(q.stem)+"</p>";
     order(q).forEach(function(L,i){h+='<label id="l'+q.n+L+'"><input type="radio" name="r'+q.n+'" value="'+L+'"><span><b>'+String.fromCharCode(97+i)+")</b> "+esc(optText(q,L))+"</span></label>"});
     h+='<div class="exp hide" id="e'+q.n+'"></div><div class="pnav"><button type="button" class="alt pv">‹ Voltar</button><button type="button" class="nx">Avançar ›</button></div><div class="pmsg"></div></div>'});
@@ -140,7 +140,7 @@ function prog(){updateNav()}
     if(WHY[q.n]&&WHY[q.n][a])return WHY[q.n][a];
     var chosen=q.opts.filter(function(o){return o[0]===a})[0];
     var correct=q.opts.filter(function(o){return o[0]===q.ans})[0];
-    return (q.banco === "lucas" ? "Tema desta questão: " + temaOf(q) + ". " : "") + "A alternativa escolhida (“"+(chosen?chosen[1]:"")+"”) não corresponde ao que o enunciado pede. O correto é “"+(correct?correct[1]:"")+"”.";
+    return (q.banco === "pqob3" ? "Tema desta questão: " + temaOf(q) + ". " : "") + "A alternativa escolhida (“"+(chosen?chosen[1]:"")+"”) não corresponde ao que o enunciado pede. O correto é “"+(correct?correct[1]:"")+"”.";
   }
   function reveal(q){
   var a=S.ans[q.n],r=a===q.ans;
@@ -184,7 +184,7 @@ var _un=updateNav;updateNav=function(){_un();var c=document.getElementById('cnt'
 function mobLabels(){var m=matchMedia('(max-width:700px)').matches;var s=document.getElementById('send'),h=document.getElementById('home');if(s)s.textContent=m?'Finalizar':'Enviar respostas';if(h)h.textContent=m?'⌂':'Início'}mobLabels();window.addEventListener('resize',mobLabels);
 function histGet(){try{return JSON.parse(localStorage.getItem('pqo_hist')||'[]')}catch(e){return []}}
 function temaOf(q){var m=/^Tema:\s*(.+?)\.(\s|$)/.exec(q.exp||"");var t=m?m[1]:(q.titn||"");return t.charAt(0).toUpperCase()+t.slice(1)}
-function capKey(q){return (q.banco === "lucas") ? ('Módulo ' + (q.mod || q.tit) + ' – ' + q.titn) : ('Tít. ' + q.tit + ' / Cap. ' + q.cap + ' – ' + q.capn);}
+function capKey(q){return (q.banco === "pqob3") ? ('Módulo ' + (q.mod || q.tit) + ' – ' + q.titn) : ('Tít. ' + q.tit + ' / Cap. ' + q.cap + ' – ' + q.capn);}
 function histSave(){var ok=0,caps={};S.ids.forEach(function(n){var q=byN(n);if(S.ans[n]===q.ans)ok++;else{var k=capKey(q);caps[k]=(caps[k]||0)+1}});var h=histGet();h.unshift({d:new Date().toISOString(),mode:S.mode,total:S.ids.length,ok:ok,pct:Math.round(100*ok/S.ids.length),wrong:S.ids.filter(function(n){return S.ans[n]!==byN(n).ans}),caps:caps});h=h.slice(0,30);try{localStorage.setItem('pqo_hist',JSON.stringify(h))}catch(e){}return caps}
 function histRender(caps){var r=document.getElementById('res');var by={};S.ids.forEach(function(n){var q=byN(n),k=capKey(q);var b=by[k]||(by[k]={t:0,c:0});b.t++;if(S.ans[n]===q.ans)b.c++});var t='<h4>Desempenho por capítulo</h4><table>';Object.keys(by).forEach(function(k){t+='<tr><td>'+esc(k)+'</td><td>'+by[k].c+'/'+by[k].t+' ('+Math.round(100*by[k].c/by[k].t)+'%)</td></tr>'});t+='</table>';var ks=Object.keys(caps).sort(function(a,b){return caps[b]-caps[a]}).slice(0,5);if(ks.length){t+='<h4>Temas mais errados</h4><ol>';ks.forEach(function(k){t+='<li>'+esc(k)+' – '+caps[k]+' erro(s)</li>'});t+='</ol>'}var h=histGet().slice(0,10);t+='<h4>Histórico</h4><table>';h.forEach(function(x){t+='<tr><td>'+new Date(x.d).toLocaleString('pt-BR')+' · '+esc(String(x.mode))+' · '+x.total+' questões</td><td>'+x.pct+'%</td></tr>'});t+='</table><button type="button" class="alt" id="hclr" style="margin-top:10px">Limpar histórico</button>';var old=document.getElementById('histbox');if(old)old.remove();var d=document.createElement('div');d.id='histbox';d.innerHTML=t;r.appendChild(d);document.getElementById('hclr').onclick=function(){try{localStorage.removeItem('pqo_hist')}catch(e){}histRender(caps)}}
 function goTo(i){if(!S||!S.ids||!S.ids.length)return;if(i<0)i=0;if(i>=S.ids.length)i=S.ids.length-1;S.cur=i;S.ids.forEach(function(n,k){var el=$("q"+n);if(el)el.classList.toggle("pg-hide",k!==i)});var el=$("q"+S.ids[i]);if(el){var pv=el.querySelector(".pv"),nx=el.querySelector(".nx");if(pv)pv.disabled=(i===0);if(nx){var last=(i===S.ids.length-1);nx.textContent=last?(S.done?"Voltar à 1ª questão":(S.mode==="estudo"?"Finalizar":"Finalizar prova")):"Avançar ›"}}updateNav();if(!S.done)save();window.scrollTo(0,0)}
@@ -310,7 +310,7 @@ function generatePDFReport() {
 
     html += '<div class="q-card ' + (isRight ? "is-ok" : "is-bad") + '">';
     html += '<div class="q-top">';
-    var repTag = (q.banco === "lucas") ? ('Tema: ' + esc(temaOf(q))) : ('Título ' + q.tit + ' · Cap. ' + q.cap);
+    var repTag = (q.banco === "pqob3") ? ('Tema: ' + esc(temaOf(q))) : ('Título ' + q.tit + ' · Cap. ' + q.cap);
     html += '<span>Questão ' + (idx + 1) + ' · ' + repTag + '</span>';
     html += '<span class="q-badge ' + (isRight ? "b-ok" : "b-bad") + '">' + (isRight ? "ACERTO" : (uAns ? "ERRO" : "NÃO RESPONDIDA")) + '</span>';
     html += '</div>';

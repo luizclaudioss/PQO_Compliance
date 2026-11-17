@@ -1,4 +1,3 @@
-// Justificativas por alternativa errada – apostila Prof. Lucas Silva (lote 1: módulo 2)
 // Complementa WHY (sem sobrescrever entradas existentes).
 (function () {
   var X = {
@@ -1993,6 +1992,241 @@
       a: "A conta de restrição serve a fins disciplinares ou cautelares de bloqueio/limitação de negociação.",
       b: "A conta de captura é um recurso operacional de contingência da infraestrutura de negociação.",
       d: "A conta intermediária tem por escopo intermediar negócios com distribuição mandatória posterior para contas normais."
+    },
+    716: {
+      b: "O vínculo de custodiante liga a conta do investidor ao custodiante para guarda de ativos, e não para consolidar margem sob um mesmo participante.",
+      c: "O vínculo de exercício de opções destina-se a operacionalizar o exercício de posições em opções entre PN e PL.",
+      d: "O vínculo por conta e ordem liga contas sob participantes distintos (um participante de negociação e um participante de negociação pleno)."
+    },
+    717: {
+      a: "Deixa de fora os itens II e III, que também são condições obrigatórias do cadastro simplificado de investidores não residentes.",
+      b: "Deixa de fora os itens I e III, que também representam pré-requisitos regulamentares fixados pela CVM.",
+      c: "Deixa de fora os itens I e II, que também são requisitos essenciais previstos na normatização da CVM."
+    },
+    718: {
+      b: "O representante legal responde administrativamente perante a CVM pelo registro do INR e pelo fornecimento de informações cadastrais.",
+      c: "'Representante normativo' não existe no arcabouço normativo do Conselho Monetário Nacional ou da CVM.",
+      d: "O custodiante responde pela guarda dos ativos, controle em contas segregadas e manutenção da documentação do investidor."
+    },
+    719: {
+      a: "A conta de restrição é utilizada para imposição de limites ou bloqueios regulatórios e disciplinares a participantes ou comitentes.",
+      c: "A conta brokerage possibilita a grandes investidores operar com múltiplos participantes com repasse sem identificação de origem.",
+      d: "A conta intermediária permite ao PNP intermediar operações para posterior distribuição e alocação a contas normais."
+    },
+    720: {
+      a: "Churning é a prática desleal de giro excessivo da carteira de clientes com a única finalidade de gerar corretagens para o intermediário.",
+      c: "'Front trading' não é um termo técnico definido na regulamentação; o termo oficial para antecipação de ordens é front running.",
+      d: "Insider trading consiste na negociação de valores mobiliários com base em informações privilegiadas e materiais ainda não divulgadas ao mercado."
+    },
+    721: {
+      a: "O risco de crédito engloba não apenas o inadimplemento total, mas também o atraso ou não pagamento de parcelas (inadimplemento parcial).",
+      c: "Risco de crédito decorre justamente da possibilidade de ocorrência de default (calote), e não da impossibilidade deste.",
+      d: "A definição de risco de crédito é a possibilidade de o devedor não honrar suas obrigações financeiras."
+    },
+    722: {
+      b: "Front running é o aproveitamento indevido por intermediários de ordens de clientes para se posicionar previamente no mercado.",
+      c: "'Front trading' é uma corruptela terminológica que não corresponde à prática de excesso de negociação com foco em corretagem.",
+      d: "Insider trading é o uso indevido de informações relevantes confidenciais obtidas antes de sua divulgação pública."
+    },
+    723: {
+      a: "Risco de iliquidez é a impossibilidade ou custo excessivo para liquidar uma posição ao preço justo de mercado quando necessário.",
+      b: "Risco operacional resulta de falhas em processos internos, sistemas, pessoas ou de eventos externos imprevisíveis.",
+      c: "Risco de principal consiste na perda do valor principal do ativo por entrega do bem sem o correspondente recebimento financeiro."
+    },
+    724: {
+      a: "Liquidez expressa a conversão ágil a preço justo em dinheiro disponível, e não em outros valores mobiliários.",
+      c: "A conversão líquida destina-se a transformar o ativo em dinheiro/moeda corrente, e não especificamente em ações.",
+      d: "O destino da liquidez financeira é o dinheiro (moeda de curso legal), e não valores mobiliários genéricos."
+    },
+    725: {
+      a: "O risco ligado a um setor, emissor ou ativo específico é o risco não sistemático (específico ou idiossincrático).",
+      c: "O risco sistemático atinge todo o mercado e não pode ser eliminado pela diversificação da carteira.",
+      d: "Risco mitigável por diversificação setorial é classificado como risco específico (não sistemático)."
+    },
+    726: {
+      a: "Risco de crédito refere-se à probabilidade de inadimplência da contraparte em honrar pagamentos devidos.",
+      c: "Risco de mercado decorre da volatilidade e flutuações nos preços, taxas de juros, câmbio e índices de mercado.",
+      d: "Risco de liquidez é a incapacidade de honrar compromissos financeiros ou negociar ativos sem perda substancial de valor."
+    },
+    727: {
+      a: "Churning consiste na movimentação excessiva da carteira do cliente visando maximizar receitas de taxas de corretagem.",
+      b: "Front running caracteriza-se pela execução de ordens próprias antes da execução de ordens de clientes de grande volume.",
+      c: "'Front trading' não corresponde ao uso indevido de informação confidencial relevante (insider trading)."
+    },
+    728: {
+      b: "Risco de crédito trata da possibilidade de inadimplemento parcial ou total das obrigações da contraparte.",
+      c: "Risco de liquidez expressa a dificuldade ou custo desproporcional para transformar um ativo financeiro em dinheiro.",
+      d: "Risco operacional resulta de falhas ou fraudes humanas, falhas em sistemas de TI, processos defeituosos ou eventos externos."
+    },
+    729: {
+      a: "A fase de decisão refere-se à governança executiva e estratégia de negócios da alta administração da instituição.",
+      b: "A fase de contratação formaliza os negócios e vínculos jurídicos com contrapartes e clientes.",
+      c: "A fase de análise avalia a viabilidade econômica, perfil de crédito e retorno esperado da operação."
+    },
+    730: {
+      a: "O primeiro item é verdadeiro: o modelo das três linhas é a metodologia padrão para estruturar governança, gestão de riscos e controles internos.",
+      b: "Inverte a avaliação dos itens I e II, que tratam da estrutura consolidada e da independência da auditoria interna.",
+      c: "Inverte a veracidade dos itens, ignorando a atribuição da auditoria interna como terceira linha independente."
+    },
+    731: {
+      a: "A primeira linha é a própria linha de frente de negócios e áreas operacionais que gerenciam os riscos diretamente no dia a dia.",
+      c: "A terceira linha é a auditoria interna, que atua com independência em relação às atividades de gestão e operação.",
+      d: "A alta administração e o comitê de auditoria exercem supervisão geral sobre todas as linhas de defesa."
+    },
+    732: {
+      a: "O item I está incorreto porque a primeira linha é a área executora das operações, sendo aquela com menor independência de controle.",
+      b: "O item III está incorreto porque a verificação direta e cumprimento das rotinas operacionais de KYC cabe à primeira e à segunda linha.",
+      d: "O item III está incorreto ao atribuir procedimentos executivos de cadastro diretamente à terceira linha (auditoria)."
+    },
+    733: {
+      a: "A OICV/IOSCO é a organização internacional que congrega reguladores de valores mobiliários em âmbito global.",
+      c: "O CRSFN é o tribunal administrativo de recursos de decisões sancionadoras do Bacen e da CVM no Brasil.",
+      d: "FRA (Forward Rate Agreement) é um contrato derivativo de taxa de juros a termo, não uma comissão de controles internos."
+    },
+    734: {
+      a: "Monitoramento e controle são componentes de suporte do COSO, e não as três categorias de objetivos estratégicos.",
+      b: "Avaliação e controle são componentes operacionais, e não as categorias de objetivos da metodologia COSO.",
+      d: "Avaliação e monitoramento integram os componentes estruturais do cubo, e não os objetivos primários."
+    },
+    735: {
+      a: "Risco de mercado relaciona-se à flutuação de preços e taxas praticados no mercado financeiro.",
+      b: "Risco de crédito traduz a possibilidade de não cumprimento de obrigações financeiras por devedores.",
+      c: "Risco de liquidez é a impossibilidade de converter ativos em caixa a preços justos tempestivamente."
+    },
+    736: {
+      b: "Risco financeiro engloba perdas econômicas diretas oriundas de volatilidade de mercado, inadimplência e liquidez.",
+      c: "Risco regulamentar/legal decorre da inobservância de normas legais e sanções administrativas de órgãos fiscalizadores.",
+      d: "Risco estratégico resulta de decisões inadequadas de posicionamento de mercado e modelo de negócios pela alta administração."
+    },
+    737: {
+      b: "O item II descreve a regra geral de controles internos e governança do Bacen, não o conceito de carteira de negociação (trading book).",
+      c: "Os itens II e III tratam de governança institucional e gestão de capital, e não dos instrumentos da carteira de negociação.",
+      d: "O item III trata da atribuição estatutária de diretor de capital, não caracterizando a carteira de negociação."
+    },
+    738: {
+      a: "Deixa de fora o item III, que também é atribuição essencial da auditoria interna ao colaborar com a avaliação de governança.",
+      b: "O item II é incorreto: a auditoria interna não impede, mas sim fornece subsídios e asseguração para a administração avaliar os controles.",
+      d: "Inclui o item II, que está diametralmente oposto à missão de asseguração prestada pela auditoria interna."
+    },
+    739: {
+      a: "A asserção II é falsa: o monitoramento deve ser contínuo e permanente, pois controles internos exigem supervisão constante frente a novos riscos.",
+      c: "A asserção I é verdadeira ao descrever com precisão o objetivo do Instituto dos Auditores Internos (IIA) para agregar valor.",
+      d: "A asserção I é plenamente verdadeira na sua definição da missão e abordagem sistemática da auditoria interna."
+    },
+    740: {
+      b: "Compliance é uma função especializada de segunda linha, não se limitando a um autocontrole operacional da própria área.",
+      c: "A emissão pontual de relatórios de correção é apenas um instrumento acessório, e não o objetivo final de assegurar conformidade.",
+      d: "Identificar atrasos operacionais é atividade de gestão de processos e produtividade, e não a essência da conformidade legal e regulatória."
+    },
+    741: {
+      a: "Risco não diversificável é sinônimo de risco sistemático (macroeconômico), que afeta todos os ativos indistintamente.",
+      b: "Risco sistemático é decorrente de variáveis macroeconômicas amplas (inflação, juros, PIB), e não de fatores microeconômicos do emissor.",
+      d: "Risco de crédito é uma espécie de risco financeiro, mas não a denominação abrangente para o risco microeconômico."
+    },
+    742: {
+      a: "O item I está incorreto porque os mercados organizados não se limitam a espaços físicos, operando preponderantemente por sistemas eletrônicos.",
+      b: "O item II está incorreto ao afirmar exclusividade de sistemas eletrônicos, desconsiderando a definição legal ampla da Instrução CVM 461.",
+      d: "Deixa de fora o item IV, que elenca expressamente bolsas e mercados de balcão organizado como espécies de mercado organizado."
+    },
+    743: {
+      a: "Deixa de fora os mercados de balcão organizado e de câmbio, que também operam sob ambientes administrados pela B3.",
+      b: "Deixa de fora o mercado de bolsa, que constitui o principal segmento listado centralizado de negociação da B3.",
+      c: "Deixa de fora o mercado de balcão organizado, que integra os mercados com registro e negociação do segmento listado."
+    },
+    744: {
+      a: "O mercado de derivativos e o mercado a termo operam tipicamente no ambiente de bolsa, não sendo privativos do balcão organizado.",
+      c: "O mercado à vista de ouro e as estratégias estruturadas de bolsa são negociados no ambiente centralizado de bolsa.",
+      d: "O mercado de dólar pronto tem especificidades próprias de liquidação de moeda, não compondo o rol típico de renda variável em balcão."
+    },
+    745: {
+      a: "O item I está incompleto por desconsiderar a atuação com presença de formador de mercado e interação de ofertas multilaterais.",
+      c: "Deixa de fora o item III, que também descreve modalidade de negociação admitida no ambiente de bolsa com formadores de mercado.",
+      d: "Considera todas corretas, mas o item I restringe equivocadamente a atuação essencial de forma incompatível com o enunciado da norma."
+    },
+    746: {
+      a: "A alternativa A é apenas uma repetição de enunciado, não indicando o segmento de mercado correto.",
+      b: "O mercado de renda fixa privada possui prazos e rotinas específicas de registro, não sendo o mercado central de ações liquidadas em D+2.",
+      d: "Mercados futuros possuem liquidação diária de ajustes e vencimentos padronizados, e não liquidação física em D+2 de ações."
+    },
+    747: {
+      b: "Bônus de subscrição não é uma ação ordinária ou preferencial, mas um valor mobiliário acessório que confere o direito futuro de subscrever ações.",
+      c: "Bônus de subscrição não é um contrato derivativo de swap de troca de fluxos, mas título emitido por companhias abertas.",
+      d: "Não se confunde com debêntures conversíveis, pois o bônus não confere remuneração de renda fixa ou juros remuneratórios."
+    },
+    748: {
+      b: "Inverte os julgamentos das características do RCSA como certificado representativo de cesta de ações.",
+      c: "Desconsidera a afirmativa verdadeira sobre a constituição e fungibilidade dos recibos de carteira selecionada.",
+      d: "Apresenta combinação incompatível com as regras de emissão e custódia do RCSA na B3."
+    },
+    749: {
+      a: "Ouro mercadoria destina-se a fins comerciais e industriais, não tendo o tratamento de ativo financeiro disciplinado pelo Bacen e B3.",
+      c: "Ouro como moeda de curso forçado não é adotado no sistema monetário nacional brasileiro.",
+      d: "O ouro ativo financeiro possui disciplina própria da Lei 7.766/89, não sendo negociado como título cambial convencional."
+    },
+    750: {
+      a: "O mercado à vista negocia ações e títulos com liquidação em D+2, e não contratos futuros e opções padronizados.",
+      b: "O mercado de balcão organizado acolhe ativos registrados com regras próprias, ao passo que derivativos padronizados operam no mercado de derivativos de bolsa.",
+      c: "O mercado a termo negocia ativos para liquidação em prazo determinado contratado, sem os ajustes diários típicos dos contratos futuros."
+    },
+    751: {
+      a: "Contratos futuros na B3 dividem-se em financeiros (índices, juros, câmbio) e agropecuários (soja, boi, café, milho), e não industriais.",
+      c: "Não há separação formal entre futuros de capitais e futuros de crédito na classificação dos contratos da B3.",
+      d: "A B3 classifica os derivativos de bolsa em derivativos financeiros e derivativos agropecuários/mercadorias."
+    },
+    752: {
+      a: "Inverte as relações funcionais entre rolagem de posições, operações de financiamento e operações combinadas de opções.",
+      b: "Associa erroneamente os conceitos de reversão de posições a operações de spread de opções.",
+      d: "Apresenta correlação incorreta entre as definições operacionais das estratégias estruturadas da B3."
+    },
+    753: {
+      a: "A oferta no mercado de opções pode conter condições específicas de validade e execução, não sendo irrestrita e incondicional.",
+      c: "As opções negociadas em bolsa possuem séries e especificações rigorosamente padronizadas pela B3.",
+      d: "A colocação de ofertas de opções subordina-se às regras de transparência, lotes e limites operacionais estabelecidos pela câmara."
+    },
+    754: {
+      b: "O prazo mínimo legal em mercado a termo de ações na B3 é de 16 dias corridos, não podendo ser de apenas 5 dias.",
+      c: "O prazo máximo admitido na B3 para termo de ações é de 999 dias corridos, e não de 360 dias.",
+      d: "O regulamento estabelece prazo mínimo de 16 dias corridos e máximo de 999 dias corridos para o mercado a termo."
+    },
+    755: {
+      a: "O item I está correto: o mercado a termo estabelece previamente preço fixo e prazo para a liquidação futura.",
+      b: "Deixa de fora o item I e inclui premissas que contrariam a estrutura padronizada de garantias e ajustes do mercado a termo.",
+      c: "O item IV traz corretamente os direitos e proventos creditados durante a vigência do contrato a termo."
+    },
+    756: {
+      b: "O primeiro item é falso, pois operações ex-pit possibilitam a precificação de posições a termo por meio de preços futuros.",
+      c: "O segundo item é verdadeiro: as operações ex-pit, por sua natureza bilateral fora do livro central, não sofrem interferência de pregão.",
+      d: "O terceiro item é verdadeiro: ex-pit significa literalmente negócios autorizados realizados fora do pit/pregão central de negociação."
+    },
+    757: {
+      a: "Deixa de fora o item II, que expressa dever basilar de abstenção de criação de condições artificiais de mercado.",
+      c: "O item III está incorreto: a B3 veda terminantemente práticas manipulativas como spoofing e layering (inserção e cancelamento simulado de ofertas).",
+      d: "Inclui o item III, que descreve prática ilícita e proibida de manipulação de preços no livro de ofertas."
+    },
+    758: {
+      a: "O PNP é um intermediário financeiro pleno com autorização de acesso ao sistema de negociação, e não a figura com dever contratual de liquidez.",
+      c: "Comitente é denominação genérica de qualquer cliente investidor titular de conta, não possuindo obrigações de formador de mercado.",
+      d: "'Assessor Bancário Responsável' não é uma categoria regulatória de participante comitente para fomento de liquidez na B3."
+    },
+    759: {
+      b: "A asserção II é plenamente verdadeira: o formador de mercado deve pautar sua conduta com rigorosa ética e observância às normas da CVM e B3.",
+      c: "A asserção I é verdadeira: o regulamento proíbe terminantemente que o formador atue criando distorções ou condições artificiais de mercado.",
+      d: "Ambas as asserções são verdadeiras e a exigência de conduta ética e regulamentar (II) justifica a vedação a práticas manipulativas (I)."
+    },
+    760: {
+      a: "Deixa de fora o item II, que também é responsabilidade indelegável do Membro de Compensação ao aportar garantias e fundos.",
+      c: "O item III está incorreto: práticas não equitativas e desequilíbrios são expressamente proibidos pelo código de conduta e regulamento da B3.",
+      d: "Inclui o item III, que descreve conduta manifestamente ilícita e contrária às normas de mercado."
+    },
+    761: {
+      a: "A autorização exclusiva para intermediação própria e de terceiros descreve o escopo restrito do Participante de Negociação (PN).",
+      b: "A custódia é prerrogativa de participantes habilitados como agentes de custódia na Central Depositária.",
+      c: "A liquidação financeira direta perante a câmara é função exclusiva do Membro de Compensação (MC) ou Participante de Liquidação."
+    },
+    762: {
+      a: "O segundo item é verdadeiro: a compensação multilateral calcula a soma algébrica de todas as posições credoras e devedoras.",
+      b: "Os três itens são afirmações verdadeiras que compõem a exata definição técnica de compensação multilateral com novação pela câmara.",
+      d: "Desconsidera que tanto a apuração de resultado líquido quanto a soma algébrica de débitos e créditos são premissas verdadeiras."
     }
   };
   Object.keys(X).forEach(function (k) {
