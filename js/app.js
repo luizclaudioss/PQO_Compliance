@@ -1,10 +1,19 @@
 /* Lógica do simulado – Guia Por Dentro da B3 */
 var $=function(i){return document.getElementById(i)};
-function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;")}
-function save(){try{localStorage.setItem(K,JSON.stringify(S))}catch(e){}}
-function load(){try{return JSON.parse(localStorage.getItem(K))}catch(e){return null}}
-function wipe(){try{localStorage.removeItem(K)}catch(e){}}
-function byN(n){return D.filter(function(q){return q.n===n})[0]}
+function esc(s){return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;")}
+var K = "simuladoB3v2";
+var S = null;
+var warned = false;
+
+function save(){try{if(S)localStorage.setItem(K,JSON.stringify(S))}catch(e){}}
+function load(){
+  try{
+    var raw = localStorage.getItem(K) || localStorage.getItem("simuladoB3");
+    return raw ? JSON.parse(raw) : null;
+  }catch(e){return null;}
+}
+function wipe(){try{localStorage.removeItem(K);localStorage.removeItem("simuladoB3");}catch(e){}}
+function byN(n){var num=parseInt(n,10);return D.filter(function(q){return q.n===num})[0]}
 function pct(a,b){return String(Math.round(a*1000/b)/10).replace(".",",")}
 var QN=60;
 function prefs(){try{return JSON.parse(localStorage.getItem('pqo_prefs'))||{}}catch(e){return {}}}
@@ -23,7 +32,7 @@ var MODS_pqob3 = {
 function bankPool(b, m) {
   var pool = D;
   if (b === "guia") pool = D.filter(function(q){ return q.banco === "guia"; });
-  else if (b === "pqob3") pool = D.filter(function(q){ return q.banco === "pqob3"; });
+  else if (b === "pqob3" || b === "lucas") pool = D.filter(function(q){ return q.banco === "pqob3" || q.banco === "lucas"; });
   // se "todas", pool = D
   if (m && m !== "0") {
     var mn = parseInt(m, 10);
@@ -62,7 +71,13 @@ function setup(){
   var p=prefs(),md=p.mode==="prova"?"prova":"estudo",bk=(p.bank==="guia"||p.bank==="pqob3"||p.bank==="todas")?p.bank:"pqob3",sf=p.shuf!==false,modSel=p.mod||"0",qtdSel=(p.qtd!==undefined&&p.qtd!==null)?p.qtd:60;
   var nG=bankPool("guia").length,nL=bankPool("pqob3").length,nT=D.length;
   var sv=load(),h="";
-  if(sv&&sv.ids&&!sv.done){h+='<div class="resume"><span>Você tem um simulado em andamento ('+Object.keys(sv.ans).length+' de '+sv.ids.length+' respondidas).</span><button type="button" class="alt" id="cont">Continuar</button></div>'}
+  if(sv&&sv.ids&&sv.ids.length&&!sv.done){
+    var validIds = sv.ids.filter(function(n){ return !!byN(n); });
+    if(validIds.length > 0){
+      sv.ids = validIds;
+      h+='<div class="resume"><span>Você tem um simulado em andamento ('+Object.keys(sv.ans||{}).length+' de '+sv.ids.length+' respondidas).</span><button type="button" class="alt" id="cont">Continuar simulado</button></div>';
+    }
+  }
   function rd(name,val,title,sub,ck){
     if(typeof sub==="boolean"){ck=sub;sub="";}
     return '<label class="opt'+(ck?' sel':'')+'"><input type="radio" name="'+name+'" value="'+val+'"'+(ck?' checked':'')+'><span><b>'+title+'</b>'+(sub?'<small>'+sub+'</small>':'')+'</span></label>';
@@ -109,63 +124,177 @@ function setup(){
     var selectedIds = (qVal > 0 && qVal < pool.length) ? (m === "0" ? strat(pool, qVal) : pool.slice(0, qVal)) : pool;
     begin(mode, selectedIds, sh);
   };
-  if($("cont"))$("cont").onclick=function(){S=sv;show()};
+  if($("cont"))$("cont").onclick=function(){
+    S=sv;
+    if(!S.ans) S.ans={};
+    if(!S.ord) S.ord={};
+    if(typeof S.cur!=="number") S.cur=0;
+    show();
+  };
 }
 
-function begin(mode,ids,sh){sh=(sh!==false);S={mode:mode,ids:ids,ans:{},done:false,shuf:sh,ord:{},cur:0};ids.forEach(function(n){var L=byN(n).opts.map(function(o){return o[0]});S.ord[n]=sh?shuffle(L.slice()):L});save();show()}
-function order(q){var L=q.opts.map(function(o){return o[0]});var o=S&&S.ord&&S.ord[q.n];if(!o||o.length!==L.length)return L;for(var i=0;i<L.length;i++){if(o.indexOf(L[i])<0)return L}return o}
+function begin(mode,ids,sh){
+  sh=(sh!==false);
+  S={mode:mode,ids:ids,ans:{},done:false,shuf:sh,ord:{},cur:0};
+  ids.forEach(function(n){
+    var q=byN(n);
+    if(q&&q.opts){
+      var L=q.opts.map(function(o){return o[0]});
+      S.ord[n]=sh?shuffle(L.slice()):L;
+    }
+  });
+  save();
+  show();
+}
+function order(q){
+  if(!q||!q.opts) return [];
+  var L=q.opts.map(function(o){return o[0]});
+  var o=S&&S.ord&&S.ord[q.n];
+  if(!o||o.length!==L.length)return L;
+  for(var i=0;i<L.length;i++){if(o.indexOf(L[i])<0)return L}
+  return o;
+}
 function disp(q,orig){var i=order(q).indexOf(orig);return i<0?orig:String.fromCharCode(97+i)}
-function optText(q,L){var o=q.opts.filter(function(x){return x[0]===L})[0];return o?o[1]:""}
+function optText(q,L){if(!q||!q.opts)return"";var o=q.opts.filter(function(x){return x[0]===L})[0];return o?o[1]:""}
 function show(){
-  warned=false;$("setup").className="setup hide";$("quiz").className="";$("bar").className="bar";
-  $("res").className="hide";$("send").className="";$("errs").className="alt hide";$("again").className="hide";if($("pdfReport"))$("pdfReport").className="alt hide";$("home").className="alt";
+  if(!S||!S.ids||!S.ids.length) return;
+  warned=false;
+  $("setup").className="setup hide";
+  $("quiz").className="";
+  $("bar").className="bar";
+  $("res").className="hide";
+  $("send").className="";
+  $("errs").className="alt hide";
+  $("again").className="hide";
+  if($("pdfReport"))$("pdfReport").className="alt hide";
+  $("home").className="alt";
   $("send").textContent=S.mode==="estudo"?"Finalizar":"Enviar respostas";
   $("sub").textContent=(S.mode==="estudo"?"Modo Estudo: ":"Modo Prova: ")+S.ids.length+(S.mode==="estudo"?" questões.":" questões. Envie para ver o resultado, o gabarito e os comentários.");
   var h="",lt="",lc="";
-  S.ids.forEach(function(n,ix){var q=byN(n);
-    var origTag = (q.banco === "pqob3") ? ('Tema: ' + esc(temaOf(q))) : ('Título ' + q.tit + ' – ' + esc(q.titn) + ' · Cap. ' + q.cap + ' – ' + esc(q.capn));
+  S.ids.forEach(function(n,ix){
+    var q=byN(n);
+    if(!q) return;
+    var origTag = (q.banco === "pqob3" || q.banco === "lucas") ? ('Tema: ' + esc(temaOf(q))) : ('Título ' + (q.tit||"") + ' – ' + esc(q.titn||"") + ' · Cap. ' + (q.cap||"") + ' – ' + esc(q.capn||""));
     h+='<div class="q" id="q'+q.n+'"><div class="qhead"><span class="qn">Questão '+(ix+1)+' de '+S.ids.length+'</span><span class="qt">'+origTag+'</span></div><p>'+esc(q.stem)+"</p>";
     order(q).forEach(function(L,i){h+='<label id="l'+q.n+L+'"><input type="radio" name="r'+q.n+'" value="'+L+'"><span><b>'+String.fromCharCode(97+i)+")</b> "+esc(optText(q,L))+"</span></label>"});
-    h+='<div class="exp hide" id="e'+q.n+'"></div><div class="pnav"><button type="button" class="alt pv">‹ Voltar</button><button type="button" class="nx">Avançar ›</button></div><div class="pmsg"></div></div>'});
-  if(typeof S.cur!=="number"||S.cur<0||S.cur>=S.ids.length)S.cur=0;$("qs").innerHTML=h;renderNav();$("qs").onclick=function(e){var b=e.target.closest("button");if(!b)return;if(b.hasAttribute("data-pg")){openGuide(+b.getAttribute("data-pg"));return}if(b.classList.contains("pv"))goTo(S.cur-1);else if(b.classList.contains("nx"))nextAct()};
-  S.ids.forEach(function(n){var a=S.ans[n];if(a){var i=document.querySelector('input[name=r'+n+'][value='+a+']');if(i)i.checked=true;if(S.mode==="estudo")reveal(byN(n))}});
-  $("qs").onchange=function(e){var m=/^r(\d+)$/.exec(e.target.name);if(!m||S.done)return;S.ans[m[1]]=e.target.value;warned=false;save();if(S.mode==="estudo")reveal(byN(+m[1]));prog()};
-  goTo(S.cur);prog();
+    h+='<div class="exp hide" id="e'+q.n+'"></div><div class="pnav"><button type="button" class="alt pv">‹ Voltar</button><button type="button" class="nx">Avançar ›</button></div><div class="pmsg"></div></div>';
+  });
+  if(typeof S.cur!=="number"||S.cur<0||S.cur>=S.ids.length)S.cur=0;
+  $("qs").innerHTML=h;
+  renderNav();
+  $("qs").onclick=function(e){
+    var b=e.target.closest("button");
+    if(!b)return;
+    if(b.hasAttribute("data-pg")){openGuide(+b.getAttribute("data-pg"));return}
+    if(b.classList.contains("pv"))goTo(S.cur-1);
+    else if(b.classList.contains("nx"))nextAct();
+  };
+  S.ids.forEach(function(n){
+    var a=S.ans[n];
+    if(a){
+      var i=document.querySelector('input[name=r'+n+'][value="'+a+'"]');
+      if(i)i.checked=true;
+      if(S.mode==="estudo")reveal(byN(n));
+    }
+  });
+  $("qs").onchange=function(e){
+    var m=/^r(\d+)$/.exec(e.target.name);
+    if(!m||S.done)return;
+    S.ans[m[1]]=e.target.value;
+    warned=false;
+    save();
+    if(S.mode==="estudo")reveal(byN(+m[1]));
+    prog();
+  };
+  goTo(S.cur);
+  prog();
 }
-function renderNav(){var nav=$("qnav"),h="";S.ids.forEach(function(n,i){h+='<button type="button" class="qnav-btn" id="nav'+n+'" data-q="'+n+'">'+(i+1)+'</button>'});nav.innerHTML=h;nav.onclick=function(e){var b=e.target.closest("button[data-q]");if(!b)return;goTo(S.ids.indexOf(+b.getAttribute("data-q")))};updateNav()}
-function updateNav(){var ok=0,bad=0,missing=0;S.ids.forEach(function(n){var b=$("nav"+n);if(!b)return;var a=S.ans[n],cls="qnav-btn";if(a){if(S.done||S.mode==="estudo"){if(a===byN(n).ans){cls+=" correct";ok++}else{cls+=" incorrect";bad++}}else cls+=" answered"}else missing++;b.className=cls});$("legendOk").textContent=ok+" "+(ok===1?"Acerto":"Acertos");$("legendBad").textContent=bad+" "+(bad===1?"Erro":"Erros");$("legendMiss").textContent=missing+" "+(missing===1?"Faltante":"Faltantes")}
+function renderNav(){
+  if(!S||!S.ids) return;
+  var nav=$("qnav"),h="";
+  S.ids.forEach(function(n,i){h+='<button type="button" class="qnav-btn" id="nav'+n+'" data-q="'+n+'">'+(i+1)+'</button>'});
+  nav.innerHTML=h;
+  nav.onclick=function(e){var b=e.target.closest("button[data-q]");if(!b)return;goTo(S.ids.indexOf(+b.getAttribute("data-q")))};
+  updateNav();
+}
+function updateNav(){
+  if(!S||!S.ids) return;
+  var ok=0,bad=0,missing=0;
+  S.ids.forEach(function(n){
+    var b=$("nav"+n);
+    var q=byN(n);
+    if(!b||!q)return;
+    var a=S.ans[n],cls="qnav-btn";
+    if(a){
+      if(S.done||S.mode==="estudo"){
+        if(a===q.ans){cls+=" correct";ok++}
+        else{cls+=" incorrect";bad++}
+      }else cls+=" answered";
+    }else missing++;
+    b.className=cls;
+  });
+  if($("legendOk"))$("legendOk").textContent=ok+" "+(ok===1?"Acerto":"Acertos");
+  if($("legendBad"))$("legendBad").textContent=bad+" "+(bad===1?"Erro":"Erros");
+  if($("legendMiss"))$("legendMiss").textContent=missing+" "+(missing===1?"Faltante":"Faltantes");
+}
 function prog(){updateNav()}
   function wrongReason(q,a){
-    if(!a||a===q.ans)return "";
+    if(!q||!a||a===q.ans)return "";
     if(WHY[q.n]&&WHY[q.n][a])return WHY[q.n][a];
-    var chosen=q.opts.filter(function(o){return o[0]===a})[0];
-    var correct=q.opts.filter(function(o){return o[0]===q.ans})[0];
-    return (q.banco === "pqob3" ? "Tema desta questão: " + temaOf(q) + ". " : "") + "A alternativa escolhida (“"+(chosen?chosen[1]:"")+"”) não corresponde ao que o enunciado pede. O correto é “"+(correct?correct[1]:"")+"”.";
+    var chosen=(q.opts||[]).filter(function(o){return o[0]===a})[0];
+    var correct=(q.opts||[]).filter(function(o){return o[0]===q.ans})[0];
+    return ((q.banco === "pqob3" || q.banco === "lucas") ? "Tema desta questão: " + temaOf(q) + ". " : "") + "A alternativa escolhida (“"+(chosen?chosen[1]:"")+"”) não corresponde ao que o enunciado pede. O correto é “"+(correct?correct[1]:"")+"”.";
   }
   function reveal(q){
+  if(!q) return;
   var a=S.ans[q.n],r=a===q.ans;
-  var _qe=$("q"+q.n),_h=_qe.classList.contains("pg-hide");_qe.className="q "+(r?"ok":"bad")+(_h?" pg-hide":"");
-  $("l"+q.n+q.ans).className="right";
-  if(a&&!r)$("l"+q.n+a).className="wrong";
-  var e=$("e"+q.n);e.className="exp";
-  var status = !a ? "Sem resposta." : (r ? "✔ Você acertou." : "✘ Você marcou "+disp(q,a)+").");
-  var wrong=(!r&&a)?'<div class="whybox whywrong"><b>Por que a alternativa '+disp(q,a)+') não é a correta?</b><br>'+esc(wrongReason(q,a))+'</div>':"";
-  var right='<div class="whybox whyright"><b>Por que a alternativa '+disp(q,q.ans)+') é a correta?</b><br>'+esc(q.exp)+'</div>';
-  e.innerHTML=status+wrong+right;if(q.pg)e.innerHTML+='<div class="pgref"><button type="button" class="pgbtn" data-pg="'+q.pg+'">📖 Consultar Guia, '+pgLabel(q.pg)+'</button></div>';
+  var _qe=$("q"+q.n);
+  if(!_qe) return;
+  var _h=_qe.classList.contains("pg-hide");
+  _qe.className="q "+(r?"ok":"bad")+(_h?" pg-hide":"");
+  var lCorr = $("l"+q.n+q.ans);
+  if(lCorr) lCorr.className="right";
+  if(a&&!r){
+    var lWrong = $("l"+q.n+a);
+    if(lWrong) lWrong.className="wrong";
+  }
+  var e=$("e"+q.n);
+  if(e){
+    var status = !a ? "Sem resposta." : (r ? "✔ Você acertou." : "✘ Você marcou "+disp(q,a)+").");
+    var wrong=(!r&&a)?'<div class="whybox whywrong"><b>Por que a alternativa '+disp(q,a)+') não é a correta?</b><br>'+esc(wrongReason(q,a))+'</div>':"";
+    var right='<div class="whybox whyright"><b>Por que a alternativa '+disp(q,q.ans)+') é a correta?</b><br>'+esc(q.exp)+'</div>';
+    e.className="exp";
+    e.innerHTML=status+wrong+right;
+    if(q.pg&&typeof pgLabel==="function")e.innerHTML+='<div class="pgref"><button type="button" class="pgbtn" data-pg="'+q.pg+'">📖 Consultar Guia, '+pgLabel(q.pg)+'</button></div>';
+  }
   document.querySelectorAll("input[name=r"+q.n+"]").forEach(function(i){i.disabled=true});
 }
 function finish(){
-  var miss=S.ids.length-Object.keys(S.ans).length;
+  if(!S||!S.ids) return;
+  var miss=S.ids.length-Object.keys(S.ans||{}).length;
   if(miss>0&&!warned){warned=true;showWarn(miss);return}
   S.done=true;var _w=document.getElementById('warnbar');if(_w)_w.remove();wipe();
   var ok=0,by={};
-  S.ids.forEach(function(n){var q=byN(n),r=S.ans[n]===q.ans;if(r)ok++;
-    var b=by[q.tit]||(by[q.tit]={n:q.titn,t:0,c:0});b.t++;if(r)b.c++;reveal(q)});
-  var t="";Object.keys(by).forEach(function(k){t+="<tr><td>"+(k.match(/^[0-9]+$/)?("Módulo "+k):("Módulo / Título "+k))+" – "+esc(by[k].n)+"</td><td>"+by[k].c+"/"+by[k].t+"</td></tr>"});
+  S.ids.forEach(function(n){
+    var q=byN(n);
+    if(!q) return;
+    var r=S.ans[n]===q.ans;
+    if(r)ok++;
+    var titKey = q.tit || "Outros";
+    var b=by[titKey]||(by[titKey]={n:q.titn||"",t:0,c:0});
+    b.t++;
+    if(r)b.c++;
+    reveal(q);
+  });
+  var t="";
+  Object.keys(by).forEach(function(k){
+    t+="<tr><td>"+(String(k).match(/^[0-9]+$/)?("Módulo "+k):("Módulo / Título "+k))+" – "+esc(by[k].n)+"</td><td>"+by[k].c+"/"+by[k].t+"</td></tr>";
+  });
   var r=$("res");r.className="";
-  r.innerHTML='<div class="big">'+ok+" acertos de "+S.ids.length+" ("+pct(ok,S.ids.length)+"%)</div><div style=\"margin:12px 0 16px;\"><button type=\"button\" id=\"resPdfBtn\" class=\"primary\" style=\"width:100%;min-height:46px;\">📄 Baixar Relatório Completo em PDF</button></div>Resultado final. Revise abaixo o gabarito comentado, uma questão por tela.<table>"+t+"</table>";setTimeout(function(){var b=$("resPdfBtn");if(b)b.onclick=generatePDFReport;},10);
+  r.innerHTML='<div class="big">'+ok+" acertos de "+S.ids.length+" ("+pct(ok,S.ids.length)+"%)</div><div style=\"margin:12px 0 16px;\"><button type=\"button\" id=\"resPdfBtn\" class=\"primary\" style=\"width:100%;min-height:46px;\">📄 Baixar Relatório Completo em PDF</button></div>Resultado final. Revise abaixo o gabarito comentado, uma questão por tela.<table>"+t+"</table>";
+  setTimeout(function(){var b=$("resPdfBtn");if(b)b.onclick=generatePDFReport;},10);
   $("send").className="hide";$("home").className="hide";$("again").className="";if($("pdfReport"))$("pdfReport").className="alt";
-  S.wrong=S.ids.filter(function(n){return S.ans[n]!==byN(n).ans});
+  S.wrong=S.ids.filter(function(n){var q=byN(n);return q && S.ans[n]!==q.ans;});
   if(S.wrong.length)$("errs").className="alt";
   S.cur=0;goTo(0);histRender(histSave());window.scrollTo(0,0);
 }
@@ -181,12 +310,67 @@ document.getElementById('prev').onclick=function(){goTo(S.cur-1)};document.getEl
 document.getElementById('cnt').onclick=function(e){e.stopPropagation();document.body.classList.toggle('dopen')};
 document.addEventListener('click',function(e){if(!document.body.classList.contains('dopen'))return;if(e.target.closest('.qnav-btn')){setTimeout(function(){document.body.classList.remove('dopen')},50);return}if(!e.target.closest('.qnav-wrap'))document.body.classList.remove('dopen')});
 var _un=updateNav;updateNav=function(){_un();var c=document.getElementById('cnt');if(c&&typeof S!=='undefined'&&S&&S.ids)c.textContent=Object.keys(S.ans||{}).length+'/'+S.ids.length};
-function mobLabels(){var m=matchMedia('(max-width:700px)').matches;var s=document.getElementById('send'),h=document.getElementById('home');if(s)s.textContent=m?'Finalizar':'Enviar respostas';if(h)h.textContent=m?'⌂':'Início'}mobLabels();window.addEventListener('resize',mobLabels);
+function mobLabels(){var m=window.matchMedia && window.matchMedia('(max-width:700px)').matches;var s=document.getElementById('send'),h=document.getElementById('home');if(s)s.textContent=m?'Finalizar':'Enviar respostas';if(h)h.textContent=m?'⌂':'Início'}mobLabels();window.addEventListener('resize',mobLabels);
 function histGet(){try{return JSON.parse(localStorage.getItem('pqo_hist')||'[]')}catch(e){return []}}
-function temaOf(q){var m=/^Tema:\s*(.+?)\.(\s|$)/.exec(q.exp||"");var t=m?m[1]:(q.titn||"");return t.charAt(0).toUpperCase()+t.slice(1)}
-function capKey(q){return (q.banco === "pqob3") ? ('Módulo ' + (q.mod || q.tit) + ' – ' + q.titn) : ('Tít. ' + q.tit + ' / Cap. ' + q.cap + ' – ' + q.capn);}
-function histSave(){var ok=0,caps={};S.ids.forEach(function(n){var q=byN(n);if(S.ans[n]===q.ans)ok++;else{var k=capKey(q);caps[k]=(caps[k]||0)+1}});var h=histGet();h.unshift({d:new Date().toISOString(),mode:S.mode,total:S.ids.length,ok:ok,pct:Math.round(100*ok/S.ids.length),wrong:S.ids.filter(function(n){return S.ans[n]!==byN(n).ans}),caps:caps});h=h.slice(0,30);try{localStorage.setItem('pqo_hist',JSON.stringify(h))}catch(e){}return caps}
-function histRender(caps){var r=document.getElementById('res');var by={};S.ids.forEach(function(n){var q=byN(n),k=capKey(q);var b=by[k]||(by[k]={t:0,c:0});b.t++;if(S.ans[n]===q.ans)b.c++});var t='<h4>Desempenho por capítulo</h4><table>';Object.keys(by).forEach(function(k){t+='<tr><td>'+esc(k)+'</td><td>'+by[k].c+'/'+by[k].t+' ('+Math.round(100*by[k].c/by[k].t)+'%)</td></tr>'});t+='</table>';var ks=Object.keys(caps).sort(function(a,b){return caps[b]-caps[a]}).slice(0,5);if(ks.length){t+='<h4>Temas mais errados</h4><ol>';ks.forEach(function(k){t+='<li>'+esc(k)+' – '+caps[k]+' erro(s)</li>'});t+='</ol>'}var h=histGet().slice(0,10);t+='<h4>Histórico</h4><table>';h.forEach(function(x){t+='<tr><td>'+new Date(x.d).toLocaleString('pt-BR')+' · '+esc(String(x.mode))+' · '+x.total+' questões</td><td>'+x.pct+'%</td></tr>'});t+='</table><button type="button" class="alt" id="hclr" style="margin-top:10px">Limpar histórico</button>';var old=document.getElementById('histbox');if(old)old.remove();var d=document.createElement('div');d.id='histbox';d.innerHTML=t;r.appendChild(d);document.getElementById('hclr').onclick=function(){try{localStorage.removeItem('pqo_hist')}catch(e){}histRender(caps)}}
+function temaOf(q){
+  if(!q) return "";
+  var m=/^Tema:\s*(.+?)\.(\s|$)/.exec(q.exp||"");
+  var t=m?m[1]:(q.titn||"");
+  return t ? (t.charAt(0).toUpperCase()+t.slice(1)) : "";
+}
+function capKey(q){
+  if(!q) return "";
+  return (q.banco === "pqob3" || q.banco === "lucas") ? ('Módulo ' + (q.mod || q.tit || "") + ' – ' + (q.titn || "")) : ('Tít. ' + (q.tit || "") + ' / Cap. ' + (q.cap || "") + ' – ' + (q.capn || ""));
+}
+function histSave(){
+  var ok=0,caps={};
+  if(S&&S.ids){
+    S.ids.forEach(function(n){
+      var q=byN(n);
+      if(!q) return;
+      if(S.ans[n]===q.ans)ok++;
+      else{var k=capKey(q);caps[k]=(caps[k]||0)+1}
+    });
+  }
+  var h=histGet();
+  h.unshift({d:new Date().toISOString(),mode:S?S.mode:"estudo",total:S&&S.ids?S.ids.length:0,ok:ok,pct:S&&S.ids&&S.ids.length?Math.round(100*ok/S.ids.length):0,wrong:S&&S.ids?S.ids.filter(function(n){var q=byN(n);return q&&S.ans[n]!==q.ans}):[],caps:caps});
+  h=h.slice(0,30);
+  try{localStorage.setItem('pqo_hist',JSON.stringify(h))}catch(e){}
+  return caps;
+}
+function histRender(caps){
+  var r=document.getElementById('res');
+  var by={};
+  if(S&&S.ids){
+    S.ids.forEach(function(n){
+      var q=byN(n);
+      if(!q) return;
+      var k=capKey(q);
+      var b=by[k]||(by[k]={t:0,c:0});
+      b.t++;
+      if(S.ans[n]===q.ans)b.c++;
+    });
+  }
+  var t='<h4>Desempenho por capítulo</h4><table>';
+  Object.keys(by).forEach(function(k){t+='<tr><td>'+esc(k)+'</td><td>'+by[k].c+'/'+by[k].t+' ('+Math.round(100*by[k].c/by[k].t)+'%)</td></tr>'});
+  t+='</table>';
+  var ks=Object.keys(caps||{}).sort(function(a,b){return caps[b]-caps[a]}).slice(0,5);
+  if(ks.length){t+='<h4>Temas mais errados</h4><ol>';ks.forEach(function(k){t+='<li>'+esc(k)+' – '+caps[k]+' erro(s)</li>'});t+='</ol>'}
+  var h=histGet().slice(0,10);
+  t+='<h4>Histórico</h4><table>';
+  h.forEach(function(x){t+='<tr><td>'+new Date(x.d).toLocaleString('pt-BR')+' · '+esc(String(x.mode))+' · '+x.total+' questões</td><td>'+x.pct+'%</td></tr>'});
+  t+='</table><button type="button" class="alt" id="hclr" style="margin-top:10px">Limpar histórico</button>';
+  var old=document.getElementById('histbox');
+  if(old)old.remove();
+  var d=document.createElement('div');
+  d.id='histbox';
+  d.innerHTML=t;
+  r.appendChild(d);
+  var btnHclr = document.getElementById('hclr');
+  if(btnHclr){
+    btnHclr.onclick=function(){try{localStorage.removeItem('pqo_hist')}catch(e){}histRender(caps)};
+  }
+}
 function goTo(i){if(!S||!S.ids||!S.ids.length)return;if(i<0)i=0;if(i>=S.ids.length)i=S.ids.length-1;S.cur=i;S.ids.forEach(function(n,k){var el=$("q"+n);if(el)el.classList.toggle("pg-hide",k!==i)});var el=$("q"+S.ids[i]);if(el){var pv=el.querySelector(".pv"),nx=el.querySelector(".nx");if(pv)pv.disabled=(i===0);if(nx){var last=(i===S.ids.length-1);nx.textContent=last?(S.done?"Voltar à 1ª questão":(S.mode==="estudo"?"Finalizar":"Finalizar prova")):"Avançar ›"}}updateNav();if(!S.done)save();window.scrollTo(0,0)}
 function flash(t){var el=$("q"+S.ids[S.cur]);if(!el)return;var m=el.querySelector(".pmsg");if(!m)return;m.textContent=t;clearTimeout(flash._t);flash._t=setTimeout(function(){m.textContent=""},2500)}
 function nextAct(){if(!S||!S.ids)return;var last=S.cur===S.ids.length-1,n=S.ids[S.cur];if(!last){var blank=!S.done&&!S.ans[n];goTo(S.cur+1);if(blank)flash("A questão anterior ficou sem resposta – você pode voltar a ela pela grade.");return}if(S.done){goTo(0);return}finish();window.scrollTo(0,0)}
@@ -298,19 +482,20 @@ function generatePDFReport() {
 
   S.ids.forEach(function (n, idx) {
     var q = byN(n);
+    if (!q) return;
     var uAns = S.ans[n];
     var isRight = uAns === q.ans;
     var uText = "";
     var cText = "";
 
-    q.opts.forEach(function (o) {
+    (q.opts || []).forEach(function (o) {
       if (o[0] === uAns) uText = o[1];
       if (o[0] === q.ans) cText = o[1];
     });
 
     html += '<div class="q-card ' + (isRight ? "is-ok" : "is-bad") + '">';
     html += '<div class="q-top">';
-    var repTag = (q.banco === "pqob3") ? ('Tema: ' + esc(temaOf(q))) : ('Título ' + q.tit + ' · Cap. ' + q.cap);
+    var repTag = (q.banco === "pqob3" || q.banco === "lucas") ? ('Tema: ' + esc(temaOf(q))) : ('Título ' + (q.tit || "") + ' · Cap. ' + (q.cap || ""));
     html += '<span>Questão ' + (idx + 1) + ' · ' + repTag + '</span>';
     html += '<span class="q-badge ' + (isRight ? "b-ok" : "b-bad") + '">' + (isRight ? "ACERTO" : (uAns ? "ERRO" : "NÃO RESPONDIDA")) + '</span>';
     html += '</div>';
