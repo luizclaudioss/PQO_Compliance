@@ -2227,6 +2227,396 @@
       a: "O segundo item é verdadeiro: a compensação multilateral calcula a soma algébrica de todas as posições credoras e devedoras.",
       b: "Os três itens são afirmações verdadeiras que compõem a exata definição técnica de compensação multilateral com novação pela câmara.",
       d: "Desconsidera que tanto a apuração de resultado líquido quanto a soma algébrica de débitos e créditos são premissas verdadeiras."
+    },
+    764: {
+      a: "Inclui a fase de cancelamento entre negociação e call de fechamento, contrariando a sequência padrão da sessão.",
+      c: "Duplica 'fase aberta' e 'negociação' e inclui cancelamento no meio da sequência.",
+      d: "Coloca cancelamento de ofertas antes da negociação regular e troca call de fechamento por 'fechamento'."
+    },
+    765: {
+      a: "Inverte o julgamento do item II (falso) e do item III (verdadeiro).",
+      b: "O item I é falso: situações excepcionais não dispensam os participantes de suas obrigações e planos de contingência.",
+      c: "Considera os itens I e II verdadeiros, ignorando o princípio da continuidade de negócios e obrigações no mercado de capitais."
+    },
+    766: {
+      a: "Dealers de câmbio são instituições bancárias credenciadas pelo Banco Central, e não sociedades de crédito, financiamento e investimento.",
+      b: "Flutuação suja é o regime cambial em que o Banco Central intervém pontualmente, não a definição dos dealers.",
+      d: "O mercado de câmbio é expressamente regulado e fiscalizado pelo Banco Central do Brasil, e não livre de supervisão."
+    },
+    767: {
+      b: "O IRPF não incide sobre o valor bruto total da venda, mas exclusivamente sobre o ganho de capital (diferença positiva entre venda e custo).",
+      c: "O imposto de renda sobre ganho de capital em câmbio segue alíquota sobre o ganho apurado, e não sobre o valor bruto da venda.",
+      d: "Em operações de alienação de moeda estrangeira em espécie pelo investidor, a obrigação de apurar e recolher o IR via DARF é do próprio beneficiário."
+    },
+    768: {
+      a: "Em pessoas jurídicas tributadas pelo lucro real ou presumido, as variações cambiais integram as receitas/despesas financeiras tributáveis sob as alíquotas do IRPJ/CSLL.",
+      b: "O IRPJ não incide sobre a receita bruta total de alienação de moeda, mas sobre o resultado financeiro líquido positivo da operação.",
+      c: "A responsabilidade pela apuração do resultado e recolhimento dos tributos incidentes sobre PJ compete à própria empresa contribuinte."
+    },
+    769: {
+      a: "A instituição financeira atua apenas como intermediária da operação de câmbio, cabendo à pessoa física apurar o ganho de capital e recolher o imposto via DARF.",
+      c: "A B3 é a operadora de infraestrutura de mercado, não atuando como substituta tributária de investidores pessoas físicas em câmbio.",
+      d: "A clearing de câmbio garante a liquidação interbancária das operações, não sendo responsável pelo recolhimento de IR de comitentes."
+    },
+    770: {
+      a: "Ganhos de capital na alienação de moeda estrangeira em espécie por PF não seguem a tabela regressiva de renda fixa (22,5% a 15%).",
+      b: "A retenção não é realizada na fonte pelo intermediário; o recolhimento do imposto devido é de responsabilidade do próprio comitente.",
+      c: "Operações com ganho de capital em montante superior ao limite legal de isenção de alienação sofrem incidência de imposto de renda."
+    },
+    771: {
+      a: "A base de cálculo do IOF câmbio é o contravalor em moeda nacional da operação (montante em reais), e não o valor em moeda estrangeira.",
+      b: "A alíquota básica geral do IOF câmbio é de 0,38% (com alíquotas diferenciadas como 1,1% em espécie ou 4,38%/6,38% em cartões), não sendo de 15%.",
+      d: "Operações de câmbio são sujeitas ao IOF/Câmbio conforme alíquotas fixadas pelo Poder Executivo, e não à alíquota de 20%."
+    },
+    772: {
+      b: "Operações ex-pit são negócios autorizados e realizados fora do pit/ambiente centralizado de pregão.",
+      c: "Ex-pit não é modalidade de arbitragem no mercado à vista, mas negociação bilateral com registro posterior na bolsa.",
+      d: "As operações ex-pit requerem registro tempestivo e aprovação prévia nas plataformas da B3 conforme regras operacionais."
+    },
+    773: {
+      a: "Quem busca lucrar com as oscilações e volatilidade de preços assumindo riscos é o especulador; o hedger busca neutralizar riscos.",
+      b: "Especuladores buscam ganhos rápidos com a oscilação de preços de curto prazo, não se limitando a estratégias de valor em empresas sólidas.",
+      d: "O hedger busca proteger-se contra a variação desfavorável de preços de sua posição física, e não apenas contra alta de taxas de juros."
+    },
+    774: {
+      b: "O hedger busca proteção tanto contra a alta quanto contra a queda de preços de ativos de acordo com sua exposição no mercado à vista.",
+      c: "Especular posições assumindo riscos direcionais para obter lucros é objetivo típico do especulador, e não do hedger.",
+      d: "Superar o Ibovespa é objetivo de gestores de fundos de ações ativos, e não o propósito de gestão de risco do hedger."
+    },
+    775: {
+      a: "O arbitrador busca lucros imediatos a partir de discrepâncias pontuais e efêmeras de preços entre mercados, e não no longo prazo.",
+      c: "Especular posições direcionais assumindo o risco da oscilação de mercado é papel do especulador, não do arbitrador.",
+      d: "Proteger posições existentes contra oscilações adversas é o escopo do hedger."
+    },
+    776: {
+      a: "O especulador assume riscos no mercado esperando obter lucros com a oscilação de preços, não buscando eliminar o risco de sua carteira.",
+      b: "O especulador não tem como atividade explorar distorções de preços sem risco; essa atuação caracteriza o arbitrador.",
+      d: "O objetivo primordial do especulador é a obtenção de retorno financeiro assumindo risco, e não a mera gestão de patrimônio de terceiros."
+    },
+    777: {
+      a: "Operações ex-pit não são exclusivas do mercado agrícola, abrangendo contratos e ativos financeiros autorizados.",
+      b: "A operação ex-pit é uma transação negociada privadamente fora do pregão eletrônico, e não uma estratégia de especulação sobre distorções.",
+      d: "Operações ex-pit constituem negócios bilaterais com posterior registro na câmara da bolsa, não se restringindo ao mercado de balcão."
+    },
+    778: {
+      a: "A ordem a mercado não define preço fixo de execução, consumindo a liquidez disponível no livro ao preço corrente.",
+      b: "A ordem administrada delega ao corretor a escolha do momento oportuno de execução das quantidades negociadas.",
+      c: "A ordem discricionária é emitida por gestor ou terceiro com procuração de gestão da carteira do cliente."
+    },
+    779: {
+      a: "Contratos futuros possuem meses e datas de vencimento rigidamente padronizados pela B3, e não qualquer data.",
+      b: "A padronização abrange cotação, forma de liquidação (física ou financeira) e vencimentos, operando com liquidação multilateral.",
+      c: "A regulamentação fixa o tamanho do contrato (lote-padrão) e a unidade de cotação, não limitando quantidade máxima negociável."
+    },
+    780: {
+      a: "A ordem limitada especifica o preço máximo na compra ou mínimo na venda pelo próprio cliente comitente.",
+      c: "A ordem administrada é decidida pelo participante corretor, enquanto a discricionária é emitida por administrador de carteira autorizado.",
+      d: "A ordem casada condiciona a execução de uma operação à realização concomitante de outra."
+    },
+    781: {
+      b: "Ordem stop de compra é programada para disparar compra quando o preço sobe até o patamar de disparo (para estancar perdas de venda a descoberto).",
+      c: "Ordem a mercado é executada imediatamente pelas melhores ofertas do livro sem aguardar preço de disparo.",
+      d: "Ordem limitada fixa preço limite de execução, sem mecanismo de gatilho/disparo condicional."
+    },
+    782: {
+      a: "After hours (ou after market) é o período de negociação após o encerramento do pregão regular, não um mecanismo de interrupção por volatilidade.",
+      b: "Co-location é o serviço de hospedagem de servidores de participantes dentro do data center da bolsa para reduzir latência.",
+      c: "STP (Straight-Through Processing) é a automação do fluxo contínuo de processamento de ponta a ponta sem intervenção manual."
+    },
+    783: {
+      a: "Formador de mercado é o participante comitente com obrigação contratual de manter ofertas firmes de compra e venda para dar liquidez.",
+      c: "PNP (Participante de Negociação Pleno) é a corretora intermediária que opera e registra as ofertas no sistema, e não o cliente comitente.",
+      d: "PN (Participante de Negociação) é o intermediário que acessa a negociação mas liquida via terceiro, não sendo o cliente comitente."
+    },
+    784: {
+      a: "Ordem com lote oculto é a denominação genérica de mercado, mas a B3 adota formalmente o termo 'ordem com reserva'.",
+      b: "Ordem escondida não é uma tipologia formalmente classificada nas regras de negociação da bolsa.",
+      c: "Ordem mascarada não é termo regulamentar adotado no manual de procedimentos operacionais da B3."
+    },
+    785: {
+      a: "A câmara não se relaciona diretamente com o comitente final na liquidação central, mas sim com o Membro de Compensação.",
+      b: "O participante de liquidação atua na custódia e liquidação de suas operações, mas a garantia da liquidação perante a câmara é do MC.",
+      c: "O participante de negociação contrata um participante de liquidação ou membro de compensação para representá-lo na câmara."
+    },
+    786: {
+      a: "Devedor operacional é o participante que deixa de honrar obrigações por falha técnica ou operacional temporária, e não por insuficiência financeira.",
+      b: "Concordatário é figura jurídica falimentar antiga, não sendo a denominação técnica da regra da B3 para insuficiência financeira.",
+      c: "Insolvente é estado econômico-jurídico geral, mas o termo normativo exato da B3 para a falta de liquidação financeira é participante inadimplente."
+    },
+    787: {
+      b: "O leilão de pré-abertura antecede o início das negociações regulares, não ocorrendo durante o pregão regular.",
+      c: "O call de fechamento ocorre nos minutos finais da sessão de negociação.",
+      d: "A negociação contínua não forma preço único por leilão; os negócios fecham instantaneamente na colisão de ofertas."
+    },
+    788: {
+      a: "A segmentação obrigatória da Abordagem Baseada em Risco exige no mínimo três faixas (alto, médio e baixo risco), e não apenas duas.",
+      b: "Conservadores e arrojados são perfis de suitability para produtos de investimento, não a classificação de risco de PLD/FTP.",
+      c: "A classificação de risco em PLD deve abranger todo o espectro de clientes, incluindo expressamente o baixo risco."
+    },
+    789: {
+      b: "O item III está incorreto: a realização de estudos é prevista para 'órgãos de pesquisa', e não genericamente para qualquer ONG.",
+      c: "Deixa de fora o item II, que também é base legal essencial (execução de contratos).",
+      d: "Inclui o item III, que desvirtua a base legal de estudos de órgãos de pesquisa."
+    },
+    790: {
+      a: "Deixa de fora o item III, que estabelece que o consentimento não é extensível a finalidades não pactuadas originariamente.",
+      b: "O item II está incorreto: a LGPD veda expressamente o consentimento genérico ou com finalidade indeterminada.",
+      d: "Inclui o item II, que contraria frontalmente a exigência de finalidade específica e determinada para o consentimento."
+    },
+    791: {
+      a: "Ambas as afirmativas são verdadeiras: a lei assegura a eliminação de dados excessivos (I) e reconhece que direitos não são absolutos frente a segredos de negócio e obrigações legais (II).",
+      b: "A afirmativa II também é verdadeira, pois os direitos do titular podem sofrer limitações justificadas para preservar segredos industriais e cumprimento regulatório.",
+      c: "A afirmativa I é plenamente verdadeira, sendo garantia expressa do artigo 18 da LGPD."
+    },
+    792: {
+      a: "O registro de operações de tratamento é uma boa prática geral de governança e prestação de contas, sendo mandatório especialmente no legítimo interesse.",
+      b: "A ANPD não possui controle centralizado de todos os bancos de dados do país; os registros devem ser mantidos pelos próprios controladores e operadores.",
+      c: "O registro deve ser mantido permanentemente durante o ciclo de vida dos dados, e não apenas quando ocorrer incidente ou tratamento indevido."
+    },
+    793: {
+      a: "O Compliance Officer cuida da conformidade regulatória geral da instituição, enquanto o canal exclusivo de privacidade e dados é o Encarregado (DPO).",
+      b: "A área de comunicação/marketing promove a imagem institucional, não exercendo as funções legais de canal regulatório do Encarregado de dados.",
+      d: "O diretor de RH gerencia recursos humanos internos, não sendo a figura regulamentada pela LGPD como canal de comunicação da proteção de dados."
+    },
+    794: {
+      b: "Deixa de fora o item I, que traz a obrigação legal mandatória de nomear o encarregado pelo tratamento de dados (DPO).",
+      c: "O item III está incorreto: a ANPD é órgão fiscalizador e sancionador, não respondendo pelos danos patrimoniais e civis causados pelos agentes.",
+      d: "Inclui o item III, que atribui erroneamente responsabilidade de indenização civil à autoridade reguladora em vez do agente infrator."
+    },
+    795: {
+      a: "Deixa de fora o item III, que também é hipótese expressa de aplicação extraterritorial da LGPD.",
+      b: "O item II está incorreto: dados tratados exclusivamente fora do Brasil sobre indivíduos não localizados no país não são regidos pela LGPD.",
+      d: "Inclui o item II, que estende indevidamente a aplicação da lei brasileira a tratamentos puramente estrangeiros."
+    },
+    796: {
+      a: "Inverte a relação: o investidor é a pessoa física dona dos dados (titular), e o participante é a instituição que realiza o tratamento.",
+      c: "O investidor não pode ser excluído da relação como titular dos seus dados pessoais cadastrais.",
+      d: "A relação básica perante a corretora intermediária tem o investidor como titular e o participante como agente de tratamento."
+    },
+    797: {
+      a: "A letra 'P' significa 'Proteção' (Lei Geral de Proteção de Dados Pessoais).",
+      b: "Prevenção é um dos princípios da LGPD, mas não compõe a sigla oficial da lei.",
+      d: "A palavra 'Pessoais' é a última da denominação por extenso, correspondendo ao 'D' de Dados Pessoais na síntese da lei."
+    },
+    798: {
+      a: "PEPs e ONGs possuem grau de risco elevado de lavagem de dinheiro, exigindo monitoramento reforçado e diligência especial.",
+      b: "A regulamentação não proíbe o relacionamento com PEPs ou ONGs; ela impõe controles adicionais e aprovação de alçada superior.",
+      c: "A comunicação ao COAF ocorre apenas quando há operações suspeitas ou sem fundamentação econômica/legal, e não sobre todo e qualquer cliente."
+    },
+    799: {
+      a: "A instituição pode executar a operação a pedido expresso do cliente, desde que emita alerta formal de inadequação e colha declaração de ciência.",
+      b: "A regulamentação de suitability da CVM não obriga a recusa da ordem de um cliente consciente que declarou ciência do risco.",
+      d: "A corretora não pode executar ordens inadequadas sem antes alertar expressamente o cliente sobre os riscos de desconformidade."
+    },
+    800: {
+      a: "A condição de PEP abrange autoridades federais, estaduais e municipais relevantes, bem como do Judiciário, Legislativo e Forças Armadas.",
+      b: "Ser mencionado em notícias ou investigações não qualifica formalmente o indivíduo como Pessoa Exposta Politicamente segundo o rol regulatório.",
+      d: "O conceito de PEP é muito mais amplo do que a figura do Presidente da República e seus familiares imediatos."
+    },
+    801: {
+      a: "O diretor de PLD não pode acumular funções que gerem conflito direto de interesse, especialmente com áreas operacionais de negócios.",
+      c: "A legislação autoriza o acúmulo de outras funções corporativas (como controles internos ou risco), desde que sem conflito de interesse.",
+      d: "O exercício de funções executivas comerciais de negócios é justamente o principal foco de conflito de interesse vedado para o diretor de PLD."
+    },
+    802: {
+      a: "A sigla FT significa 'Financiamento ao Terrorismo'.",
+      c: "Proliferação de armas é designada por 'FP' (Financiamento da Proliferação de armas de destruição em massa).",
+      d: "A terminologia oficial adotada pelo GAFI/FATF e pelo COAF é Financiamento ao Terrorismo."
+    },
+    803: {
+      b: "ABR significa 'Abordagem Baseada em Risco', metodologia internacionalmente preconizada para priorizar controles e recursos de PLD.",
+      c: "A sigla ABR é padrão internacional de gestão de conformidade em lavagem de dinheiro, e não programa comercial de clientes.",
+      d: "O termo correto adotado pela Circular Bacen 3.978 e Instruções CVM é Abordagem Baseada em Risco."
+    },
+    804: {
+      a: "O prazo máximo admitido para atualização de clientes de menor risco não é de 2 anos, mas de até 5 anos.",
+      b: "O prazo de 3 anos pode ser adotado para riscos médios, mas o prazo máximo legal para clientes de baixo risco é de 5 anos.",
+      d: "O prazo de 10 anos não é admitido para atualização de cadastro de clientes ativos; o limite máximo é de 5 anos."
+    },
+    805: {
+      a: "O item I não constitui por si só indício de crime de lavagem, enquanto os itens II e III trazem transações atípicas evidentes.",
+      b: "Deixa de fora o item II, que também é típico sinal de alerta de fracionamento ou incompatibilidade patrimonial.",
+      d: "Inclui o item I, que traz operação compatível com a rotina normal do comitente no mercado."
+    },
+    806: {
+      a: "O item I está incorreto: a comunicação ao COAF deve ser feita sem dar ciência ao cliente da operação atípica relatada.",
+      c: "O item I infringe o dever legal de sigilo que veda alertar o cliente sobre a comunicação realizada ao COAF.",
+      d: "Inclui o item I, que descreve prática ilegal de revelar ao cliente o reporte de suspeita efetuado ao órgão de controle."
+    },
+    807: {
+      a: "Deixa de fora o item III, que disciplina a comunicação imediata de eventual descumprimento justificado ao Ministério da Justiça e à CVM.",
+      b: "Deixa de fora o item I, que estabelece a obrigação de cumprimento imediato e sem aviso prévio das ordens de indisponibilidade.",
+      c: "Deixa de fora o item II, que especifica a abrangência patrimonial completa dos bens e frutos sujeitos à indisponibilidade."
+    },
+    808: {
+      a: "O prazo regulamentar para definição de cliente ativo é de 12 meses, e não de 18 meses, e não se restringe a day trade.",
+      b: "O período adotado nas normas de PLD/FTP é de 12 meses, não sendo de 18 meses.",
+      c: "Movimentação em cartão de crédito não integra o rol de critérios para o mercado de valores mobiliários da B3."
+    },
+    809: {
+      a: "A afirmativa II é falsa: o plano de ação de PLD não é anexo ao relatório de efetividade, possuindo prazo e trâmite próprios até 30 de junho.",
+      c: "A afirmativa I é verdadeira: o relatório de efetividade de PLD/FTP é exigência mandatória da Circular Bacen 3.978.",
+      d: "A afirmativa I é plenamente verdadeira na sua exigência de governança e reporte anual de efetividade de controles."
+    },
+    810: {
+      a: "O prazo mínimo legal de guarda e arquivamento documental da PRSAC à disposição do Bacen é de 5 anos, e não de 10 anos.",
+      c: "A documentação da Política de Responsabilidade Social, Ambiental e Climática (PRSAC) deve ficar à disposição do Banco Central do Brasil.",
+      d: "O prazo de guarda é de no mínimo 5 anos, sendo 10 anos prazo inadequado para a regra regulamentar da PRSAC."
+    },
+    811: {
+      a: "A PRSAC abrange de forma integrada as três dimensões: Social, Ambiental e Climática, não se restringindo unicamente ao meio ambiente.",
+      c: "A PRSAC é voltada aos princípios de sustentabilidade corporativa externa e de crédito/investimentos, não sendo apenas política de relações internas de trabalho.",
+      d: "A letra 'C' da sigla PRSAC refere-se à dimensão 'Climática', e não a comissões como COSO ou alta administração."
+    },
+    812: {
+      a: "A regulamentação do Bacen permite a elaboração de política unificada no âmbito do conglomerado prudencial, dispensando segregação individual estanque.",
+      b: "Mesmo unificada para o conglomerado, a PRSAC não pode ser genérica: deve considerar as particularidades e riscos específicos de cada instituição integrante.",
+      c: "A política unificada não pode tratar exclusivamente do que for comum, sendo obrigatório descrever as particularidades relevantes de cada modelo de negócio."
+    },
+    813: {
+      b: "A PRSAC foi instituída no âmbito do Sistema Financeiro Nacional pelo Conselho Monetário Nacional e regulada pelo Bacen (Res. CMN 4.945/21).",
+      c: "A BSM é a entidade de autorregulação e supervisão de mercados da B3, não sendo a emissora da exigência prudencial da PRSAC.",
+      d: "O Ministério do Meio Ambiente formula políticas públicas ambientais gerais, não regulando normas prudenciais do sistema financeiro."
+    },
+    814: {
+      a: "A letra 'A' compõe a sigla como o adjetivo 'Ambiental', e não Alta Administração.",
+      b: "A terminologia oficial da sigla consagrada pela Resolução CMN 4.945 adota o adjetivo 'Ambiental'.",
+      c: "A sigla não utiliza a palavra 'Atmosfera'; a dimensão atmosférica é tratada pelo pilar 'Climático' (letra C)."
+    },
+    815: {
+      a: "A PRSAC é uma política pública de transparência e governança socioambiental, sendo vedada sua manutenção em sigilo.",
+      c: "A política não é restrita ao acesso interno do regulador, devendo ser amplamente divulgada e acessível aos clientes e ao mercado.",
+      d: "A publicidade da PRSAC é externa para a sociedade, não podendo ser restrita a colaboradores internos e diretores."
+    },
+    816: {
+      a: "A exigência de estabelecer e implementar a PRSAC estende-se aos segmentos S1 até S5 de forma proporcional, não apenas a S1 e S2.",
+      b: "A resolução abrange todas as instituições dos segmentos S1 a S5 de acordo com o princípio da proporcionalidade, sem excluir S2 e S4.",
+      d: "A obrigatoriedade alcança todo o escopo de instituições autorizadas a funcionar pelo Bacen (S1, S2, S3, S4 e S5)."
+    },
+    817: {
+      b: "Inverte a ordem dos reguladores: a Política de Segurança Cibernética é exigida pelo Bacen (Res. CMN 4.893) e a Política de Segurança da Informação pela CVM.",
+      c: "A BSM não é o órgão regulador estatal que edita normas prudenciais de segurança cibernética.",
+      d: "A edição primária da regulação de segurança cibernética do sistema financeiro cabe ao Banco Central do Brasil."
+    },
+    818: {
+      a: "A contratação de prestadores terceirizados de nuvem não exime a instituição participante de sua responsabilidade integral perante reguladores e clientes.",
+      b: "A responsabilidade pela conformidade, continuidade dos serviços e sigilo dos dados permanece integralmente com o participante contratante.",
+      c: "A delegação técnica da infraestrutura não transfere a responsabilidade legal e regulatória exclusiva para o provedor de computação em nuvem."
+    },
+    819: {
+      b: "Planos de remuneração variável de executivos não integram o conteúdo mínimo obrigatório da política de segurança cibernética.",
+      c: "Estratégias de expansão comercial e captação de clientes são diretrizes de negócios, não requisitos de segurança cibernética.",
+      d: "Metas de faturamento e volume de corretagem pertencem ao planejamento financeiro, não às diretrizes de proteção cibernética."
+    },
+    820: {
+      a: "A contratação de serviços de nuvem deve ser formalmente comunicada ao regulador (Bacen) previamente à contratação quando relevante.",
+      b: "É permitida a contratação de provedores com processamento no exterior, desde que observados requisitos de convênio de troca de informações e auditoria.",
+      c: "A instituição contratante deve assegurar contratualmente pleno acesso de fiscalização e auditoria aos dados armazenados na nuvem."
+    },
+    821: {
+      b: "As políticas de resposta a incidentes e segurança da informação devem ser aprovadas pelo conselho de administração ou pela diretoria estatutária competente.",
+      c: "Comitês operacionais sem alçada estatutária não detêm a prerrogativa formal de homologação final dessas políticas corporativas.",
+      d: "A mera gerência de TI desenvolve e executa os procedimentos, mas a aprovação formal da política compete à alta governança estatutária."
+    },
+    822: {
+      b: "A política não é restrita ao conselho; colaboradores e prestadores de serviços relevantes devem ter pleno acesso às suas diretrizes.",
+      c: "A política de segurança cibernética deve ter divulgação ampla aos funcionários para disseminação da cultura de segurança da informação.",
+      d: "Informar apenas a auditores externos descumpre o dever de conscientização e treinamento contínuo de todo o corpo funcional."
+    },
+    823: {
+      a: "O treinamento e capacitação em segurança da informação não pode se restringir aos colaboradores da área técnica de TI.",
+      b: "A alta administração e conselheiros também devem ser capacitados sobre riscos cibernéticos, governança e responsabilidade fiduciária.",
+      c: "Prestadores de serviços com acesso a sistemas e dados corporativos também devem ser submetidos aos programas e termos de segurança."
+    },
+    824: {
+      a: "Incidente insignificante é aquele que não compromete sistemas críticos nem dados sensíveis da instituição ou de clientes.",
+      c: "Falhas sem gravidade não se enquadram em incidentes que afetem processos críticos corporativos.",
+      d: "Incidente operacional corriqueiro não descreve a ocorrência com potencial de impacto severo em dados críticos."
+    },
+    825: {
+      b: "O índice Sharpe mede retorno ajustado ao risco de mercado, não sendo indicador de análise de churning de corretagem.",
+      c: "O Duration mede o prazo médio ponderado de títulos de renda fixa, não tendo relação com giro artificial de carteira.",
+      d: "O VaR (Value at Risk) quantifica a perda máxima potencial de mercado, e não a rotação excessiva de ordens de clientes."
+    },
+    826: {
+      a: "No spoofing, a oferta de grande volume é artificial e deliberadamente cancelada antes de sua execução real.",
+      c: "Spoofing não se caracteriza pela manutenção permanente da oferta no livro até sua liquidação final.",
+      d: "No spoofing não ocorre fechamento da oferta gigante; ela serve apenas para criar falsa impressão de liquidez no book."
+    },
+    827: {
+      a: "Churning consiste no giro excessivo da carteira do cliente pelo intermediário com foco na geração de taxas de corretagem.",
+      c: "Front running é o aproveitamento indevido e antecipação de ordens conhecidas de clientes em benefício próprio.",
+      d: "Insider trading é o uso de informações relevantes confidenciais e privilegiadas na negociação de ativos."
+    },
+    828: {
+      a: "Manipulação de preços consiste em criar condições artificiais de oferta ou demanda para alterar cotações de mercado.",
+      b: "Prática não equitativa é aquela que coloca uma das partes em indevida posição de desvantagem perante os demais.",
+      d: "Operação fraudulenta é a definição que se amolda ao uso de ardil ou artifício enganoso para induzir terceiro a erro e obter vantagem ilícita."
+    },
+    829: {
+      a: "Operação fraudulenta é o ardil destinado a induzir terceiro a erro; criar condições artificiais define a manipulação de mercado.",
+      c: "Prática não equitativa diz respeito a desequilíbrio e desvantagem indevida entre participantes de uma operação.",
+      d: "Churning é o excesso deliberado de movimentação de conta de cliente para geração de comissões e corretagem."
+    },
+    830: {
+      b: "Spoofing utiliza tipicamente uma única oferta de grande volume (ou poucas ofertas expressivas) para pressionar o book de um dos lados.",
+      c: "Churning ocorre na gestão da conta de clientes individuais, não sendo estratégia de posicionamento no livro de ofertas.",
+      d: "Front running é a negociação prévia baseada no conhecimento antecipado de ordens de terceiros prestes a entrar no book."
+    },
+    831: {
+      a: "A OMC (Operação de Mesmo Comitente) intencional é proibida pela B3 e pela CVM por criar falsa aparência de liquidez sem transferência real.",
+      c: "A OMC não transfere a titularidade econômica real dos ativos, ocorrendo a negociação entre contas do próprio titular.",
+      d: "Operações de mesmo comitente realizadas deliberadamente para simular volume negociado constituem infração disciplinar grave."
+    },
+    832: {
+      a: "Front running caracteriza-se pela execução de ordens próprias na frente da ordem recebida do cliente.",
+      b: "Insider trading envolve o uso ilegal de fatos relevantes ainda não divulgados ao público.",
+      d: "Spoofing é a inserção e cancelamento deliberado de ofertas artificiais no livro de ofertas."
+    },
+    833: {
+      a: "OMC não significa 'Operação de Mercado Centralizado'.",
+      b: "A denominação oficial na B3 e na regulação é Operação de Mesmo Comitente, e não 'Ordem de Mercado Concorrente'.",
+      c: "A sigla não corresponde a 'Operação de Margem Centralizada'."
+    },
+    834: {
+      a: "Pessoas físicas comuns sem certificação ou patrimônio superior a R$ 10 milhões não são classificadas como investidores profissionais.",
+      b: "Pessoas naturais com mais de R$ 1 milhão são investidores qualificados, mas para profissional o limite é superior a R$ 10 milhões.",
+      d: "Clubes de investimento em geral não são automaticamente investidores profissionais por presunção legal."
+    },
+    835: {
+      a: "Deixa de fora os itens II e III, que tratam das vedações de recomendação e das regras de adequação ao perfil de risco.",
+      b: "Deixa de fora o item I, que estabelece a obrigação do participante de adotar procedimentos formais de suitability.",
+      c: "Deixa de fora o item II, que disciplina a vedação de recomendar produtos desprovidos de informações cadastrais atualizadas."
+    },
+    836: {
+      b: "A familiaridade com produtos e serviços compõe a análise do conhecimento e experiência do cliente, e não o objetivo de investimento.",
+      c: "Necessidades futuras de liquidez integram a avaliação da situação financeira e patrimonial do cliente.",
+      d: "O montante e a composição do patrimônio pertencem à análise da situação financeira do investidor."
+    },
+    837: {
+      a: "Pessoas físicas estão sujeitas à obrigatoriedade de avaliação do perfil de suitability antes de receber recomendações de produtos.",
+      c: "Pessoas jurídicas de direito privado em geral exigem verificação de perfil de suitability pelo participante intermediário.",
+      d: "PEPs (Pessoas Expostas Politicamente) exigem diligência de PLD reforçada, não havendo qualquer dispensa do processo de suitability."
+    },
+    838: {
+      a: "Investidor de varejo é a categoria geral que não atesta capacidade financeira qualificada perante a CVM.",
+      b: "Investidor institucional refere-se a entidades coletivas reguladas (como fundos de pensão, seguradoras e bancos).",
+      d: "Para ser investidor profissional, a pessoa natural precisa atestar investimentos financeiros superiores a R$ 10 milhões."
+    },
+    839: {
+      a: "A norma não exige obrigatoriamente a atualização anual de todos os perfis, facultando prazos maiores para clientes de menor risco.",
+      b: "O prazo de 24 meses refere-se à reavaliação dos produtos e categorias de valores mobiliários pelo participante, e não do cadastro do cliente.",
+      c: "A atualização não pode ficar condicionada à iniciativa exclusiva do investidor, sendo dever proativo e periódico da instituição."
+    },
+    840: {
+      a: "O prazo regulamentar previsto na Resolução CVM 30 não é de 5 dias úteis, mas sim de 7 dias úteis.",
+      c: "A comunicação à CVM da nomeação ou substituição do diretor responsável deve ocorrer em até 7 dias úteis, e não 8 dias úteis.",
+      d: "O prazo de 10 dias úteis extrapola o limite legal expressamente determinado pelo artigo 4º da Resolução CVM 30."
+    },
+    841: {
+      b: "Deixa de fora o item I: a recomendação de produto inadequado ao perfil é a mais elementar infração às normas de suitability.",
+      c: "Deixa de fora os itens II e III, que tratam da falta de informações cadastrais e do perfil desatualizado como vedações de recomendação.",
+      d: "A vedação aplica-se cumulativamente aos três itens: inadequação (I), ausência de dados (II) e cadastro desatualizado (III)."
     }
   };
   Object.keys(X).forEach(function (k) {
