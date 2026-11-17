@@ -2626,3 +2626,583 @@
     });
   });
 })();
+// Etapa 1: Questoes pendentes dos Modulos 2, 4 e 7 (25 questoes)
+(function () {
+  var X = {
+    227: {
+      a: "Incorreta porque a asserção II é falsa: o Banco Central possui amplo acesso regulatório e supervisório a todas as informações e liquidações de todos os participantes no Sistema de Pagamentos Brasileiro (SPB).",
+      c: "Incorreta porque a asserção I é verdadeira (exigência regulatória de modelos de gerenciamento de risco em tempo real para câmaras sistemicamente importantes) e a II é falsa.",
+      d: "Incorreta porque a asserção I é uma proposição verdadeira e expressamente exigida pelo arcabouço normativo do SPB e do CMN/Bacen."
+    },
+    233: {
+      b: "Incorreta porque o primeiro item é falso: a consolidação das infraestruturas de bolsa e balcão ocorreu com a fusão entre BM&FBOVESPA e CETIP em 2017, inexistindo aquisição posterior de 'Bolsa Brasil'.",
+      c: "Incorreta porque o segundo item é verdadeiro: a B3 reúne e atende de forma integrada negociação, registro, depósito e pós-negociação para todos os mercados de capitais e financeiros.",
+      d: "Incorreta porque o primeiro item é falso e o terceiro é verdadeiro: Banco B3, B3 Social e BLK integram a estrutura corporativa do grupo B3."
+    },
+    238: {
+      a: "Incorreta porque o item II está incorreto (o Sisbex é o sistema de títulos públicos federais do Bacen, não integrado dessa forma à plataforma PUMA) e o item III é correto.",
+      b: "Incorreta porque o item IV é falso: o acesso via DMA (Direct Market Access) jamais isenta a operação de autorização, supervisão e filtros pré-trading do Participante (PN ou PNP).",
+      d: "Incorreta porque tanto o item II quanto o item IV contêm erros regulatórios e operacionais graves sobre a arquitetura do PUMA e do DMA."
+    },
+    242: {
+      a: "Incorreta porque a afirmativa I erra ao restringir a supervisão a 'boa parte' (a BSM monitora a totalidade das ofertas e negócios em bolsa), além de ignorar as atribuições fundamentais de III e IV.",
+      b: "Incorreta porque desconsidera a função indispensável e precípua da BSM de fiscalizar e auditar os participantes e a própria infraestrutura da B3 descrita no item II.",
+      c: "Incorreta porque a afirmativa I está incorreta (o monitoramento não se limita a 'boa parte', mas abrange 100% dos negócios) e omite a condução de processos disciplinares (PADs) do item IV."
+    },
+    243: {
+      b: "Incorreta porque o serviço de market data não é restrito às instituições participantes; qualquer agente, empresa de tecnologia ou investidor global pode contratar os feeds de dados da B3.",
+      c: "Incorreta porque essa descrição refere-se a soluções de Business Intelligence / analytics gerenciais, enquanto market data é a difusão bruta e em tempo real de cotações e negócios.",
+      d: "Incorreta porque essa descrição trata de sistemas de backoffice e infraestrutura operacional de pós-negociação, e não de difusão de cotações de mercado (market data)."
+    },
+    255: {
+      a: "Incorreta porque a afirmativa III também é aceita no contexto da apuração e liquidação de obrigações em bases líquidas que integram a compensação multilateral.",
+      b: "Incorreta porque a afirmativa II descreve precisamente o contrabalanceamento que sintetiza centenas de obrigações em um saldo líquido único.",
+      c: "Incorreta porque a afirmativa I é correta ao ressaltar que a compensação multilateral engloba três ou mais contrapartes (mais de duas partes), diferindo do arranjo bilateral."
+    },
+    271: {
+      b: "Incorreta porque a Caixa Econômica Federal não é a executante da COMPE; o Banco do Brasil é o único operador e executante legal da compensação de cheques.",
+      c: "Incorreta porque a afirmativa I é plenamente correta (duas sessões diárias com resultado multilateral único em âmbito nacional) e a afirmativa III é falsa.",
+      d: "Incorreta porque a afirmativa III é falsa, já que a execução regulamentar da COMPE cabe exclusivamente ao Banco do Brasil."
+    },
+    273: {
+      a: "Incorreta porque o terceiro item é verdadeiro: as câmaras sistemicamente importantes são legalmente obrigadas a manter salvaguardas que garantam a liquidação mesmo em caso de inadimplência do maior devedor.",
+      b: "Incorreta porque o segundo item é falso: o Banco Central tem poder irrestrito de fiscalização e acesso a todos os dados e participantes do SPB.",
+      d: "Incorreta porque o primeiro item é verdadeiro: ter modelos de gestão de risco é obrigação legal (Lei 10.214/2001) para câmaras no Brasil."
+    },
+    276: {
+      b: "Incorreta porque o STR opera sob o princípio de Liquidação Bruta em Tempo Real (LBTR) intradia e não suporta agendamento diferido de pagamentos para até 30 dias.",
+      c: "Incorreta porque a afirmativa I é verdadeira (concessão de crédito intradia pelo Bacen lastreado em títulos do Selic) e a afirmativa III é falsa.",
+      d: "Incorreta porque a afirmativa III é falsa: o STR liquida operações instantaneamente no próprio dia e não realiza agendamentos a prazo."
+    },
+    626: {
+      a: "Incorreta porque 10% seria a queda sem alavancagem (exposição de 100% do PL). Com 150% de alavancagem além do PL próprio, a exposição total a risco é de 250% (100% + 150%), gerando queda de 2,5 × 10% = 25% na cota.",
+      c: "Incorreta porque a alavancagem de 150% do patrimônio eleva a exposição global do fundo a 2,5 vezes o seu patrimônio líquido, resultando em desvalorização de 25% na cota e não 20%.",
+      d: "Incorreta porque 15% consideraria apenas a parcela alavancada (150% × 10%), ignorando a perda simultânea sobre os ativos comprados com o patrimônio original (100% × 10% = 10%), totalizando 25%."
+    },
+    627: {
+      b: "Incorreta porque esse valor superestima o patrimônio líquido final, ignorando a dedução das despesas operacionais (auditoria de R$ 800 e corretagem de R$ 300) e da taxa diária de administração sobre o PL.",
+      c: "Incorreta porque o patrimônio bruto valorizou apenas R$ 10.000 sobre R$ 2.000.000 (0,5%), sendo matematicamente impossível a cota unitária saltar de R$ 10,00 para R$ 13,25 em um único dia.",
+      d: "Incorreta porque representaria um ganho de mais de 10% no dia, incompatível com a valorização bruta de R$ 10.000 (0,5%) descontadas as taxas e despesas."
+    },
+    632: {
+      a: "Incorreta porque 5.000 cotas era a quantidade inicial antes do come-cotas; a antecipação semestral do IR reduz fisicamente a quantidade de cotas para recolher o tributo devido de R$ 1.500.",
+      c: "Incorreta porque o come-cotas nunca adiciona cotas; ele retém 15% do rendimento semestral (15% de R$ 10.000 = R$ 1.500), resgatando compulsoriamente 125 cotas a R$ 12,00.",
+      d: "Incorreta porque deduziu apenas 100 cotas (R$ 1.200 de imposto). A retenção legal de 15% sobre o ganho de R$ 10.000 exige o resgate de 125 cotas (R$ 1.500 / R$ 12,00), restando 4.875 cotas."
+    },
+    633: {
+      a: "Incorreta porque inverteu as alíquotas semestrais do come-cotas: a retenção é de 20% para fundos de Curto Prazo e de 15% para fundos de Longo Prazo.",
+      c: "Incorreta porque a antecipação semestral do imposto de renda (come-cotas) ocorre no último dia útil dos meses de maio e novembro, e não em janeiro e junho.",
+      d: "Incorreta porque o come-cotas em fundos abertos de renda fixa e multimercado é cobrado em maio e novembro, e não em janeiro e dezembro."
+    },
+    635: {
+      b: "Incorreta porque a alíquota de Imposto de Renda no resgate de cotas de fundos de ações (que mantêm no mínimo 67% em ações) é fixa em 15%, e não 20%.",
+      c: "Incorreta porque fundos de ações NÃO possuem come-cotas semestral; o imposto incide exclusivamente no resgate e sob alíquota única de 15%.",
+      d: "Incorreta porque fundos de ações são isentos de IOF (mesmo para resgates em menos de 30 dias) e não possuem incidência de come-cotas semestral."
+    },
+    638: {
+      a: "Incorreta porque fundos de ações NÃO sofrem incidência de IOF, cobrando-se a alíquota regressiva apenas em fundos de Renda Fixa e Multimercado para resgates em até 29 dias.",
+      b: "Incorreta porque no 30º dia de aplicação a alíquota da tabela regressiva do IOF já é zero (isento), além de fundos de ações não terem IOF.",
+      c: "Incorreta porque a tabela regressiva do IOF zera no 30º dia, de forma que o imposto só incide efetivamente para resgates realizados até o 29º dia da aplicação."
+    },
+    643: {
+      b: "Incorreta porque o valor nominal da cota não é afetado pelo come-cotas; o imposto é pago exclusivamente mediante o resgate compulsório e consequente redução do número de cotas.",
+      c: "Incorreta porque a cotação unitária do fundo permanece inalterada; a diminuição patrimonial decorre da redução da quantidade de cotas que o investidor detém.",
+      d: "Incorreta porque o come-cotas constitui recolhimento tributário à Receita Federal, provocando sempre a redução na quantidade de cotas e nunca o aumento."
+    },
+    654: {
+      a: "Incorreta porque 15% é a alíquota semestral do come-cotas aplicável a fundos de Longo Prazo; para fundos de Curto Prazo a alíquota é de 20%.",
+      b: "Incorreta porque 17,50% é uma alíquota intermediária da tabela regressiva de resgate (361 a 720 dias), inexistindo como alíquota semestral de come-cotas.",
+      c: "Incorreta porque 22,50% é a alíquota máxima de resgate aplicada a aplicações de até 180 dias, enquanto o come-cotas semestral de curto prazo retém 20%."
+    },
+    657: {
+      a: "Incorreta porque o limite de concentração para instituições financeiras autorizadas a funcionar pelo Banco Central é de 20% do patrimônio líquido do fundo, e não 10%.",
+      b: "Incorreta porque o limite de concentração por emissor para companhias abertas e entidades não financeiras é de 10% do PL, e não 20%.",
+      c: "Incorreta porque inverteu as proporções: a regulação da CVM estabelece o limite em até 20% do PL para emissores financeiros e em até 10% do PL para emissores não financeiros."
+    },
+    658: {
+      a: "Incorreta porque a alocação de 75% em renda variável somada à exposição em contratos futuros acarreta elevada volatilidade e risco, sendo desaconselhada para perfis conservadores de baixo risco.",
+      b: "Incorreta porque fundos com mais de 67% de alocação em renda variável são classificados como Fundos de Ações, sendo impossível enquadrá-los como fundos de renda fixa.",
+      d: "Incorreta porque os Fundos de Renda Fixa Simples exigem no mínimo 95% em títulos públicos federais ou de baixo risco de crédito e têm vedação expressa à alavancagem em derivativos."
+    },
+    663: {
+      b: "Incorreta porque a alíquota de Imposto de Renda incidente sobre os rendimentos distribuídos por FII a pessoas jurídicas é de 20%, e não 22,5%.",
+      c: "Incorreta porque pessoas físicas desfrutam de isenção de IR nos rendimentos distribuídos por FIIs com cotas negociadas em bolsa (atendidos os requisitos da Lei 11.033/2004).",
+      d: "Incorreta porque a alíquota para pessoa jurídica é de 20% (e não 15%) e para pessoas físicas há isenção fiscal expressa sobre os proventos distribuídos."
+    },
+    664: {
+      b: "Incorreta porque a alíquota sobre ganho de capital na alienação de cotas de FII em bolsa é fixa em 20%, e não 15% (alíquota típica do mercado de ações à vista).",
+      c: "Incorreta porque os ganhos de capital na venda de cotas de FII não se sujeitam à tabela regressiva por prazo da renda fixa, aplicando-se alíquota fixa de 20%.",
+      d: "Incorreta porque a isenção de IR para pessoa física aplica-se exclusivamente aos dividendos/rendimentos periódicos distribuídos, incidindo 20% sobre o ganho de capital na venda das cotas."
+    },
+    666: {
+      b: "Incorreta porque os rendimentos periódicos distribuídos por Fundo Imobiliário são isentos de IR na fonte para pessoas físicas (desde que o fundo tenha 50+ cotistas e o titular menos de 10% das cotas). A alíquota de 20% incide apenas na venda com lucro ou para PJ.",
+      c: "Incorreta porque a legislação não prevê incidência de 15% sobre a distribuição de resultados de FII para pessoas físicas, assegurando a isenção tributária.",
+      d: "Incorreta porque o benefício de isenção de IR na distribuição de proventos de FII a pessoas físicas não está condicionado a prazos mínimos de permanência."
+    },
+    670: {
+      b: "Incorreta porque a regulação da CVM exige aplicação mínima de 80% do Patrimônio Líquido (PL) em títulos da dívida externa, e o saldo remanescente permitido em depósitos ou derivativos de hedge limita-se a 10% do PL, e não 20%.",
+      c: "Incorreta porque a exigência mínima de alocação em títulos da dívida externa da União é de 80% e a métrica de referência é o Patrimônio Líquido (PL), e não o valor total da carteira.",
+      d: "Incorreta porque o percentual mínimo exigido pela CVM para a classe Dívida Externa é de 80% do PL, e não 90%."
+    },
+    674: {
+      a: "Incorreta porque a afirmativa II também é verdadeira: a regulação veda o início de uma nova oferta pública sem que a anterior tenha sido totalmente colocada ou cancelado seu saldo remanescente.",
+      b: "Incorreta porque a afirmativa I é verdadeira, pois qualquer oferta pública de cotas de FIP submete-se a registro obrigatório perante a CVM ou a seu regime simplificado/dispensado específico.",
+      c: "Incorreta porque tanto a afirmativa II (proibição de ofertas públicas simultâneas) quanto a afirmativa III (emissão fechada aos próprios cotistas atuais não configura oferta pública) são corretas."
+    },
+    763: {
+      a: "Incorreta porque o mecanismo de Entrega contra Pagamento (DvP - Delivery versus Payment) é um instrumento essencial de mitigação do risco de principal empregado pelas câmaras de compensação.",
+      b: "Incorreta porque a exigência e cobrança de margens de garantia dos diversos elos da cadeia de liquidação é a salvaguarda basilar de solvência da câmara.",
+      c: "Incorreta porque a exigência de conexões dedicadas e segregação de fluxo de ofertas entre participantes constitui salvaguarda tecnológica e operacional para evitar contaminação e risco de acesso."
+    }
+  };
+  Object.keys(X).forEach(function (k) {
+    WHY[k] = WHY[k] || {};
+    Object.keys(X[k]).forEach(function (l) {
+      if (!WHY[k][l]) WHY[k][l] = X[k][l];
+    });
+  });
+})();
+
+// Modulo 3: Lote A (42 questoes)
+(function () {
+  var X = {
+    285: {
+      a: "Incorreta porque o titular de uma call tem lucro ilimitado na alta e perda limitada ao prêmio pago na queda (gráfico com base horizontal à esquerda e inclinação ascendente à direita).",
+      c: "Incorreta porque o titular de uma put tem ganho na queda do ativo e perda limitada ao prêmio pago na alta.",
+      d: "Incorreta porque o lançador de put recebe o prêmio e fica com lucro limitado na alta e risco de perda acentuada caso o ativo despenque."
+    },
+    286: {
+      a: "Incorreta porque a banca registrou gabarito formal na alternativa C; conceitualmente, na call o exercício dá-se com preço de mercado acima do strike, mas nesta questão específica a chave oficial adotada foi a C.",
+      b: "Incorreta porque superar o strike mais o prêmio é a condição para o ponto de equilíbrio (breakeven/lucro líquido), não o limiar estrito para o exercício da call.",
+      d: "Incorreta porque a relação com o prêmio define o breakeven e não a condição básica de exercício."
+    },
+    287: {
+      a: "Incorreta porque Bernardo atinge o teto legal de R$ 250 mil por CPF/instituição, não podendo receber R$ 258 mil do FGC.",
+      b: "Incorreta porque Júlio tem 50% de uma conta conjunta de R$ 100 mil, cabendo-lhe R$ 50 mil e não R$ 100 mil.",
+      d: "Incorreta porque desconsidera o teto estatutário do FGC de R$ 250 mil por pessoa física na instituição financeira liquidada."
+    },
+    288: {
+      a: "Incorreta porque o S&P 500 valorizou de 4.200 para 4.700 (+11,9%), ativando a cláusula de rentabilidade e superando a mera proteção de capital nominal.",
+      b: "Incorreta porque R$ 55.000 é o valor bruto (10% de ganho sobre R$ 50 mil), esquecendo de deduzir a alíquota de 10% de imposto/custo considerada na estrutura.",
+      c: "Incorreta porque aplicaria a alíquota geral de 15% de IR sobre R$ 5.000 (R$ 750), divergindo dos R$ 54.500 projetados no regulamento do COE desta questão."
+    },
+    289: {
+      b: "Incorreta porque contratos de derivativos e NDF negociados no mercado financeiro/bolsa não sofrem a alíquota de 22,50% para essa estrutura com base em renda variável.",
+      c: "Incorreta porque 20% seria a alíquota da tabela regressiva padrão para 220 dias corridos em renda fixa pura, mas operações com derivativos de ações/RV sujeitam-se a 15%.",
+      d: "Incorreta porque ambas as operações estruturadas com base em renda variável partilham da alíquota proporcional de 15%."
+    },
+    290: {
+      a: "Incorreta porque não há imposto de 15% devido, uma vez que a operação com ações no exterior registrou prejuízo efetivo na moeda de origem (venda a US$ 15 contra compra a US$ 20).",
+      b: "Incorreta porque a alíquota progressiva da tabela do IRPF de 27,5% não se aplica a operações financeiras e de ganho de capital em bolsa no exterior.",
+      c: "Incorreta porque o ganho de capital no exterior é tributável independentemente da repatriação; a isenção decorre exclusivamente da ausência de lucro."
+    },
+    291: {
+      a: "Incorreta porque a afirmativa III é verdadeira (o titular de compra tem o direito indiscutível de comprar o ativo pelo preço de exercício).",
+      b: "Incorreta porque a afirmativa II também é verdadeira (o titular da put tem o direito de vender).",
+      d: "Incorreta porque no gabarito oficial da banca a alternativa C (II e III) foi fixada como a chave da questão."
+    },
+    292: {
+      a: "Incorreta porque a afirmativa I é falsa: o Mercado Futuro possui obrigatoriamente mecanismo de ajuste diário de perdas e ganhos.",
+      b: "Incorreta porque a afirmativa II também é plenamente correta (o Mercado a Termo não tem liquidação diária de ajustes).",
+      c: "Incorreta porque a afirmativa IV também é verdadeira: o Mercado Futuro é caracterizado pela estrita padronização de seus contratos."
+    },
+    294: {
+      a: "Incorreta porque o Short Strangle é uma posição vendedora (lançadora) em que o investidor aufere ganho máximo limitado ao prêmio recebido e assume perdas ilimitadas nas extremidades.",
+      b: "Incorreta porque a Butterfly (borboleta) envolve a combinação de três preços de exercício com formato trapezoidal/pontudo de ganho máximo no miolo.",
+      d: "Incorreta porque o financiamento consiste na compra do ativo à vista com lançamento coberto de opção de compra, sem perfil duplo de compra de opções."
+    },
+    296: {
+      b: "Incorreta porque a afirmativa III é falsa: o IGC contempla ações negociadas em bolsa de valores e não restringe seu universo a mercado de balcão.",
+      c: "Incorreta porque a afirmativa I é verdadeira: o IGC mede o desempenho de empresas que adotam padrões diferenciados de governança corporativa.",
+      d: "Incorreta porque a afirmativa III é falsa, pois as empresas listadas no IGC integram os segmentos especiais da própria B3."
+    },
+    299: {
+      b: "Incorreta porque em nenhuma das vendas mensais o valor de alienação superou R$ 20.000, além de o IRRF de 0,005% gerar valores abaixo do limite mínimo de R$ 1,00 para retenção.",
+      c: "Incorreta porque não há imposto retido na fonte no valor de R$ 20,00 para alienações de baixo volume com isenção mensal de vendas de ações para pessoa física.",
+      d: "Incorreta porque as três vendas ocorreram em meses distintos (maio, junho e julho) com valores individuais de R$ 10.000, R$ 11.200 e R$ 6.000, abaixo do teto de R$ 20.000."
+    },
+    300: {
+      a: "Incorreta porque a afirmativa I é falsa: o modelo clássico de Black-Scholes foi concebido exclusivamente para precificação de opções europeias (exercíveis apenas no vencimento).",
+      c: "Incorreta porque a afirmativa I é falsa e as afirmativas II e III são premissas verdadeiras do modelo.",
+      d: "Incorreta porque a afirmativa I é incorreta ao afirmar que o modelo original de Black-Scholes precifica diretamente opções americanas."
+    },
+    301: {
+      a: "Incorreta porque inverteu a correlação: no jargão técnico a trava de alta delimita o teto de valorização (resistência) e a trava de baixa o piso (suporte).",
+      b: "Incorreta porque o IFR (Índice de Força Relativa) é um oscilador técnico de momentum e sobrecompra/sobrevenda, não se confundindo com níveis estáticos de trava.",
+      c: "Incorreta porque o IFR não descreve a trava de alta da análise técnica gráfica."
+    },
+    304: {
+      a: "Incorreta porque o titular de call possui ganho potencialmente ilimitado na alta e perda limitada ao prêmio pago.",
+      c: "Incorreta porque o titular de put lucra com a desvalorização do ativo subjacente e perde o prêmio em caso de alta.",
+      d: "Incorreta porque o lançador de put aufere ganho máximo limitado ao prêmio na alta e sofre prejuízo em caso de queda expressiva do ativo."
+    },
+    314: {
+      b: "Incorreta porque R$ 1.150 milhão exigiria uma renda bruta superior à necessária para compensar os R$ 8 mil mensais complementares pretendidos.",
+      c: "Incorreta porque geraria rendimentos bem acima da complementação necessária de R$ 8 mil líquidos com juros de 1% a.m.",
+      d: "Incorreta porque R$ 830 mil geraria rendimento mensal insuficiente para cobrir o complemento de R$ 8 mil após a dedução do IR de 15% (R$ 8.000 / 0,85 ≈ R$ 9.411,76 brutos)."
+    },
+    315: {
+      a: "Incorreta porque deduziu indevidamente o valor de mercado ou aplicou cálculo incorreto sobre as opções exercidas.",
+      c: "Incorreta porque R$ 9.200 ignora o custo do prêmio pago de R$ 1,30 por opção (2.000 × R$ 1,30 = R$ 2.600 de prêmio debitado).",
+      d: "Incorreta porque o resultado exato é de 2.000 × (R$ 25 - R$ 20 - R$ 1,30) = 2.000 × R$ 3,70 = R$ 7.400."
+    },
+    320: {
+      a: "Incorreta porque deixa de fora a afirmativa II, que expressa a razão primordial de ser do índice de sustentabilidade.",
+      b: "Incorreta porque a afirmativa I também integrou a metodologia da B3 que estabelece o universo de elegibilidade a partir das 200 ações de maior liquidez.",
+      c: "Incorreta porque o ISE B3 possui critérios formais de filtragem de liquidez (I) e avaliação por questionário e métricas ESG (III)."
+    },
+    327: {
+      a: "Incorreta porque no gráfico I (Call) o titular só exerce se o ativo subir acima do preço de exercício, abandonando a opção em cenário de queda.",
+      b: "Incorreta porque em opções de compra (Calls) a queda do ativo inviabiliza o exercício.",
+      c: "Incorreta porque o gráfico I representa uma Call, que perde valor intrínseco e não é exercida quando o preço de mercado cai."
+    },
+    328: {
+      a: "Incorreta porque na segunda situação o preço está fora do dinheiro (OTM), sendo desfavorável e irracional o exercício pelo titular.",
+      b: "Incorreta porque na segunda situação a opção encontra-se sem valor intrínseco, inviabilizando o exercício.",
+      d: "Incorreta porque na primeira situação o preço do ativo supera o strike (ITM), justificando plenamente o exercício pelo titular."
+    },
+    334: {
+      a: "Incorreta porque a afirmativa I é falsa: debêntures (mesmo incentivadas) são títulos corporativos sem garantia do Fundo Garantidor de Créditos.",
+      b: "Incorreta porque a afirmativa I afirma erroneamente que debêntures contam com proteção do FGC.",
+      d: "Incorreta porque debêntures incentivadas não possuem cobertura do FGC, invalidando a afirmativa I."
+    },
+    336: {
+      a: "Incorreta porque o Short Strangle configura posição vendedora de volatilidade com ganho restrito ao prêmio recebido e perdas abertas em ambas as pontas.",
+      b: "Incorreta porque a Butterfly envolve montagem com quatro opções e três strikes formando formato simétrico de tenda.",
+      d: "Incorreta porque o financiamento alia ação à vista com lançamento de call, não gerando o gráfico com duas pontas de ganho ilimitado do Long Strangle."
+    },
+    340: {
+      a: "Incorreta porque como o investidor vendeu contratos para proteger da queda e a cotação subiu 100 pontos, a posição sofreu prejuízo e exigirá desembolso financeiro.",
+      b: "Incorreta porque a alta do dólar contra a posição vendida gera desembolso e não recebimento de recursos.",
+      c: "Incorreta porque o valor nominal de ajuste para 10 contratos com variação de 100 pontos e multiplicador unitário é de R$ 1.000 (10 × 100 = 1.000) e não R$ 100.000."
+    },
+    341: {
+      a: "Incorreta porque a compra de put de dólar protege contra a desvalorização da moeda americana, não servindo para o importador que teme a alta do dólar.",
+      c: "Incorreta porque comprar NDF (trava de compra) e comprar Call de dólar são os instrumentos ideais para travar o custo de importação em moeda forte.",
+      d: "Incorreta porque a compra de Put (item I) deixaria o importador totalmente desprotegido perante a valorização do dólar."
+    },
+    343: {
+      a: "Incorreta porque o teto máximo de cobertura do FGC é de R$ 250 mil por CPF/instituição, impedindo o pagamento de R$ 258 mil a Bernardo.",
+      b: "Incorreta porque o saldo da conta 1 (R$ 100 mil) é dividido igualmente entre Júlio e Bernardo (R$ 50 mil para cada).",
+      d: "Incorreta porque Bernardo jamais poderá receber R$ 433 mil em decorrência da limitação estatutária de R$ 250 mil do FGC."
+    },
+    350: {
+      a: "Incorreta porque uma inflação de 7,25% ao período elevaria o retorno total da NTN-B para cerca de 20,1%, superando o rendimento do título prefixado.",
+      b: "Incorreta porque inflação projetada de 8,85% tornaria a NTN-B significativamente mais atrativa que o prefixado de 9% a.a.",
+      c: "Incorreta porque geraria uma taxa composta acumulada muito superior aos 18,81% auferidos pelo prefixado no biênio de 500 dias úteis."
+    },
+    362: {
+      b: "Incorreta porque a relação de paridade put-call europeia exige imperativamente o mesmo preço de exercício E a mesma data de vencimento.",
+      c: "Incorreta porque ter apenas a mesma data de vencimento é insuficiente: os strikes também devem ser rigorosamente coincidentes.",
+      d: "Incorreta porque a paridade formal deduzida por Black-Scholes aplica-se a opções de exercício estritamente europeu."
+    },
+    368: {
+      b: "Incorreta porque o risco de perdas decorrente da oscilação dos preços de mercado dos ativos da carteira é a definição de risco de mercado.",
+      c: "Incorreta porque congelar sistemas e recusar melhorias de processos eleva severamente a vulnerabilidade e obsolescência operacional.",
+      d: "Incorreta porque a oscilação de valores atrelados a câmbio e moedas estrangeiras é uma modalidade específica de risco de mercado (risco cambial)."
+    },
+    369: {
+      a: "Incorreta porque risco de liquidez é a incapacidade de liquidar posições sem perda relevante de preço, e não a variação cambial.",
+      b: "Incorreta porque oscilação no valor dos títulos é risco de mercado, enquanto risco operacional envolve falhas humanas, fraudes e quebras de sistemas.",
+      c: "Incorreta porque o risco sistemático (ou risco não diversificável) afeta todo o mercado e não pode ser eliminado pela diversificação de carteira."
+    },
+    393: {
+      b: "Incorreta porque a afirmativa III é falsa: o Bovespa Mais permite até 7 anos de carência para que a companhia atinja o percentual mínimo de 25% de ações em circulação.",
+      c: "Incorreta porque o segmento Bovespa Mais não exige 25% de free float no momento de ingresso, tendo regra progressiva.",
+      d: "Incorreta porque a afirmativa III contém erro ao impor exigência imediata de 25% de free float ao Bovespa Mais."
+    },
+    395: {
+      a: "Incorreta porque os programas de ADR Nível 1 são registrados na SEC sob a forma do formulário F-6 e negociados em mercado de balcão (OTC).",
+      b: "Incorreta porque os ADRs de Nível 2 exigem registro completo na SEC e negociação pública nas bolsas americanas (NYSE ou Nasdaq).",
+      c: "Incorreta porque os ADRs de Nível 3 captam novos recursos em bolsa norte-americana e submetem-se ao nível máximo de registro e disclosure perante a SEC."
+    },
+    410: {
+      a: "Incorreta porque debêntures são títulos de dívida (crédito privado) e não conferem direito a voto ou ingerência nas decisões sociais da emitente.",
+      b: "Incorreta porque debêntures NÃO contam com a proteção ou garantia do Fundo Garantidor de Créditos (FGC).",
+      d: "Incorreta porque debêntures são classicamente instrumentos de médio e longo prazo emitidos para captação de recursos de investimento e capital de giro estendido."
+    },
+    417: {
+      b: "Incorreta porque a bolsa de valores apenas opera os sistemas de negociação e liquidação, não apurando nem recolhendo o imposto devido pelo investidor.",
+      c: "Incorreta porque a corretora retém apenas o imposto na fonte simplificado (dedo-duro de 0,005%), cabendo ao investidor o recolhimento do saldo de IR via DARF.",
+      d: "Incorreta porque o administrador atua em fundos de investimento; nas operações em bolsa de ações o recolhimento do ganho líquido é encargo do próprio titular."
+    },
+    421: {
+      a: "Incorreta porque a afirmativa II é falsa: para o prazo de 181 dias corridos, a alíquota da tabela regressiva do IR é de 20% (faixa de 181 a 360 dias) e não 15%.",
+      c: "Incorreta porque a afirmativa III também é plenamente correta (o imposto incide exclusivamente sobre o rendimento produzido pela aplicação).",
+      d: "Incorreta porque a afirmativa I também é verdadeira: a instituição emissora/fonte pagadora é a responsável legal pela retenção na fonte do IR em debêntures."
+    },
+    430: {
+      a: "Incorreta porque o IRRF à alíquota de 0,005% sobre o valor da alienação de R$ 23.000 resulta em exatamente R$ 1,15, e a corretagem de R$ 100 reduz o lucro tributável.",
+      b: "Incorreta porque R$ 0,39 não corresponde à alíquota do IRRF (0,005% de R$ 23.000 = R$ 1,15) e o valor do DARF compensa o imposto retido na fonte.",
+      c: "Incorreta porque o imposto retido na fonte é de R$ 1,15 e o lucro líquido tributável é de R$ 7.900 (R$ 23.000 - R$ 15.000 - R$ 100), cujo IR de 15% menos o dedo-duro perfaz R$ 1.183,85."
+    },
+    442: {
+      b: "Incorreta porque a faculdade irrestrita de interferência de qualquer comprador e vendedor caracteriza a modalidade de leilão comum.",
+      c: "Incorreta porque no leilão comum a interferência é facultada a ambas as pontas (comprador e vendedor) a melhor preço.",
+      d: "Incorreta porque essa é a dinâmica geral de registro de ofertas no livro eletrônico (book de ofertas) por melhor preço ou ordem a mercado."
+    },
+    443: {
+      a: "Incorreta porque a apregoação com destaque prévio e obrigação de especificação de lote e preço define a regra geral de apregoação por leilão.",
+      b: "Incorreta porque no leilão comum a interferência pode partir tanto da ponta compradora quanto da vendedora.",
+      d: "Incorreta porque essa descrição refere-se a operações de cruzamento (cross order) ou distribuição coordenada por intermediário."
+    },
+    445: {
+      a: "Incorreta porque a afirmativa III é falsa: os proventos financeiros (dividendos e juros sobre capital próprio) pertencem ao doador e devem ser a ele repassados pelo tomador.",
+      b: "Incorreta porque a afirmativa II é falsa: quem paga a taxa pactuada de aluguel é o tomador, que toma os títulos emprestados.",
+      c: "Incorreta porque tanto a afirmativa II quanto a afirmativa III contêm erros sobre o fluxo de remuneração e proventos do empréstimo de ativos."
+    },
+    453: {
+      a: "Incorreta porque é expressamente facultada a aplicação da parcela complementar em cotas de fundos de investimento regulamentados pela CVM.",
+      b: "Incorreta porque a compra titularizada de opções de compra ou venda para fins de hedge ou alavancagem limitada não é objeto de vedação absoluta.",
+      d: "Incorreta porque títulos de renda fixa de emissão bancária são autorizados para a parcela de liquidez do clube."
+    },
+    456: {
+      a: "Incorreta porque o limite regulamentar fixado pela CVM para a concentração máxima de um único cotista em Clube de Investimento é de 40%, e não 30%.",
+      b: "Incorreta porque 67% é o percentual mínimo do patrimônio líquido do Clube que deve estar alocado em ações ou bônus de subscrição.",
+      c: "Incorreta porque 25% é o percentual mínimo de free float de segmentos da B3, não guardando relação com o teto por cotista em clubes (40%)."
+    },
+    459: {
+      a: "Incorreta porque a garantia do FGC não é integral, estando sujeita ao teto ordinário de R$ 250 mil por CPF/instituição.",
+      c: "Incorreta porque a Caixa Econômica Federal e demais instituições integrantes do SFH autorizadas pelo Bacen podem emitir Letras Hipotecárias.",
+      d: "Incorreta porque as Letras Hipotecárias são obrigatoriamente lastreadas em créditos e financiamentos imobiliários garantidos por hipoteca."
+    },
+    462: {
+      a: "Incorreta porque utilizou a taxa do DI sem acrescer o spread de 12 bps (0,12%) exigido para a remuneração da LTN.",
+      c: "Incorreta porque calculou a taxa de desconto sem a devida capitalização exponencial por dias úteis no padrão over (DU/252).",
+      d: "Incorreta porque a fórmula de desconto composto PU = 1000 / (1 + 0,1420)^(110/252) resulta rigorosamente em R$ 943,687686."
+    },
+    463: {
+      a: "Incorreta porque decorre de erro na exponenciação da taxa ou prazo em dias úteis sobre a base anual de 252 dias.",
+      c: "Incorreta porque a cotação percentual de desconto exponencial para 430 dias úteis a 7,6% a.a. é calculada como 100 / (1,076)^(430/252) = 88,25%.",
+      d: "Incorreta porque esse valor subestima o desconto do título para o prazo residual de 430 dias úteis."
+    }
+  };
+  Object.keys(X).forEach(function (k) {
+    WHY[k] = WHY[k] || {};
+    Object.keys(X[k]).forEach(function (l) {
+      if (!WHY[k][l]) WHY[k][l] = X[k][l];
+    });
+  });
+})();
+
+// Modulo 3: Lote B - Conclusao de 100% das questoes (42 questoes)
+(function () {
+  var X = {
+    466: {
+      b: "Incorreta porque as Letras de Câmbio ordinárias não possuem liquidez diária, sendo concebidas para resgate no vencimento acordado.",
+      c: "Incorreta porque não há previsão regulamentar de liquidez diária automática a partir de 15 dias para Letras de Câmbio.",
+      d: "Incorreta porque a ausência de liquidez diária impede o resgate antecipado compulsório contra a instituição emitente antes do vencimento."
+    },
+    467: {
+      a: "Incorreta porque a taxa de juros real implícita na precificação do título ficará comprimida (menor) em relação ao novo cenário macroeconômico projetado.",
+      b: "Incorreta porque a taxa de juros real é a taxa de juro acima da inflação, não se confundindo com o nível nominal da própria inflação esperada.",
+      d: "Incorreta porque a queda na expectativa de inflação com taxa prefixada inalterada altera a taxa real de equilíbrio pela equação de Fisher."
+    },
+    469: {
+      a: "Incorreta porque o spread favorável de 9 pontos base acima do CDI-Over líquido de impostos e custos resulta em ganho adicional de R$ 17.254,88.",
+      b: "Incorreta porque esse valor superestima o resultado financeiro líquido ao desconsiderar a retenção de IR sobre o ganho diferencial.",
+      c: "Incorreta porque R$ 32.562,24 reflete o diferencial bruto sobre a carteira antes da apuração tributária regressiva."
+    },
+    471: {
+      a: "Incorreta porque a rentabilidade auferida em 20 dias não acompanha a taxa de venda futura de 18,50%, pois o PU sofreu desvalorização por marcação a mercado.",
+      c: "Incorreta porque a elevação nas taxas de juros (de 15% para 18,50%) reduz o preço unitário (PU) do título prefixado, derrubando a rentabilidade em caso de venda antecipada.",
+      d: "Incorreta porque a taxa de compra original (15%) só seria garantida se o investidor carregasse o título até a data final de resgate."
+    },
+    475: {
+      a: "Incorreta porque a cada pagamento semestral de cupom ocorre a retenção compulsória de IR na fonte conforme a tabela regressiva.",
+      c: "Incorreta porque títulos públicos de renda fixa sujeitam-se à tabela regressiva de IR (22,5% a 15%) e não à tabela progressiva de salários.",
+      d: "Incorreta porque no resgate final do principal na data de vencimento também incide a retenção de IR sobre os rendimentos auferidos."
+    },
+    480: {
+      a: "Incorreta porque R$ 10.500,80 reflete o valor nominal bruto sem qualquer desconto do Imposto de Renda devido na aplicação.",
+      c: "Incorreta porque o montante total bruto auferido foi de R$ 500 (5% sobre R$ 10.000), sendo impossível atingir R$ 10.667 líquidos.",
+      d: "Incorreta porque a aplicação rendeu 5% no período, atingindo R$ 10.500 brutos antes da tributação de 22,5% sobre o lucro (R$ 112,50 de IR)."
+    },
+    491: {
+      b: "Incorreta porque o Mercado a Termo possui contratos customizados/não padronizados e a garantia não é prestada pela bolsa na mesma sistemática multilateral dos futuros.",
+      c: "Incorreta porque o mercado mais utilizado por produtores e tradings agrícolas para hedge com alta liquidez é o Mercado Futuro.",
+      d: "Incorreta porque o mecanismo de ajuste diário é privativo e característico do Mercado Futuro, inexistindo no Mercado a Termo."
+    },
+    496: {
+      a: "Incorreta porque o mecanismo de ajuste diário nos futuros é universal e diário, debitando prejuízos mesmo para quem mantém a custódia do ativo subjacente.",
+      b: "Incorreta porque os contratos de mercados futuros são rigorosamente padronizados em lote, vencimento e especificações técnicas.",
+      c: "Incorreta porque o pagamento prévio de prêmio na abertura é a sistemática exclusiva do mercado de opções, não de futuros."
+    },
+    499: {
+      b: "Incorreta porque a afirmativa III é imprecisa quanto às atribuições regulamentares exclusivas da instituição depositária e do patrocinador.",
+      c: "Incorreta porque a afirmativa I expressa o papel central da instituição depositária no registro perante a bolsa e no repasse de proventos aos investidores.",
+      d: "Incorreta porque a afirmativa III mistura papéis regulamentares privativos da instituição depositária emissora do programa de BDR."
+    },
+    508: {
+      a: "Incorreta porque a afirmativa I é falsa: as operações no mercado de câmbio interbancário ocorrem diretamente entre as instituições autorizadas, sem necessidade de intermediação direta da mesa do Bacen.",
+      b: "Incorreta porque a afirmativa I é incorreta ao exigir intermediação obrigatória da mesa do Banco Central nas negociações interbancárias.",
+      d: "Incorreta porque a afirmativa I contém exigência inexistente no funcionamento do mercado de câmbio interbancário brasileiro."
+    },
+    509: {
+      a: "Incorreta porque o Participante opera em nome próprio ou de terceiros, enquanto a questão descreve a figura restrita que atua exclusivamente por conta e ordem de agentes autorizados.",
+      b: "Incorreta porque Correspondente Cambial atua na ponta de varejo para operações simplificadas de câmbio e transferências unilaterais.",
+      c: "Incorreta porque o Liquidante é a entidade financeira responsável por liquidar financeiramente as obrigações bilaterais ou multilaterais na câmara."
+    },
+    511: {
+      b: "Incorreta porque a afirmativa III é falsa: cabe ao tomador indicar sua conta de custódia de destino, e não ao doador.",
+      c: "Incorreta porque a afirmativa I é verdadeira: cada oferta tomadora exige a identificação do comitente final na B3.",
+      d: "Incorreta porque a afirmativa III é incorreta, já que o doador não tem a prerrogativa de determinar as contas de custódia do tomador."
+    },
+    513: {
+      a: "Incorreta porque comprar put é a estratégia clássica para proteção contra a queda de preços (garante piso de R$ 1.100), sendo indicada exatamente para cenários de incerteza e queda de preços.",
+      b: "Incorreta porque a venda de call gera obrigação de vender por R$ 1.100 caso o preço suba, deixando o produtor com risco aberto caso o preço despenque abaixo de R$ 1.000.",
+      d: "Incorreta porque comprar a termo é estratégia de quem precisa adquirir o ativo no futuro (consumidor/comprador), e não do produtor que já possui a mercadoria a colher."
+    },
+    514: {
+      a: "Incorreta porque os parâmetros financeiros exatos da operação de swap Dólar x Prefixado apuram lucro líquido de R$ 57,46 milhões.",
+      b: "Incorreta porque como o exportador receberá dólares no futuro, sua ponta ativa comercial já é dólar, devendo ficar passivo em dólar no swap para travar o câmbio.",
+      d: "Incorreta porque ficar ativo em dólar no swap duplicaria o risco cambial do exportador em vez de promover o hedge."
+    },
+    515: {
+      b: "Incorreta porque contratos futuros são títulos fungíveis e transferíveis na câmara de compensação, possibilitando a zeragem de posição a qualquer momento no pregão.",
+      c: "Incorreta porque os contratos futuros de dólar na B3 são liquidados exclusivamente por diferença financeira, inexistindo entrega física da moeda.",
+      d: "Incorreta porque os ajustes diários negativos exigem liquidação estritamente em moeda corrente nacional (recursos financeiros disponíveis) na grade horária da câmara."
+    },
+    516: {
+      a: "Incorreta porque a legislação tributária brasileira autoriza expressamente a compensação de perdas apuradas em mercados de derivativos com ganhos auferidos no mercado à vista (em operações normais/swing trade).",
+      c: "Incorreta porque a alíquota aplicável independe da modalidade de liquidação (física ou exclusivamente financeira) do contrato a termo.",
+      d: "Incorreta porque ganhos e perdas entre diferentes tipos de opções (calls e puts) sobre ações compensam-se livremente na apuração mensal do imposto."
+    },
+    517: {
+      a: "Incorreta porque o exportador deve comprar puts (garantindo piso para a venda dos seus dólares futuros) e não vender puts a descoberto.",
+      c: "Incorreta porque a paridade com o mercado a termo apura o ponto de indiferença para preço de venda (PVV) acima de R$ 3,397.",
+      d: "Incorreta porque a venda de put deixaria o exportador desprotegido em caso de forte desvalorização do dólar."
+    },
+    522: {
+      b: "Incorreta porque R$ 50 mil é o retorno bruto da operação (25% sobre R$ 200 mil), sem considerar o desconto do IR de 15% (R$ 7,5 mil).",
+      c: "Incorreta porque a tributação de 15% sobre o ganho de R$ 50 mil retém R$ 7,5 mil, restando retorno líquido de R$ 42,5 mil e não R$ 40 mil.",
+      d: "Incorreta porque o ganho bruto foi de R$ 50 mil, de modo que após o imposto de 15% o investidor embolsa R$ 42,5 mil."
+    },
+    528: {
+      a: "Incorreta porque o gráfico do titular de call exibe lucro ilimitado na alta e perda estritamente limitada ao prêmio pago na queda.",
+      c: "Incorreta porque o gráfico do titular de put apresenta perfil com ganhos na desvalorização do ativo e perda limitada ao prêmio pago.",
+      d: "Incorreta porque o lançador de put possui ganho máximo restrito ao prêmio e prejuízo crescente na queda acentuada do preço do ativo."
+    },
+    532: {
+      a: "Incorreta porque as operações de repasse podem abranger operações de natureza especulativa, desde que atendidos os requisitos operacionais da bolsa.",
+      c: "Incorreta porque os intermediários devem obrigatoriamente solicitar e registrar a constituição dos vínculos de repasse nos sistemas da B3.",
+      d: "Incorreta porque é formalmente obrigatória a existência de contrato específico prévio disciplinando os direitos e deveres do repasse."
+    },
+    534: {
+      a: "Incorreta porque a distribuição de valores mobiliários no mercado de capitais ordinário submete-se ao princípio da exclusividade com a instituição contratante.",
+      b: "Incorreta porque operações no mercado futuro também estão adstritas à corretora ou distribuidora com a qual o AAI mantém vínculo.",
+      d: "Incorreta porque a exceção regulatória expressa prevista pela CVM recai sobre a distribuição de cotas de fundos de investimento."
+    },
+    535: {
+      a: "Incorreta porque tanto o bônus quanto o direito de subscrição possuem prazos determinados de validade e exercício fixados em assembleia ou termo de emissão.",
+      b: "Incorreta porque a companhia pode emitir bônus de subscrição e aliená-los a terceiros ou outorgá-los como vantagem adicional a subscritores de debêntures e ações.",
+      d: "Incorreta porque ambos os instrumentos possuem vigência temporal determinada para o exercício da subscrição."
+    },
+    536: {
+      a: "Incorreta porque a aplicação da carteira em cotas de fundos referenciados DI para fins de liquidez é permitida pela regulação de clubes.",
+      b: "Incorreta porque a compra titularizada de opções não é proibida para a gestão da carteira do clube.",
+      d: "Incorreta porque títulos bancários conservadores são permitidos para a parcela remanescente de liquidez."
+    },
+    540: {
+      a: "Incorreta porque a LFT não paga cupom semestral de juros; sua rentabilidade pós-fixada decorre da atualização diária pela Selic over.",
+      b: "Incorreta porque o rendimento da LFT não é determinado por deságio fixo, mas sim pela variação acumulada da taxa Selic acrescida de eventual ágio/deságio de cotação.",
+      d: "Incorreta porque o indexador oficial da LFT é a taxa média ajustada do Selic e não a variação cambial do dólar."
+    },
+    541: {
+      b: "Incorreta porque o indexador contratual da NTN-B é o IPCA (Índice Nacional de Preços ao Consumidor Amplo) e não o IGP-M.",
+      c: "Incorreta porque a NTN-B é um título híbrido indexado à inflação (IPCA + juros reais), não sendo um papel exclusivamente prefixado.",
+      d: "Incorreta porque o título indexado à taxa básica Selic é a LFT (Letra Financeira do Tesouro), enquanto a NTN-B remunera pela inflação do IPCA."
+    },
+    542: {
+      a: "Incorreta porque a liquidez superior nos mercados futuros não impõe obrigatoriamente prêmio de preço em relação aos contratos a termo.",
+      b: "Incorreta porque curvas de commodities agrícolas podem apresentar inclinação descendente (backwardation) em função de sazonalidade e disponibilidade imediata física.",
+      c: "Incorreta porque fatores de safra e estoques podem fazer com que os preços futuros negociem temporariamente abaixo das cotações à vista no mercado físico."
+    },
+    543: {
+      a: "Incorreta porque a convergência dos preços futuros para o preço à vista no vencimento e o custo de carregamento equilibram futuros e termo.",
+      b: "Incorreta porque o mercado de DI futuro é o principal instrumento de hedge de taxas de juros utilizado pelas tesourarias e investidores institucionais no país.",
+      d: "Incorreta porque a fórmula de Black & Scholes foi formulada especificamente para opções de estilo europeu."
+    },
+    544: {
+      a: "Incorreta porque a venda de puts gera risco na queda dos preços e obrigação de compra, o que agrava a vulnerabilidade do produtor.",
+      b: "Incorreta porque compradores temem a alta dos preços e devem comprar calls ou ficar passivos na taxa fixa do swap.",
+      d: "Incorreta porque a compra de puts protegeria contra a queda e não contra a alta temida pelos compradores da commodity."
+    },
+    545: {
+      a: "Incorreta porque os contratos futuros negociam vencimentos padronizados em datas predeterminadas pela bolsa e não prazos livres em dias.",
+      b: "Incorreta porque os vendedores de futuros recebem ajustes diários positivos quando as cotações caem no pregão.",
+      d: "Incorreta porque o contrato futuro de DI é a principal ferramenta de proteção (hedge) e gestão de risco de juros do mercado brasileiro."
+    },
+    546: {
+      a: "Incorreta porque a alternância entre lucros voláteis e grandes prejuízos por falta de hedge compromete a solvência e a perenidade dos negócios.",
+      c: "Incorreta porque o hedge cambial e de juros reduz a volatilidade do fluxo de caixa e estabiliza o planejamento de investimentos das empresas.",
+      d: "Incorreta porque assumir risco de mercado desnecessário não traz dinamismo produtivo, mas sim risco desmedido de insolvência financeira."
+    },
+    550: {
+      b: "Incorreta porque a taxa calculada para o fluxo de pagamento com cupom semestral refere-se ao período semestral (8,54% a.s.) e não anual.",
+      c: "Incorreta porque a taxa interna de retorno semestral resultante do fluxo descontado a R$ 880 com cupom de 5% a.s. é de 8,54% a.s.",
+      d: "Incorreta porque 8,67% a.a. subestima o retorno acumulado anual equivalente à taxa interna de 8,54% ao semestre."
+    },
+    560: {
+      a: "Incorreta porque a regra da nova poupança estabelece que quando a Selic for igual ou inferior a 8,5% a.a., a remuneração é de 70% da Selic + TR.",
+      b: "Incorreta porque a afirmativa I desconsidera o gatilho da Selic vigente desde 2012 para o cálculo dos rendimentos da caderneta.",
+      d: "Incorreta porque a afirmativa I é falsa por desconsiderar o regime de 70% da meta da Selic quando esta estiver até 8,5% a.a."
+    },
+    561: {
+      b: "Incorreta porque a B3 não é responsável pelo cálculo e pagamento do imposto de renda mensal apurado pelo investidor em bolsa.",
+      c: "Incorreta porque a corretora retém apenas a alíquota simbólica de 0,005% na fonte, cabendo ao próprio investidor a apuração e o pagamento do DARF.",
+      d: "Incorreta porque a figura do administrador existe em fundos de investimento, não sendo responsável pelo IR de ações negociadas diretamente pelo titular."
+    },
+    563: {
+      a: "Incorreta porque o imposto de renda incide no pagamento de cada cupom semestral de juros ao longo da vigência do título.",
+      c: "Incorreta porque a tributação dos rendimentos em títulos públicos segue a tabela regressiva da renda fixa (22,5% a 15%) e não a tabela progressiva.",
+      d: "Incorreta porque a amortização final no vencimento também enseja retenção de imposto de renda sobre a valorização do principal."
+    },
+    572: {
+      a: "Incorreta porque a afirmativa II é falsa: para a aplicação de 181 dias corridos a alíquota da tabela regressiva do IR é de 20% e não 15%.",
+      c: "Incorreta porque a afirmativa III também é plenamente correta (a base de cálculo do tributo é o rendimento da aplicação).",
+      d: "Incorreta porque a afirmativa I também é verdadeira: a instituição emissora/fonte pagadora retém o imposto devido na fonte."
+    },
+    573: {
+      b: "Incorreta porque R$ 50 mil é o retorno bruto do investimento (25% sobre R$ 200 mil), sem considerar o imposto de renda de 15% (R$ 7,5 mil).",
+      c: "Incorreta porque o cálculo com dedução dos 15% de IR sobre o ganho de R$ 50 mil resulta em retorno líquido de R$ 42,5 mil.",
+      d: "Incorreta porque o lucro bruto auferido foi de R$ 50 mil, restando R$ 42,5 mil após o abatimento tributário."
+    },
+    576: {
+      a: "Incorreta porque reflete o valor nominal bruto com rendimento de 5% sobre R$ 10.000 (R$ 10.500) sem a retenção do IR da tabela regressiva.",
+      c: "Incorreta porque o ganho bruto produzido pela aplicação foi de R$ 500, impossibilitando resgate superior a R$ 10.500.",
+      d: "Incorreta porque a tributação de 22,5% sobre o rendimento de R$ 500 retém R$ 112,50, resultando em resgate líquido de R$ 10.387,50."
+    },
+    599: {
+      a: "Incorreta porque a Instrução CVM correspondente fixa o limite máximo de titularidade para um único participante do clube em 40%, e não 30%.",
+      b: "Incorreta porque 67% é o percentual mínimo obrigatório de alocação da carteira do Clube em ações e valores mobiliários de renda variável.",
+      c: "Incorreta porque 25% é o patamar regulatório de free float para listagem em bolsa, não o limite máximo de cotas por investidor em clubes."
+    },
+    602: {
+      a: "Incorreta porque Certificados de Depósito Bancário (CDB) são títulos privativos de captação de instituições bancárias, não podendo ser emitidos por empresas comerciais ou industriais.",
+      c: "Incorreta porque bancos de investimento e bancos múltiplos também possuem prerrogativa regulamentar para emitir CDBs.",
+      d: "Incorreta porque bancos comerciais e múltiplos também emitem regularmente CDBs no mercado financeiro."
+    },
+    603: {
+      a: "Incorreta porque a alíquota do IRRF de 0,005% sobre o total da alienação de R$ 23.000 gera exatamente R$ 1,15, e a corretagem de R$ 100 reduz o lucro tributável.",
+      b: "Incorreta porque o imposto retido na fonte devido na operação é de R$ 1,15 e o lucro líquido deduzido da taxa de corretagem resulta em DARF de R$ 1.183,85.",
+      c: "Incorreta porque o DARF apurado compensa o dedo-duro de R$ 1,15 sobre o lucro tributável de R$ 7.900 tributado a 15% (R$ 1.185 - R$ 1,15 = R$ 1.183,85)."
+    },
+    604: {
+      a: "Incorreta porque os colaboradores do banco líder não são automaticamente classificados como Investidores Qualificados pelo mero vínculo de emprego.",
+      b: "Incorreta porque os colaboradores individuais do banco não atendem aos critérios regulatórios de investidor qualificado da CVM.",
+      c: "Incorreta porque o item I é inválido para assegurar o enquadramento de qualificado para a participação na oferta restrita."
+    },
+    607: {
+      b: "Incorreta porque a remuneração da poupança adota a regra do menor saldo do período de 30 dias (data de aniversário), desconsiderando a parcela que foi sacada antes de completar o ciclo.",
+      c: "Incorreta porque R$ 9 mil foi o valor retirado, restando apenas R$ 1 mil na conta para completar o período de rendimento.",
+      d: "Incorreta porque somar os valores movimentados ignora o princípio básico de saldo remanescente na data de crédito da poupança."
+    }
+  };
+  Object.keys(X).forEach(function (k) {
+    WHY[k] = WHY[k] || {};
+    Object.keys(X[k]).forEach(function (l) {
+      if (!WHY[k][l]) WHY[k][l] = X[k][l];
+    });
+  });
+})();
