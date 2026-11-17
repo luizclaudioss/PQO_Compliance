@@ -1793,6 +1793,206 @@
       a: "FIDC aplica maior, e não menor, que 50% em direitos creditórios.",
       b: "O mínimo é de 50%, e não de 95%.",
       d: "FIDC não aplica em cotas de fundos de cotas."
+    },
+    676: {
+      a: "Deixa de fora o item III, que também está correto: a emissão de cotas para os atuais cotistas do fundo não se qualifica como oferta pública.",
+      b: "Deixa de fora o item II, que também está correto: não é permitida nova oferta pública antes de subscrita a anterior ou cancelado o saldo remanescente.",
+      c: "Deixa de fora o item I, que também está correto: a distribuição de cotas de FIP por oferta pública exige registro prévio na CVM."
+    },
+    677: {
+      a: "22,50% é a alíquota de resgate para aplicações de até 180 dias, e não a alíquota da antecipação semestral (come-cotas).",
+      b: "20% é a alíquota do come-cotas para fundos classificados como de curto prazo, enquanto em fundos de longo prazo a alíquota semestral é de 15%.",
+      c: "17,50% é a alíquota de resgate para aplicações com prazo entre 181 e 360 dias, e não do come-cotas."
+    },
+    678: {
+      a: "O fundo de renda fixa referenciado tem por objetivo acompanhar um índice de referência (como CDI), exigindo 95% do PL atrelado ao indicador.",
+      c: "O fundo de curto prazo tem por característica essencial o prazo médio da carteira de no máximo 60 dias.",
+      d: "O fundo de investimento em cotas (FIC) tem por regra aplicar no mínimo 95% do seu patrimônio em cotas de outros fundos de investimento."
+    },
+    679: {
+      b: "No ganho de capital em bolsa o próprio investidor recolhe via DARF, mas para os rendimentos distribuídos a retenção é feita na fonte pela administradora.",
+      c: "A isenção de IR sobre rendimentos distribuídos por FII beneficia apenas pessoas físicas sob condições regulamentares específicas, não se aplicando a pessoas jurídicas.",
+      d: "A alíquota de IR sobre o ganho de capital na alienação de cotas de FII é fixa em 20%, e não regressiva."
+    },
+    680: {
+      a: "A avaliação de ativos pelo valor atual de negociação no mercado é o conceito de marcação a mercado (MtM).",
+      b: "A troca de fluxos financeiros e indicadores de rentabilidade define as operações de swap, e não o chinese wall.",
+      d: "A compra e venda do mesmo ativo no mesmo dia pela mesma instituição e cliente é a definição de day trade."
+    },
+    681: {
+      b: "A isenção de até R$ 20.000 por mês vale para a alienação de ações no mercado à vista por pessoas físicas, não se aplicando a cotas de fundos de ações.",
+      c: "Fundos de ações não possuem incidência de come-cotas (tributação semestral em maio e novembro); a tributação ocorre exclusivamente no resgate.",
+      d: "A alíquota de IR sobre os rendimentos auferidos no resgate de fundos de ações é fixa em 15%, não havendo tabela regressiva."
+    },
+    682: {
+      a: "Nem todos os fundos sofrem come-cotas: fundos de ações, fundos fechados e fundos imobiliários não possuem incidência semestral.",
+      b: "Fundos cambiais seguem a regra tributária de renda fixa (curto ou longo prazo) e sofrem incidência de come-cotas semestral.",
+      c: "A alíquota semestral do fundo de curto prazo é de 20%, superior à de fundos de longo prazo, que é de 15%."
+    },
+    683: {
+      a: "'Agremiação' não é uma figura jurídica ou veículo regulamentado pelo mercado financeiro para investimento coletivo em ações.",
+      c: "Cooperativas financeiras são instituições de crédito mútuo destinadas a prestar serviços bancários a associados, e não veículos de investimento em ações.",
+      d: "Assembleia é a reunião deliberativa dos cotistas ou acionistas para tomada de decisões, e não o veículo de investimento em si."
+    },
+    684: {
+      a: "FIP (Fundo de Investimento em Participações) investe em empresas fechadas ou abertas com foco em participação e governança, não replicando índices de mercado.",
+      b: "Fundo fechado é aquele cujas cotas só podem ser resgatadas ao término do prazo de duração, não sendo a definição de fundo referenciado em índice.",
+      d: "Fundo exclusivo é voltado a um único investidor profissional, com regulamento moldado exclusivamente às suas preferências."
+    },
+    685: {
+      a: "No fundo aberto para aplicação e resgate os cotistas podem aportar recursos e solicitar o resgate de cotas a qualquer momento.",
+      c: "O fundo fechado apenas para resgate permitiria novas aplicações, ao passo que o fundo fechado veda aportes e resgates fora do prazo estipulado.",
+      d: "Permitir resgates a qualquer tempo descaracterizaria a estrutura de fundo fechado, em que o resgate só ocorre no término do prazo ou liquidação."
+    },
+    686: {
+      a: "Fundos fechados podem ser ofertados ao público em geral, não sendo restritos exclusivamente a investidores qualificados.",
+      b: "Fundos fechados não permitem resgate de cotas a qualquer momento; o cotista deve aguardar a liquidação ou negociar as cotas no secundário.",
+      c: "Fundos abertos permitem resgate a qualquer tempo pelo cotista (observada eventual carência), e não apenas no encerramento."
+    },
+    687: {
+      a: "Taxa de ingresso (ou taxa de entrada) pode ser cobrada pelo fundo no momento da aplicação do cotista.",
+      c: "Taxa de administração é a remuneração cobrada do fundo pela prestação dos serviços de administração e gestão.",
+      d: "Taxa de performance pode ser cobrada pelo fundo quando a rentabilidade supera o benchmark estabelecido em regulamento."
+    },
+    688: {
+      a: "A marcação a mercado tem por princípio a equidade e neutralidade entre cotistas, e não o favorecimento de quem realiza aportes.",
+      b: "A marcação diária a mercado busca a precificação justa de saída, e não o benefício indevido de cotistas que resgatam.",
+      d: "O administrador é remunerado pela taxa de administração contratada; a marcação a mercado destina-se a precificar a cota com justiça patrimonial."
+    },
+    689: {
+      a: "Fundos Y (35%) e Z (55%) possuem alocação em ações abaixo do percentual mínimo regulamentar de 67% exigido pela CVM para fundos de ações.",
+      b: "O Fundo Y possui apenas 35% em ações, não atingindo o piso obrigatório de 67% de ações para ser classificado como fundo de ações.",
+      c: "Os fundos Z (55%) e W (65%) possuem alocação em ações inferior ao limite mínimo de 67% do patrimônio líquido."
+    },
+    690: {
+      a: "A marcação na curva utiliza a taxa contratada de compra do papel até o vencimento, não refletindo o valor corrente de mercado.",
+      b: "A marcação na curva gera justamente o oposto: quebra da equidade e favorecimento/prejuízo entre cotistas no momento do aporte ou resgate.",
+      d: "O balanço social é demonstrativo de responsabilidade socioambiental, não tendo relação com ajustes contábeis de carteira de fundos."
+    },
+    691: {
+      a: "Deixa de fora o item III, que também descreve atribuições da Central de Cadastro da B3.",
+      c: "Deixa de fora o item II, que descreve corretamente a identificação do investidor por meio de sua conta nas infraestruturas da B3.",
+      d: "Contraria o gabarito oficial da questão ao considerar todos os itens simultaneamente corretos."
+    },
+    692: {
+      b: "A asserção II é verdadeira: é no nível de conta de custódia e liquidação que os direitos e obrigações ficam individualizados e protegidos.",
+      c: "A asserção I é verdadeira: a estrutura de contas é peça central para conferir transparência, rastreabilidade e segurança ao investidor.",
+      d: "Ambas as asserções são verdadeiras e guardam estrita relação de causa e justificativa entre si."
+    },
+    693: {
+      a: "Deixa de fora o item II, que também está correto ao prever a obrigação de verificação periódica e atualização cadastral.",
+      c: "Inclui o item III, que está incorreto: a instituição não pode realizar operações complexas ou inadequadas sem antes alertar formalmente o cliente e colher sua anuência expressa.",
+      d: "Inclui o item III, que contraria as diretrizes normativas de suitability da CVM."
+    },
+    694: {
+      b: "O investimento é a etapa operacional posterior à conclusão e aprovação cadastral do cliente.",
+      c: "A especulação é uma estratégia de negociação que só pode ser exercida após a abertura e habilitação da conta do cliente.",
+      d: "O financiamento é modalidade de crédito que depende de prévia formalização cadastral e análise de risco."
+    },
+    695: {
+      a: "Embora o investidor declare as informações, a responsabilidade regulatória pela verificação, veracidade e manutenção perante o mercado é da instituição participante.",
+      b: "O Bacen é órgão regulador e fiscalizador do SFN, não sendo responsável pela coleta ou validação de dados de clientes individuais.",
+      d: "A empresa onde o cliente trabalha não possui qualquer responsabilidade perante a CVM ou a B3 sobre o cadastro do investidor."
+    },
+    696: {
+      a: "A unificação de contas na Câmara B3 é uma faculdade operacional colocada à disposição dos participantes, não uma obrigação legal.",
+      c: "A unificação nunca foi tornada compulsória pela CVM ou pela B3; o modelo respeita a escolha operacional do participante.",
+      d: "Não se exige apresentação de justificativa documental formal à B3 para manter contas segregadas por mercado."
+    },
+    697: {
+      a: "O investidor pode ter múltiplas contas em diferentes intermediários ou em diferentes modalidades (como margem e custódia própria).",
+      b: "A abertura de contas subordina-se à aprovação cadastral e às regras de compliance de cada participante, não sendo um direito irrestrito e ilimitado.",
+      c: "A B3 não estabelece um teto numérico fixo de três contas por comitente."
+    },
+    698: {
+      b: "A conta de liquidação destina-se à movimentação de débitos e créditos financeiros e entrega de ativos na liquidação, não à guarda depositária contínua.",
+      c: "A conta máster é utilizada para agrupar ordens de comitentes que serão posteriormente alocadas a contas individuais.",
+      d: "Conta brokerage é denominação comercial para contas de intermediação, não a denominação técnica da conta de guarda na central depositária."
+    },
+    699: {
+      a: "Inverte a correspondência: o investidor não residente com base na Resolução 2.687/2000 vincula-se ao perfil de titularidade correspondente.",
+      c: "A ordem das associações não respeita a classificação regulatória prevista no manual de contas da B3.",
+      d: "Associa incorretamente os códigos de perfil às modalidades de cadastro de investidores não residentes."
+    },
+    700: {
+      a: "'Investidores' é termo genérico que engloba tanto residentes no país quanto pessoas domiciliadas fora do Brasil.",
+      b: "'Investidores estrangeiros' é termo genérico coloquial, enquanto 'Investidor Não Residente (INR)' é o termo técnico oficial definido na regulamentação da CVM.",
+      d: "'IEX' não é uma sigla normativa adotada pela Resolução CVM ou pelo CMN para designar investidores domiciliados no exterior."
+    },
+    701: {
+      b: "Inclui o item II, que está incorreto: a CVM não exige representação por pessoa física estrangeira residente no exterior para atuar localmente.",
+      c: "Deixa de fora o item I e inclui o item II, contrariando a regra da Resolução CMN 4.373.",
+      d: "Inclui o item II, que traz exigência incompatível com o arcabouço normativo de investidores não residentes."
+    },
+    702: {
+      a: "O representante legal responde administrativamente perante os órgãos reguladores (CVM e Bacen), mas a guarda e segregação dos ativos é função do custodiante.",
+      b: "O representante fiscal tem por atribuição responder pelas obrigações tributárias e fiscais do investidor perante a Receita Federal.",
+      d: "O investidor residente é uma categoria de investidor local, e não um prestador de serviço de custódia para o INR."
+    },
+    703: {
+      a: "Inclui o item I, que contém a pegadinha: a intermediária estrangeira assume o compromisso perante a intermediária local brasileira, e não perante outra estrangeira.",
+      c: "Inclui o item I e deixa de fora o item II, ambos contrariando a regulamentação do cadastro simplificado.",
+      d: "Inclui o item I, que está incorreto na sua definição do compromisso entre as instituições."
+    },
+    704: {
+      b: "Ser signatário da IOSCO é requisito aplicável ao regulador do país de origem da instituição estrangeira, não exigência do intermediário local.",
+      c: "Rescisão de contrato é penalidade por descumprimento, e ser signatário do memorando da IOSCO diz respeito à jurisdição estrangeira.",
+      d: "Constituição de mandatário é cláusula contratual entre as partes, não compondo o tripé das exigências normativas da B3 para o intermediário local."
+    },
+    705: {
+      a: "A negociação de ações por investidor não residente exige obrigatoriamente prévio registro na CVM nos termos da Resolução CMN 4.373.",
+      c: "A negociação de opções e derivativos no mercado de bolsa exige registro ativo do INR na CVM.",
+      d: "Operações com ouro ativo financeiro sujeitam-se ao registro regulatório regular na CVM."
+    },
+    706: {
+      a: "O representante legal responde perante a CVM pelo registro do investidor, não respondendo pelo controle dos ativos.",
+      b: "O representante fiscal atua perante a Receita Federal nas obrigações tributárias, sem realizar o controle de custódia.",
+      c: "A B3 fornece a infraestrutura de liquidação e compensação, não exercendo o papel de custodiante contratado pelo investidor."
+    },
+    707: {
+      a: "O representante legal responde pelo registro cadastral e comunicação com a CVM, e não pelas obrigações fiscais perante a Receita Federal.",
+      c: "A B3 opera os sistemas de negociação e liquidação, não atuando como representante fiscal do investidor.",
+      d: "O custodiante guarda os ativos e controla a documentação, não prestando a representação tributária e fiscal."
+    },
+    708: {
+      b: "O representante fiscal cuida exclusivamente das obrigações fiscais e tributárias perante as autoridades fiscais brasileiras.",
+      c: "A B3 é a entidade administradora de mercado de bolsa e balcão organizado, não representando investidores perante órgãos reguladores.",
+      d: "O custodiante é responsável pela custódia, controle de ativos em contas segregadas e fornecimento de extratos."
+    },
+    709: {
+      a: "A conta admincom é destinada especificamente à identificação de ofertas originárias de ordens administradas concorrentes.",
+      b: "A conta máster é utilizada para agrupar investidores que possuam vínculos em comum ou gestão compartilhada.",
+      d: "A conta intermediária é mantida por participante de negociação pleno para posterior distribuição a contas normais."
+    },
+    710: {
+      b: "A conta máster agrupa contas vinculadas por gestão comum ou intermediário internacional comum, não intermediando para distribuição posterior.",
+      c: "A conta brokerage é utilizada para possibilitar vínculo de repasse entre participantes sem identificar o beneficiário final na origem.",
+      d: "A conta de captura é mecanismo de controle operacional e de contingência de ofertas, não tendo essa finalidade de intermediação."
+    },
+    711: {
+      a: "O representante fiscal é responsável perante a Secretaria da Receita Federal pelas obrigações tributárias decorrentes das aplicações.",
+      b: "O representante legal responde administrativamente perante a CVM pelo registro e prestação de informações exigidas pela autarquia.",
+      c: "'Representante normativo' não existe na estrutura regulatória da Resolução CMN 4.373."
+    },
+    712: {
+      b: "O vínculo de custódia liga o investidor ao agente de custódia para a guarda de seus ativos na central depositária.",
+      c: "A consolidação de margem destina-se a agregar e otimizar exigências de garantias entre contas coligadas.",
+      d: "O vínculo de exercício de opções vincula participantes de negociação e liquidação para a operacionalização de exercícios de opções."
+    },
+    713: {
+      b: "A conta de erro destina-se a acolher operações decorrentes de falhas operacionais comprovadas até a regularização.",
+      c: "A conta de restrição é utilizada para impor limitações operacionais a determinados comitentes ou participantes.",
+      d: "A conta de captura serve a procedimentos de registro de negociações em contingência, não a ordens administradas."
+    },
+    714: {
+      a: "A conta de depósito é a conta padrão mantida na central depositária para controle de guarda dos ativos do comitente.",
+      c: "A conta admincom acolhe especificamente ofertas provenientes de ordens administradas concorrentes.",
+      d: "A conta intermediária permite a um participante pleno intermediar negócios para posterior rateio a contas comitentes."
+    },
+    715: {
+      a: "A conta de restrição serve a fins disciplinares ou cautelares de bloqueio/limitação de negociação.",
+      b: "A conta de captura é um recurso operacional de contingência da infraestrutura de negociação.",
+      d: "A conta intermediária tem por escopo intermediar negócios com distribuição mandatória posterior para contas normais."
     }
   };
   Object.keys(X).forEach(function (k) {
