@@ -2,7 +2,7 @@
 var VERSION = "v19";
 var SHELL = "pqo-shell-" + VERSION;
 var PAGES = "pqo-pages";
-var ASSETS = ["./", "index.html", "css/styles.css", "js/questions.js", "js/pagemap.js", "js/app.js", "js/mobile.js", "manifest.json", "icons/icon-192.png", "icons/icon-512.png"];
+var ASSETS = ["./", "index.html", "css/styles.css", "js/questions.js", "js/why-lucas-extra.js", "js/pagemap.js", "js/app.js", "js/mobile.js", "manifest.json", "icons/icon-192.png", "icons/icon-512.png"];
 
 self.addEventListener("install", function (e) {
   e.waitUntil(caches.open(SHELL).then(function (c) { return c.addAll(ASSETS); }).then(function () { return self.skipWaiting(); }));
